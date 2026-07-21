@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#6F00FF">
+<title>美股新手村 · Bobby</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦄</text></svg>">
+<style>
+/* ============ BullCamp 美股新手村 · Bobby 品牌皮肤 ============
+   Brand tokens 来自 RockFlow/Bobby Figma 品牌板：
+   深空紫 #1D0038 / 品牌紫 #6F00FF / 亮紫 #A050FF / 品牌黄 #F9F339
+   次要蓝紫 #7C9CFD #9FB7FF #E3D9FF；视觉母题：紫色波纹渐变 + 星芒 ✦ */
+:root {
+  --brand: #6F00FF;
+  --brand-hi: #A050FF;
+  --brand-dark: #4B00AE;
+  --brand-deep: #1D0038;
+  --brand-soft: #F1E8FF;
+  --info: #7C9CFD;
+  --accent: #F9F339;
+  --accent-dark: #CBBE00;
+  --up: #00B578;
+  --up-dark: #009463;
+  --up-soft: #E3F9F0;
+  --down: #FF4B4B;
+  --down-dark: #D93636;
+  --down-soft: #FFEDED;
+  --bg: #F7F5FC;
+  --card: #FFFFFF;
+  --text: #1D0038;
+  --text-2: #6E5E8C;
+  --line: #E9E4F4;
+  --locked: #D9D2E9;
+  --shadow: 0 2px 8px rgba(29, 0, 56, .07);
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #9D5CFF;
+    --brand-hi: #B788FF;
+    --brand-dark: #6F00FF;
+    --brand-deep: #E3D9FF;
+    --brand-soft: #35155F;
+    --info: #9FB7FF;
+    --accent: #F9F339;
+    --accent-dark: #F9F339;
+    --up: #1ED696;
+    --up-soft: #0E3327;
+    --down: #FF6B6B;
+    --down-soft: #3F1A2E;
+    --bg: #14002B;
+    --card: #26104A;
+    --text: #F3EFFB;
+    --text-2: #A896C7;
+    --line: #3A2566;
+    --locked: #40306B;
+    --shadow: 0 2px 8px rgba(0, 0, 0, .35);
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overscroll-behavior: none;
+}
+button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 84px;
+}
+
+/* ============ 底部导航 ============ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: var(--card);
+  border-top: 2px solid var(--line);
+  display: flex;
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.nav-btn { flex: 1; padding: 8px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: .45; transition: opacity .15s; }
+.nav-btn.active { opacity: 1; }
+.nav-ico { font-size: 24px; }
+.nav-label { font-size: 11px; font-weight: 600; }
+.nav-btn.active .nav-label { color: var(--brand); }
+.bottom-nav.hidden { display: none; }
+
+/* ============ 顶栏 ============ */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--bg);
+  padding: 14px 16px 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.topbar .logo { font-size: 17px; font-weight: 800; margin-right: auto; }
+.topbar .logo .logo-by { font-size: 10.5px; font-weight: 800; color: var(--brand); background: var(--brand-soft); padding: 2px 8px; border-radius: 999px; vertical-align: 2px; margin-left: 4px; letter-spacing: .3px; }
+.stat-pill {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 14px; font-weight: 800;
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--card); box-shadow: var(--shadow);
+}
+.stat-pill .ico { font-size: 15px; }
+.pill-streak { color: #FF9600; }
+.pill-streak.cold { filter: grayscale(1); opacity: .6; }
+.pill-xp { color: var(--brand); }
+
+/* 市场状态条 */
+.market-bar {
+  margin: 2px 16px 12px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  background: var(--card); box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--text-2);
+}
+.market-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.market-dot.open { background: var(--up); box-shadow: 0 0 0 3px rgba(0,181,120,.2); }
+.market-dot.pre, .market-dot.post { background: var(--info); box-shadow: 0 0 0 3px rgba(124,156,253,.3); }
+.market-dot.closed { background: var(--locked); }
+.market-bar b { color: var(--text); }
+
+/* ============ 地图 ============ */
+.map { padding: 0 16px 24px; }
+.unit-head {
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 18px 0 6px;
+  color: #fff;
+  /* Bobby 波纹母题：涟漪环 + 紫渐变 */
+  background:
+    repeating-radial-gradient(circle at 115% -40%, rgba(255, 255, 255, .07) 0 26px, rgba(255, 255, 255, 0) 26px 54px),
+    radial-gradient(130% 170% at 90% -30%, #A050FF 0%, #6F00FF 52%, #4B00AE 100%);
+  box-shadow: 0 4px 14px rgba(111, 0, 255, .3);
+}
+.unit-head.locked { background: var(--locked); box-shadow: none; color: var(--text-2); }
+.unit-head .u-emoji { font-size: 26px; }
+.unit-head .u-title { font-size: 17px; font-weight: 800; margin-top: 2px; }
+.unit-head .u-sub { font-size: 12.5px; opacity: .85; margin-top: 2px; }
+.unit-head .u-progress { font-size: 12px; font-weight: 700; margin-top: 8px; background: rgba(255,255,255,.2); display: inline-block; padding: 2px 10px; border-radius: 999px; }
+.unit-head.locked .u-progress { background: rgba(0,0,0,.08); }
+
+.path { display: flex; flex-direction: column; padding: 10px 0 4px; }
+.node-row { display: flex; justify-content: center; padding: 7px 0; }
+.node-row.off-l { justify-content: flex-start; padding-left: 18%; }
+.node-row.off-r { justify-content: flex-end; padding-right: 18%; }
+.node {
+  width: 74px; height: 74px;
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 26px;
+  position: relative;
+  background: var(--card);
+  box-shadow: 0 5px 0 var(--line), var(--shadow);
+  transition: transform .1s;
+  border: 3px solid transparent;
+}
+.node:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--line); }
+.node.done { background: var(--up); box-shadow: 0 5px 0 var(--up-dark); color: #fff; }
+.node.current { background: var(--brand); box-shadow: 0 5px 0 var(--brand-dark); color: #fff; animation: pulse 2s infinite; }
+.node.locked { background: var(--card); color: var(--locked); box-shadow: 0 5px 0 var(--line); cursor: default; }
+.node.boss { width: 84px; height: 84px; font-size: 30px; }
+.node .stars { font-size: 11px; letter-spacing: -1px; margin-top: -2px; }
+.node .n-label {
+  position: absolute; top: 100%; margin-top: 8px;
+  font-size: 11.5px; font-weight: 700; color: var(--text-2);
+  white-space: nowrap; max-width: 130px; overflow: hidden; text-overflow: ellipsis;
+}
+.node-row { margin-bottom: 20px; }
+@keyframes pulse {
+  0%, 100% { outline: 0 solid rgba(111,0,255,0); }
+  50% { box-shadow: 0 5px 0 var(--brand-dark), 0 0 0 8px rgba(111,0,255,.15); }
+}
+.start-tip {
+  position: absolute; bottom: 100%; margin-bottom: 6px;
+  background: var(--brand); color: #fff;
+  font-size: 11px; font-weight: 800;
+  padding: 4px 10px; border-radius: 8px;
+  animation: bob 1.2s infinite;
+  white-space: nowrap;
+}
+.start-tip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--brand); }
+@keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-4px);} }
+
+/* ============ 通用卡片/按钮 ============ */
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
+.btn {
+  display: block; width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 16px; font-weight: 800;
+  text-align: center;
+  transition: transform .08s, box-shadow .08s, filter .15s;
+}
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 4px 0 var(--brand-dark); }
+.btn-up { background: var(--up); color: #fff; box-shadow: 0 4px 0 var(--up-dark); }
+.btn-ghost { background: var(--card); color: var(--text-2); box-shadow: 0 4px 0 var(--line); border: 2px solid var(--line); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--brand-dark); }
+.btn-up:active { box-shadow: 0 1px 0 var(--up-dark); }
+.btn-ghost:active { box-shadow: 0 1px 0 var(--line); }
+.btn:disabled { background: var(--locked); box-shadow: 0 4px 0 var(--line); color: var(--card); cursor: default; transform: none; }
+
+/* ============ 课程页 ============ */
+.lesson-top {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px;
+  position: sticky; top: 0; background: var(--bg); z-index: 30;
+}
+.quit-btn { font-size: 20px; color: var(--text-2); padding: 4px; }
+.progress-track { flex: 1; height: 14px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--up); border-radius: 999px; transition: width .4s cubic-bezier(.22,1,.36,1); min-width: 14px; }
+.hearts { font-size: 15px; font-weight: 800; color: var(--down); display: flex; align-items: center; gap: 3px; }
+
+.q-area { padding: 8px 20px 140px; }
+.q-type-tag { font-size: 12px; font-weight: 800; color: var(--brand); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.q-prompt { font-size: 19px; font-weight: 800; line-height: 1.45; margin-bottom: 20px; }
+
+/* 知识卡片 */
+.intro-card { margin: 12px 0; text-align: left; }
+.intro-mascot { font-size: 44px; margin-bottom: 8px; }
+.intro-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+.intro-body { font-size: 15.5px; line-height: 1.8; color: var(--text); }
+.intro-tag { display: inline-block; font-size: 11px; font-weight: 800; color: var(--brand); background: var(--brand-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+
+/* 选项 */
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 3px 0 var(--line);
+  padding: 14px 16px;
+  font-size: 15.5px; font-weight: 600;
+  text-align: left;
+  transition: all .12s;
+  line-height: 1.4;
+}
+.opt:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); box-shadow: 0 3px 0 var(--brand); }
+.opt.good { border-color: var(--up); background: var(--up-soft); color: var(--up); box-shadow: 0 3px 0 var(--up); }
+.opt.bad { border-color: var(--down); background: var(--down-soft); color: var(--down); box-shadow: 0 3px 0 var(--down); }
+.opt.dim { opacity: .5; pointer-events: none; }
+.opts-tf { flex-direction: row; }
+.opts-tf .opt { flex: 1; text-align: center; font-size: 17px; font-weight: 800; padding: 18px 0; }
+
+/* 配对 */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.match-col { display: flex; flex-direction: column; gap: 10px; }
+.opt.matched { border-color: var(--up); background: var(--up-soft); color: var(--up); opacity: .55; pointer-events: none; }
+.opt.shake { animation: shake .35s; border-color: var(--down); }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+/* 排序 */
+.order-slots {
+  min-height: 58px;
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  padding: 9px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.order-bank { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--card);
+  border: 2px solid var(--line);
+  box-shadow: 0 3px 0 var(--line);
+  border-radius: 12px;
+  padding: 9px 13px;
+  font-size: 14.5px; font-weight: 700;
+  transition: all .1s;
+}
+.chip:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+.chip.in-slot { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); box-shadow: 0 3px 0 var(--brand); }
+.chip-num { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 11px; align-items: center; justify-content: center; margin-right: 6px; }
+.order-hint { font-size: 12.5px; color: var(--text-2); margin-bottom: 8px; font-weight: 600; }
+
+/* 填空 */
+.blank-sentence { font-size: 18px; font-weight: 700; line-height: 1.9; margin-bottom: 22px; }
+.blank-hole {
+  display: inline-block; min-width: 86px;
+  border-bottom: 3px solid var(--line);
+  text-align: center; color: var(--brand); font-weight: 800;
+  padding: 0 6px;
+}
+.blank-hole.filled { border-bottom-color: var(--brand); }
+
+/* 检查按钮区 */
+.check-bar {
+  position: fixed; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 2px solid var(--line);
+  z-index: 45;
+}
+
+/* 反馈弹层 */
+.feedback {
+  position: fixed; bottom: 0; left: 50%;
+  transform: translateX(-50%) translateY(105%);
+  width: 100%; max-width: 480px;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  border-radius: 24px 24px 0 0;
+  z-index: 60;
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.feedback.show { transform: translateX(-50%) translateY(0); }
+.feedback.ok { background: var(--up-soft); }
+.feedback.bad { background: var(--down-soft); }
+.fb-title { font-size: 19px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.feedback.ok .fb-title { color: var(--up); }
+.feedback.bad .fb-title { color: var(--down); }
+.fb-answer { font-size: 14px; font-weight: 700; margin-top: 8px; color: var(--text); }
+.fb-expl { font-size: 14.5px; line-height: 1.65; margin: 10px 0 16px; color: var(--text); }
+.fb-xp { font-size: 13px; font-weight: 800; color: var(--up); margin-bottom: 12px; }
+
+/* ============ 结算页 ============ */
+.result-page { padding: 60px 24px 24px; text-align: center; }
+.result-mascot { font-size: 74px; animation: bob 1.5s infinite; display: inline-block; }
+.result-title { font-size: 24px; font-weight: 800; margin: 14px 0 6px; }
+.result-sub { font-size: 14.5px; color: var(--text-2); margin-bottom: 26px; line-height: 1.6; }
+.result-stars { font-size: 40px; letter-spacing: 6px; margin-bottom: 18px; }
+.result-stats { display: flex; gap: 10px; margin-bottom: 26px; }
+.rs-box { flex: 1; border-radius: 14px; padding: 12px 6px; background: var(--card); box-shadow: var(--shadow); }
+.rs-num { font-size: 20px; font-weight: 800; }
+.rs-num.xp { color: var(--brand); }
+.rs-num.acc { color: var(--up); }
+.rs-label { font-size: 11.5px; color: var(--text-2); font-weight: 700; margin-top: 2px; }
+.result-actions { display: flex; flex-direction: column; gap: 10px; }
+
+/* 徽章弹窗 */
+.badge-pop {
+  position: fixed; inset: 0; z-index: 80;
+  background: rgba(20, 20, 30, .55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px;
+}
+.badge-card { background: var(--card); border-radius: 24px; padding: 30px 24px; text-align: center; max-width: 320px; width: 100%; animation: popIn .3s cubic-bezier(.22,1.4,.36,1); }
+@keyframes popIn { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.badge-emoji { font-size: 60px; }
+.badge-name { font-size: 19px; font-weight: 800; margin: 10px 0 4px; }
+.badge-desc { font-size: 13.5px; color: var(--text-2); margin-bottom: 18px; }
+
+/* ============ 每日挑战 / 错题本 / 我的 ============ */
+.page { padding: 8px 16px 24px; }
+.page-title { font-size: 22px; font-weight: 800; padding: 14px 2px 4px; }
+.page-sub { font-size: 13.5px; color: var(--text-2); margin-bottom: 16px; padding: 0 2px; line-height: 1.6; }
+.hero-card { text-align: center; padding: 28px 18px; margin-bottom: 14px; }
+.hero-emoji { font-size: 54px; }
+.hero-title { font-size: 18px; font-weight: 800; margin: 10px 0 4px; }
+.hero-sub { font-size: 13.5px; color: var(--text-2); margin-bottom: 18px; line-height: 1.6; }
+
+.wrong-group { margin-bottom: 14px; }
+.wrong-unit-title { font-size: 13.5px; font-weight: 800; color: var(--text-2); margin: 14px 2px 8px; }
+.wrong-item { display: flex; align-items: center; gap: 10px; padding: 13px 15px; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+.wrong-item .w-ico { font-size: 18px; flex: none; }
+.wrong-item .w-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.wrong-item .w-count { font-size: 11.5px; color: var(--down); font-weight: 800; flex: none; }
+
+.profile-head { display: flex; align-items: center; gap: 14px; padding: 18px; margin-bottom: 14px; }
+.avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--brand-soft); display: flex; align-items: center; justify-content: center; font-size: 34px; flex: none; }
+.p-name { font-size: 18px; font-weight: 800; }
+.p-title { font-size: 13px; color: var(--brand); font-weight: 800; margin-top: 3px; }
+.p-next { font-size: 11.5px; color: var(--text-2); margin-top: 4px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.stat-box { background: var(--card); border-radius: 14px; box-shadow: var(--shadow); text-align: center; padding: 13px 4px; }
+.stat-box .s-num { font-size: 18px; font-weight: 800; }
+.stat-box .s-label { font-size: 10.5px; color: var(--text-2); font-weight: 700; margin-top: 3px; }
+
+.cal-strip { display: flex; gap: 3px; justify-content: space-between; margin-top: 12px; }
+.cal-day { flex: 1; min-width: 0; text-align: center; }
+.cal-dot { width: 20px; height: 20px; margin: 0 auto 4px; border-radius: 50%; background: var(--line); display: flex; align-items: center; justify-content: center; font-size: 11px; }
+.cal-dot.lit { background: #FF9600; }
+.cal-label { font-size: 9.5px; color: var(--text-2); font-weight: 700; }
+.section-title { font-size: 15px; font-weight: 800; margin: 18px 2px 10px; }
+.badges-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.badge-cell { background: var(--card); border-radius: 14px; box-shadow: var(--shadow); text-align: center; padding: 12px 4px 9px; }
+.badge-cell .b-emoji { font-size: 26px; }
+.badge-cell .b-name { font-size: 10px; font-weight: 700; color: var(--text-2); margin-top: 4px; line-height: 1.3; }
+.badge-cell.off { opacity: .35; filter: grayscale(1); }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 17px; margin-bottom: 10px; font-size: 15px; font-weight: 700; }
+.switch { width: 50px; height: 28px; border-radius: 999px; background: var(--line); position: relative; transition: background .2s; flex: none; }
+.switch.on { background: var(--up); }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+.switch.on::after { left: 25px; }
+.danger-btn { color: var(--down); font-size: 14px; font-weight: 700; text-align: center; padding: 14px; width: 100%; }
+
+/* 撒花 */
+.confetti { position: fixed; top: -14px; z-index: 90; border-radius: 3px; pointer-events: none; animation: fall linear forwards; }
+@keyframes fall {
+  to { transform: translateY(105vh) rotate(720deg); opacity: .6; }
+}
+
+/* 空状态 */
+.empty { text-align: center; padding: 44px 20px; color: var(--text-2); }
+.empty .e-emoji { font-size: 52px; margin-bottom: 12px; }
+.empty .e-text { font-size: 14.5px; line-height: 1.7; }
+
+.fade-in { animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ============ 互动实验室 ============ */
+.lab-head { text-align: center; margin-bottom: 12px; }
+.lab-title { font-size: 20px; font-weight: 800; }
+.lab-goal { display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 800; color: var(--brand); background: var(--brand-soft); padding: 5px 12px; border-radius: 999px; }
+.lab-stage { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 14px; }
+.lab-canvas { width: 100%; height: auto; display: block; border-radius: 10px; background: var(--bg); }
+.lab-legend { display: flex; gap: 14px; justify-content: center; font-size: 12px; font-weight: 700; color: var(--text-2); margin-top: 8px; }
+.lab-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; }
+.lab-stats { display: flex; gap: 8px; margin-top: 12px; }
+.lab-stat { flex: 1; background: var(--bg); border-radius: 12px; padding: 10px 6px; text-align: center; }
+.lab-stat b { font-size: 16px; display: block; font-variant-numeric: tabular-nums; }
+.lab-stat span { font-size: 10.5px; color: var(--text-2); font-weight: 700; }
+.lab-stat em { font-style: normal; font-weight: 800; }
+.lab-note { margin-top: 12px; font-size: 13.5px; line-height: 1.65; background: var(--brand-soft); color: var(--text); border-radius: 12px; padding: 10px 13px; min-height: 20px; }
+.lab-btns { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.lab-btn { flex: 1; min-width: 72px; padding: 11px 8px; border-radius: 12px; font-size: 13.5px; font-weight: 800; background: var(--card); border: 2px solid var(--line); box-shadow: 0 3px 0 var(--line); transition: all .1s; white-space: nowrap; }
+.lab-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--line); }
+.lab-btn.hot { background: var(--brand); border-color: var(--brand); color: #fff; box-shadow: 0 3px 0 var(--brand-dark); }
+.lab-btn.ghost { color: var(--text-2); }
+.lab-btn.sel { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+.lab-meter { position: relative; height: 26px; background: var(--bg); border-radius: 999px; overflow: hidden; margin-top: 4px; }
+.lab-meter-fill { height: 100%; background: var(--up); border-radius: 999px; transition: width .3s, background .3s; }
+.lab-meter-line { position: absolute; top: 0; bottom: 0; width: 3px; background: var(--down); }
+.lab-meter-cap { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-2); font-weight: 700; margin-top: 6px; }
+.lab-clock { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.lab-clock-t { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lab-clock-l { font-size: 11px; color: var(--text-2); font-weight: 700; }
+.lab-pill { font-size: 12.5px; font-weight: 800; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+.lab-pill.ok { background: var(--up-soft); color: var(--up); }
+.lab-pill.warn { background: rgba(124,156,253,.18); color: var(--info); }
+.lab-pill.off { background: var(--bg); color: var(--text-2); }
+.lab-range { width: 100%; accent-color: var(--brand); height: 30px; margin-top: 4px; }
+.lab-sliders { margin-top: 10px; }
+.lab-sliders label { display: block; font-size: 13px; font-weight: 800; margin-top: 6px; }
+.lab-sliders label b { color: var(--brand); }
+.lab-todo { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; font-size: 12.5px; font-weight: 700; color: var(--text-2); }
+.lab-todo-col { flex-direction: column; gap: 6px; }
+.lab-todo .done { color: var(--up); }
+.lab-book { border: 2px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 10px; }
+.lab-book-row { display: flex; justify-content: space-between; padding: 12px 16px; font-size: 15px; font-weight: 700; }
+.lab-book-row.ask { color: var(--down); background: var(--down-soft); }
+.lab-book-row.bid { color: var(--up); background: var(--up-soft); }
+.lab-book-mid { text-align: center; font-size: 12px; font-weight: 800; color: var(--text-2); padding: 7px; background: var(--bg); }
+.lab-candle-wrap { display: flex; gap: 16px; align-items: center; justify-content: center; }
+.lab-candle-area { position: relative; width: 90px; height: 180px; background: var(--bg); border-radius: 10px; }
+.lab-wick { position: absolute; left: 50%; width: 3px; margin-left: -1.5px; background: var(--text-2); border-radius: 2px; }
+.lab-body { position: absolute; left: 50%; width: 34px; margin-left: -17px; border-radius: 4px; }
+.lab-candle-info { font-size: 13px; line-height: 1.9; color: var(--text-2); font-weight: 700; }
+
+/* ============ 股票世界杯（滑卡 2 选 1） ============ */
+.cup-stage { overflow: hidden; }
+.cup-top { display: flex; justify-content: space-between; align-items: center; }
+.cup-round { font-size: 13.5px; font-weight: 800; color: var(--brand); background: var(--brand-soft); padding: 5px 12px; border-radius: 999px; }
+.cup-count { font-size: 12px; font-weight: 800; color: var(--text-2); }
+.cup-adv { display: flex; gap: 7px; justify-content: center; margin-top: 12px; min-height: 32px; }
+.cup-seat { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 2px dashed var(--line); display: flex; align-items: center; justify-content: center; font-size: 17px; }
+.cup-seat.filled { border-style: solid; border-color: var(--brand); background: var(--brand-soft); animation: seatPop .3s cubic-bezier(.22,1.4,.36,1); }
+@keyframes seatPop { from { transform: scale(.2); } to { transform: scale(1); } }
+.cup-arena { position: relative; display: flex; gap: 12px; margin-top: 14px; }
+.cup-card {
+  flex: 1; min-width: 0;
+  background: var(--bg);
+  border: 2.5px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 10px 14px;
+  text-align: center;
+  position: relative;
+  touch-action: none;
+  user-select: none; -webkit-user-select: none;
+  cursor: grab;
+  transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .2s, border-color .2s, background .2s, opacity .35s;
+}
+.cup-card.enter-l { animation: cupInL .42s cubic-bezier(.22,1.2,.36,1) backwards; }
+.cup-card.enter-r { animation: cupInR .42s cubic-bezier(.22,1.2,.36,1) backwards .07s; }
+@keyframes cupInL { from { transform: translateX(-130%) rotate(-9deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes cupInR { from { transform: translateX(130%) rotate(9deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.cup-card.dragging { transition: none; cursor: grabbing; z-index: 4; border-color: var(--brand-hi); box-shadow: 0 12px 26px rgba(29, 0, 56, .2); }
+.cup-card.win {
+  border-color: var(--brand); background: var(--brand-soft);
+  transform: scale(1.07); z-index: 3;
+  box-shadow: 0 0 0 4px rgba(160, 80, 255, .25), 0 8px 22px rgba(111, 0, 255, .28);
+}
+.cup-card.lose { opacity: 0; pointer-events: none; transition: transform .55s cubic-bezier(.45,-.15,.7,1), opacity .5s; }
+.cup-card.lose.left { transform: translate(-130%, 40px) rotate(-20deg); }
+.cup-card.lose.right { transform: translate(130%, 40px) rotate(20deg); }
+.cup-emoji { font-size: 46px; line-height: 1.15; }
+.cup-name { font-size: 16px; font-weight: 800; margin-top: 6px; }
+.cup-ticker {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px; font-weight: 800; letter-spacing: 1px;
+  background: var(--accent); color: #1D0038;
+  border-radius: 8px; padding: 2px 9px; margin-top: 7px;
+}
+.cup-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.55; margin-top: 8px; font-weight: 600; min-height: 3.1em; }
+.cup-stamp {
+  position: absolute; top: 8px; left: 50%; z-index: 2;
+  transform: translateX(-50%) scale(0) rotate(-10deg);
+  background: var(--up); color: #fff;
+  font-size: 12px; font-weight: 800;
+  border-radius: 999px; padding: 3px 11px;
+  white-space: nowrap;
+}
+.cup-card.win .cup-stamp { transform: translateX(-50%) scale(1) rotate(-6deg); transition: transform .3s cubic-bezier(.22,1.6,.36,1) .12s; }
+.cup-vs {
+  position: absolute; left: 50%; top: 50%; z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #6F00FF, #A050FF);
+  color: #F9F339;
+  font-size: 14px; font-weight: 800; font-style: italic;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 10px rgba(111, 0, 255, .4);
+  animation: vsPop .38s cubic-bezier(.22,1.6,.36,1) backwards .18s;
+  pointer-events: none;
+}
+@keyframes vsPop { from { transform: translate(-50%, -50%) scale(0) rotate(-160deg); } to { transform: translate(-50%, -50%) scale(1) rotate(0); } }
+.cup-hint { text-align: center; font-size: 12px; color: var(--text-2); font-weight: 700; margin-top: 13px; }
+.cup-final { text-align: center; padding: 4px 0 6px; animation: fadeIn .3s ease; }
+.cup-crown { font-size: 46px; position: relative; z-index: 2; margin-bottom: -10px; animation: crownDrop .65s cubic-bezier(.22,1.4,.36,1); }
+@keyframes crownDrop { from { transform: translateY(-70px) rotate(-24deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.cup-final-t { font-size: 18px; font-weight: 800; margin-top: 14px; }
+.cup-final-sub { font-size: 12.5px; color: var(--text-2); font-weight: 600; line-height: 1.7; margin-top: 6px; }
+.cup-done { flex: none; width: 100%; margin-top: 14px; padding: 13px; font-size: 15px; }
+
+/* 「我的」页 · 本命股票 */
+.fav-stock { display: flex; align-items: center; gap: 12px; padding: 14px 17px; margin-bottom: 14px; }
+.fav-stock .fav-emoji { font-size: 30px; flex: none; }
+.fav-stock .fav-info { flex: 1; min-width: 0; }
+.fav-stock .fav-name { font-size: 14.5px; font-weight: 800; }
+.fav-stock .fav-tip { font-size: 11.5px; color: var(--text-2); font-weight: 600; margin-top: 2px; }
+
+/* ============ 知识卡牌 ============ */
+.kcard { border-radius: 20px; padding: 3px; margin: 0 auto; max-width: 260px; }
+.kcard-in { background: var(--card); border-radius: 17px; padding: 22px 18px; text-align: center; }
+.rar-N { background: linear-gradient(135deg, #B9B9C9, #8E8EA5); }
+.rar-R { background: linear-gradient(135deg, #7C9CFD, #4D6FE8); }
+.rar-SR { background: linear-gradient(135deg, #A050FF, #6F00FF); }
+.rar-SSR { background: linear-gradient(135deg, #F9F339, #FFB300, #A050FF); }
+.kcard-emoji { font-size: 52px; }
+.kcard-name { font-size: 19px; font-weight: 800; margin-top: 8px; }
+.kcard-rar { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 1px; padding: 2px 10px; border-radius: 999px; margin-top: 6px; color: #fff; }
+.kcard-rar.rar-N { color: #fff; }
+.kcard-text { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-top: 10px; }
+.dex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.dex-cell { border-radius: 14px; padding: 2px; }
+.dex-cell .dex-in { background: var(--card); border-radius: 12px; text-align: center; padding: 12px 4px 9px; box-shadow: var(--shadow); }
+.dex-cell.off { background: var(--line) !important; opacity: .55; }
+.dex-cell.off .dex-emoji { filter: grayscale(1); opacity: .4; }
+.dex-emoji { font-size: 26px; }
+.dex-name { font-size: 11px; font-weight: 800; margin-top: 4px; }
+.dex-rar { font-size: 9px; font-weight: 800; color: var(--text-2); letter-spacing: 1px; }
+
+/* ============ 题面微教学（教-考闭环） ============ */
+.teach-box {
+  background: var(--teach-bg, #FFF9D9);
+  border: 2px solid var(--teach-line, #F0E27A);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  animation: fadeIn .25s ease;
+}
+.teach-tag { font-size: 11px; font-weight: 800; letter-spacing: .5px; color: #9A8700; margin-bottom: 5px; }
+.teach-body { font-size: 14.5px; line-height: 1.7; font-weight: 600; }
+@media (prefers-color-scheme: dark) {
+  .teach-box { background: rgba(249, 243, 57, .10); border-color: rgba(249, 243, 57, .35); }
+  .teach-tag { color: #F9F339; }
+}
+
+</style>
+</head>
+<body>
+<div id="app" class="app"></div>
+<nav id="nav" class="bottom-nav">
+  <button class="nav-btn active" data-view="home"><span class="nav-ico">🗺️</span><span class="nav-label">学习</span></button>
+  <button class="nav-btn" data-view="daily"><span class="nav-ico">⚡</span><span class="nav-label">每日挑战</span></button>
+  <button class="nav-btn" data-view="review"><span class="nav-ico">📕</span><span class="nav-label">错题本</span></button>
+  <button class="nav-btn" data-view="profile"><span class="nav-ico">🦄</span><span class="nav-label">我的</span></button>
+</nav>
+<script>
+/* 自动生成：tools/build_data.py，勿手改 */
+window.CURRICULUM = {"units":[{"emoji":"🐣","id":"u1","title":"新手村：股票是个啥","subtitle":"从零认识股票、股价和指数","lessons":[{"id":"u1l1","title":"股票与股东","intro":{"title":"买股票，就是当老板","body":"想象你和朋友拼团开了家奶茶店，你出1%的钱，就拥有这家店的1%——股票就是这么回事：把公司切成无数小碎片，买一片你就是股东。公司赚钱你能分红，公司做大，你那片也跟着升值。苹果、特斯拉这样的巨头，花几百美元你就能“入股”一份。"},"questions":[{"type":"choice","prompt":"买了一家公司的股票，你相当于？","options":["公司的债主","公司的股东之一","公司的员工","公司的客户"],"answerIndex":1,"explanation":"买股票就是买公司所有权的碎片。像拼团开店，出了钱就占份子。"},{"type":"tf","prompt":"股票本质上是公司所有权的一小块碎片。","answerBool":true,"explanation":"对，一股就是公司的一小片。买多少片，就拥有多少比例的公司。"},{"type":"blank","teach":"美股每家公司都有个英文字母代码，像招牌缩写：苹果是AAPL，特斯拉是TSLA，英伟达是NVDA。下单前认准代码，别拼错。","prompt":"苹果公司的股票代码是____。","options":["APPL","TSLA","AAPL","NVDA"],"answerIndex":2,"explanation":"苹果是AAPL。代码像外卖店的招牌缩写，下单前认准别拼错。"},{"type":"match","prompt":"把股票代码和公司连起来","pairs":[{"left":"AAPL","right":"苹果"},{"left":"TSLA","right":"特斯拉"},{"left":"NVDA","right":"英伟达"}],"explanation":"代码是公司在股市的“花名”，认准代码才不会买错人。"},{"type":"choice","teach":"公司想拿一大笔钱去扩张，可以IPO（首次公开上市）：把一部分股份卖给大众换资金，就像奶茶店公开招新股东去开分店。","prompt":"公司为什么要IPO上市？","options":["给员工发股票福利","上市是国家强制要求","方便创始人套现离场","向大众融资拿钱发展"],"answerIndex":3,"explanation":"IPO核心是融资：卖股份换钱去扩张，像奶茶店拉新股东开分店。"},{"type":"choice","prompt":"你买了1股苹果股票，下面哪项是你作为股东的权利？","options":["去苹果店免费领手机","分享分红和公司成长","参与公司日常管理","随时要求公司退钱"],"answerIndex":1,"explanation":"股东享受分红和股价成长，但不能白拿产品，也管不了日常经营。"}]},{"id":"u1l2","title":"股价为什么会动","intro":{"title":"股价是“喊”出来的","body":"股价不是官方定的，是买卖双方“喊”出来的：想买的人多，价格就被抬高；想卖的人多，价格就往下掉，跟菜市场抢最后一筐荔枝一个道理。而且大家抢的不是公司的“现在”，是“未来”——都觉得它明天更赚钱，今天股价就先涨。"},"questions":[{"type":"choice","prompt":"想买的人远多于想卖的人，股价通常会？","options":["下跌","不变","上涨","被暂停交易"],"answerIndex":2,"explanation":"买的人多价格涨。像抢限量奶茶，抢的人越多，价被抬得越高。"},{"type":"tf","prompt":"公司这季度赚了大钱，股价就一定会涨。","answerBool":false,"explanation":"不一定。股价炒的是未来预期，赚得多但不及预期，照样跌。"},{"type":"order","prompt":"按先后顺序，排出一次股价上涨的过程","items":["利好消息传出","大家看好公司未来","想买的人变多","股价被抬高"],"explanation":"消息→预期→抢买→涨价，股价是被预期和买盘推上去的。"},{"type":"blank","teach":"比公司大小别看股价，要看市值：市值＝股价×总股本（公司一共切成多少片）。整杯奶茶的价钱＝每小杯价格×杯数。","prompt":"市值 = 股价 × ____。","options":["年利润","总股本","员工人数","股东人数"],"answerIndex":1,"explanation":"市值=股价×总股本，这才是公司的“块头”，单看股价没意义。"},{"type":"choice","prompt":"甲公司股价10美元，乙公司股价1000美元，谁更大？","options":["股价1000美元的更大","一样大","股价10美元的更大","不好说，得看市值"],"answerIndex":3,"explanation":"股价高≠公司大。比大小要看市值，就像比蛋糕看整块，不看切片。"},{"type":"choice","prompt":"一只股票只要2美元，你想“便宜，囤一把稳赚”，这想法漏了什么？","options":["股价低不等于公司便宜","股价低说明马上要退市","低价股当天买了不能卖","2美元的股票不会再跌"],"answerIndex":0,"explanation":"低价≠便宜。奶茶分成100小杯每杯5毛，整杯其实要50块。"}]},{"id":"u1l3","title":"三大指数认亲","intro":{"title":"美股三大天团","body":"一只只盯股票太累？“指数”帮你打包看行情：把一批公司的股价捆成一个数，它们整体涨，这个数就涨。其中标普500装着500家美国大公司，最能代表大盘——新闻里说“美股大盘涨了”，多半就是在说它。"},"questions":[{"type":"choice","teach":"美股有三大指数：道琼斯、纳斯达克、标普500，像三个不同的排行榜。先混个脸熟，这关一个个认识它们。","prompt":"最能代表美股大盘整体表现的指数是？","options":["道琼斯","纳斯达克指数","标普500","上证指数"],"answerIndex":2,"explanation":"标普500装了500家大公司，说“大盘涨了”通常就是说它。上证是A股的。"},{"type":"blank","teach":"道琼斯指数是个“老钱小圈子”：只精挑30家“蓝筹”进群——就是老牌、业绩稳的大公司。名气很大，但人数很少。","prompt":"道琼斯指数只包含____家老牌蓝筹公司。","options":["100","30","500","3000"],"answerIndex":1,"explanation":"道指只有30家老牌大佬，是个精挑细选的小圈子。"},{"type":"tf","teach":"纳斯达克指数是科技股大本营，科技含量爆表，苹果、英伟达这些科技巨头大多在里面。","prompt":"纳斯达克指数里科技股的含量很高。","answerBool":true,"explanation":"对，纳指是科技股大本营，苹果、英伟达这些都在里面。"},{"type":"choice","teach":"不想自己挑股票？指数基金帮你照着指数一键打包，一单买下一篮子公司，像点全家桶，不用一只只挑。","prompt":"你不想研究个股，只想跟着美股整体走，最省事的做法是？","options":["每天挑一只热门股","把500家挨个买齐","买标普500指数基金","只买苹果一只就行"],"answerIndex":2,"explanation":"指数基金像点全家桶，一单打包一篮子公司，轻松跟住大盘。"},{"type":"match","prompt":"帮下面几位和它们的特点认亲","pairs":[{"left":"道琼斯","right":"30家老牌蓝筹"},{"left":"标普500","right":"500家大公司"},{"left":"纳斯达克指数","right":"科技股含量高"},{"left":"指数基金","right":"一键买一篮子"}],"explanation":"道指老钱圈、标普大盘脸、纳指科技咖，一次认清三张脸。"},{"type":"tf","prompt":"“大盘涨了”这句话，通常说的是道琼斯指数。","answerBool":false,"explanation":"通常指标普500。道指名气大，但只有30家，代表性不够。"}]},{"id":"u1l4","title":"Boss战·新手村毕业考","boss":true,"intro":{"title":"Boss战开打","body":"别紧张，毕业考只是把前三关串一串：股票是什么、股价为啥动、三大指数怎么认。答完这8题，你就正式走出新手村！"},"questions":[{"type":"blank","prompt":"股票是公司____的碎片。","options":["债务","库存","所有权","工资单"],"answerIndex":2,"explanation":"股票=所有权碎片，买一片你就是股东，像拼团占份子。"},{"type":"match","prompt":"毕业前最后一次配对认亲","pairs":[{"left":"TSLA","right":"特斯拉"},{"left":"NVDA","right":"英伟达"},{"left":"标普500","right":"美股大盘代表"},{"left":"IPO","right":"上市融资"}],"explanation":"代码、指数、IPO都认齐了，你已经能看懂财经新闻标题。"},{"type":"tf","prompt":"股价100美元的公司，一定比股价20美元的公司大。","answerBool":false,"explanation":"不对。比大小看市值=股价×总股本，股价只是每片切多大。"},{"type":"choice","prompt":"你持有的股票财报大超预期，很多人抢着买，股价大概率会？","options":["下跌","上涨","保持不变","直接涨停"],"answerIndex":1,"explanation":"买的人多价格涨；另外美股个股没有涨停板这回事。"},{"type":"order","prompt":"按“公司从创办到你买它股票”的先后排序","items":["创始人开公司","公司经营壮大","IPO上市融资","你买入成为股东"],"explanation":"开公司→做大→IPO融资→人人可买，股票就是这么到你手里的。"},{"type":"blank","prompt":"“大盘涨了”里的大盘，通常指____。","options":["道琼斯","上证指数","纳斯达克指数","标普500"],"answerIndex":3,"explanation":"标普500覆盖500家大公司，最能代表美股整体行情。"},{"type":"tf","prompt":"买一份指数基金，相当于一次买下一篮子公司。","answerBool":true,"explanation":"对，像点全家桶，一单打包一篮子公司，不用一只只挑。"},{"type":"choice","prompt":"你朋友说“这股才3美元，比300美元的苹果便宜多了”，他忽略了什么？","options":["低价股上涨空间更大","3美元亏不了几个钱","股价低≠公司便宜","股价越低分红越多"],"answerIndex":2,"explanation":"便宜贵要看市值和质地，切片薄不代表蛋糕小。"}]}]},{"id":"u9","title":"公司与钱：金融基础课","subtitle":"股票的本质、融资、一二级市场、分红回购","emoji":"💸","lessons":[{"id":"u9l1","title":"公司为什么值钱","intro":{"title":"买股票，到底买的是什么？","body":"买股票的本质，不是买一串会跳动的代码，而是买下一台\"赚钱机器\"的一小份。公司值多少钱，根子上看它能赚多少钱：小区门口的奶茶店一年净赚10万，你入股1%，图的就是往后每年分那1%的利润。机器越能赚、赚得一年比一年多，它就越值钱。"},"questions":[{"type":"choice","prompt":"买股票的本质是买什么？","options":["一串会涨跌的代码","公司未来赚钱能力的一份","交易所的会员资格","一张碰运气的彩票"],"answerIndex":1,"explanation":"股票=赚钱机器的一小份，代码只是它的门牌号。"},{"type":"tf","prompt":"公司值多少钱，根子上要看它能赚多少钱。","answerBool":true,"explanation":"对，利润是价值的源头：机器越能赚，机器越值钱。"},{"type":"blank","teach":"同样年赚10万的两台\"机器\"：一台年年赚得更多，一台原地踏步——会成长的那台更值钱。","prompt":"两家店今年都赚10万，通常更值钱的是利润____的那家。","options":["逐年下滑","持续增长","忽高忽低","原地踏步"],"answerIndex":1,"explanation":"市场愿意为\"越来越能赚\"付更高的价，成长本身就值钱。"},{"type":"choice","prompt":"你入股了楼下奶茶店1%，最该关心什么？","options":["隔壁店的装修","招牌是什么颜色","老板开什么车","店里每年赚多少钱"],"answerIndex":3,"explanation":"股东的回报来自利润，赚钱能力才是你那1%的含金量。"},{"type":"tf","prompt":"只要股票代码好记，公司就更值钱。","answerBool":false,"explanation":"代码是门牌号，值钱靠的是屋里那台赚钱机器。"},{"type":"choice","teach":"价值看的是未来：今天还在亏钱、但明天可能大赚的公司，市场也愿意为它的未来出价。","prompt":"一家公司连年亏损，它的股票还可能值钱吗？","options":["不可能，亏损就一文不值","值钱，因为股价便宜","可能，市场看好它未来能赚","只要名字响亮就值钱"],"answerIndex":2,"explanation":"早年的亚马逊常年亏损照样值钱——市场买的是未来的利润。"}]},{"id":"u9l2","title":"融资的一生","intro":{"title":"一家公司的找钱之路","body":"公司长大要花钱，钱从哪来？一条经典路线：先自掏腰包，再找亲友凑，然后天使投资人进场，接着VC风投加注，最后IPO上市敲钟向所有人融资。上市后缺钱，还能\"增发\"新股再融一轮。每一步，都是用公司的股份换发展的钱。"},"questions":[{"type":"order","prompt":"按先后顺序，排出公司融资的经典路线。","items":["自掏腰包","天使投资人","VC风投","IPO上市"],"explanation":"从自己人到天使到VC再到上市：钱越找越多，股份越分越散。"},{"type":"choice","teach":"股权融资=卖股份换钱，不用还，投资人和公司共担风险；债权融资=借钱，到期要还本付息。","prompt":"公司卖股份换来的钱，需要连本带息还吗？","options":["上市之后才开始还","不用还，股东共担风险","必须按月归还","要还本金但免利息"],"answerIndex":1,"explanation":"股权融资不是借钱：投资人换到股份，赚亏一起扛。"},{"type":"tf","prompt":"公司向银行借钱发展，到期要还本付息。","answerBool":true,"explanation":"对，债权融资是借贷关系：赚不赚钱，利息都得照付。"},{"type":"blank","prompt":"上市公司还缺钱，可以____新股再融一轮。","options":["回收","注销","冻结","增发"],"answerIndex":3,"explanation":"增发=再印一些新股份卖钱，老股东的持股比例会被摊薄一点。"},{"type":"choice","teach":"稀释=创始人手里的股份比例变小。但蛋糕做大后，小比例×大蛋糕，往往比大比例×小蛋糕值钱得多。","prompt":"创始人为什么愿意让投资人\"稀释\"自己的股份？","options":["为了少交个人所得税","因为被监管强制要求","股份太多拿着心累","蛋糕做大后小份额更值钱"],"answerIndex":3,"explanation":"拿整个煎饼摊的100%，不如拿星巴克的1%——先把蛋糕做大。"},{"type":"match","prompt":"把找钱方式和它的特点连起来。","pairs":[{"left":"股权融资","right":"卖股份，不用还"},{"left":"债权融资","right":"借钱，还本付息"},{"left":"增发","right":"上市后再融资"}],"explanation":"找钱两条路：卖股份或借钱；上市不是终点，增发还能再来。"}]},{"id":"u9l3","title":"一级市场与二级市场","intro":{"title":"你买腾讯的钱，腾讯拿不到","body":"股票市场其实分两层：一级市场是\"出厂直销\"——公司IPO或增发新股，钱直接进公司口袋；二级市场是\"二手转让\"——股民之间互相买卖，你今天买腾讯，钱付给了卖你股票的上一位股民，腾讯一分拿不到。我们平时\"炒股\"，几乎都发生在二级市场。"},"questions":[{"type":"tf","prompt":"我们平时在券商App里买卖股票，基本都发生在二级市场。","answerBool":true,"explanation":"对，二级市场就是股民间的\"二手转让\"，日常交易都在这。"},{"type":"choice","prompt":"你今天花1万元买入腾讯股票，这1万主要去了哪？","options":["腾讯公司的账上","税务部门","证券交易所","卖给你股票的那位股民"],"answerIndex":3,"explanation":"二级市场是股民互相转手；公司只在一级市场发新股时收到钱。"},{"type":"blank","prompt":"公司IPO发新股拿到钱，发生在____市场。","options":["一级","高级","三级","二级"],"answerIndex":0,"explanation":"一级=出厂直销钱进公司；二级=二手流通钱在股民之间。"},{"type":"choice","teach":"打新=在新股正式上市前的一级市场认购它，等挂牌后它才进入二级市场流通。","prompt":"新闻里说\"打新\"，指的是什么？","options":["认购即将上市的新股","新开一个证券账户","抢购最新款手机","打压刚上市的公司"],"answerIndex":0,"explanation":"打新发生在一级市场：上市前先认购，挂牌后才进二级流通。"},{"type":"tf","prompt":"公司增发新股融资，属于二级市场行为。","answerBool":false,"explanation":"错，增发是公司发新股收钱，属于一级市场。"},{"type":"match","prompt":"把概念和\"钱的去向\"连起来。","pairs":[{"left":"一级市场","right":"钱进公司口袋"},{"left":"二级市场","right":"股民互相转手"},{"left":"打新","right":"上市前认购新股"}],"explanation":"看清钱的去向，一二级市场就再也不会混。"}]},{"id":"u9l4","title":"分红与回购","intro":{"title":"公司赚了钱，怎么分给你？","body":"公司赚了钱，回馈股东有三条路：①分红——直接发现金，美股很多公司一年发四次；②回购——公司掏钱买回自己的股票并注销，总股本变少，你手里每股的含金量变高，相当于变相分红；③留存再投资——把钱拿去扩张，换未来更大的利润。"},"questions":[{"type":"choice","prompt":"公司把利润直接发现金给股东，这叫？","options":["打新","分红","增发","回购"],"answerIndex":1,"explanation":"分红是最直接的回馈：赚了钱，股东见者有份。"},{"type":"choice","teach":"回购注销后总股本变少；利润不变的话，摊到每一股上的利润就变多了。","prompt":"公司回购注销股票后，你手里每股的含金量会？","options":["变高","清零","变低","不变"],"answerIndex":0,"explanation":"分蛋糕的人少了，每人那块自然变大——回购是变相分红。"},{"type":"tf","prompt":"公司不分红，就一定是家坏公司。","answerBool":false,"explanation":"成长期留钱扩张换更大利润，亚马逊多年不分红照样成巨头。"},{"type":"blank","prompt":"美股不少公司按____分红，一年四次。","options":["季度","天","周","十年"],"answerIndex":0,"explanation":"季度分红是美股传统艺能，和财报季一个节奏。"},{"type":"choice","teach":"公司愿意真金白银买回自家股票，往往代表管理层认为当前价格划算。","prompt":"你持有的公司宣布大额回购，这通常传递什么信号？","options":["公司马上要退市","公司账上已经没钱","股票将被强制没收","管理层觉得自家股票划算"],"answerIndex":3,"explanation":"自己人用钱投票表达信心——当然，这不是稳赚的保证。"},{"type":"order","prompt":"按逻辑顺序，排出\"留存再投资\"的链条。","items":["公司赚到利润","不分红留下来","投入扩张开新店","未来利润更大"],"explanation":"今天不分糖，是为了明天糖更多——成长股的逻辑。"}]},{"id":"u9l5","title":"Boss战·金融基础毕业考","boss":true,"intro":{"title":"考前打气","body":"股票的本质、融资路线、一二级市场、分红回购——金融的底层逻辑你已经全学过了。8道题，证明你不再是只看代码的人！"},"questions":[{"type":"choice","prompt":"买股票的本质是？","options":["买交易所的会员资格","买老板的一句承诺","买一串会涨跌的代码","买公司未来赚钱能力的一份"],"answerIndex":3,"explanation":"股票=赚钱机器的一小份；行情软件里跳动的只是它的影子。"},{"type":"order","prompt":"按先后排出公司找钱的完整路线。","items":["自掏腰包","天使投资人","VC风投","IPO上市","增发"],"explanation":"天使→VC→上市→增发，股份一路换成发展的钱。"},{"type":"choice","prompt":"你在二级市场买入1万元小米股票，钱去了哪？","options":["国家税务局","卖你股票的那位股民","证券交易所","小米公司的账上"],"answerIndex":1,"explanation":"二级市场=股民互转；公司只在一级市场发新股时拿到钱。"},{"type":"tf","prompt":"股权融资的钱不用还，债权融资要还本付息。","answerBool":true,"explanation":"对，卖股份共担风险，借钱则要连本带息。"},{"type":"blank","prompt":"公司花钱买回自己的股票并注销，这叫____。","options":["分红","打新","增发","回购"],"answerIndex":3,"explanation":"回购让股本变少、每股含金量变高，是变相分红。"},{"type":"choice","prompt":"以下哪种情况，钱会真正进到公司口袋？","options":["股价上涨了10%","两个股民互相转手","公司IPO发行新股","你在App买它的老股"],"answerIndex":2,"explanation":"只有发新股（IPO/增发）公司才收钱，其余都是股民间流转。"},{"type":"match","prompt":"把回馈股东的三条路和效果配对。","pairs":[{"left":"分红","right":"直接发现金"},{"left":"回购","right":"每股含金量变高"},{"left":"留存再投资","right":"换未来更大利润"}],"explanation":"发钱、瘦身、扩张——三条路殊途同归都是为股东。"},{"type":"choice","prompt":"亏损中的成长公司股票仍可能很值钱，因为？","options":["亏损的公司必然会反弹","名字好听自带流量","市场为它未来的赚钱能力出价","股价低本身就是价值"],"answerIndex":2,"explanation":"价值锚定未来利润：今天烧钱换明天印钞机，市场愿意先出价。"}]}]},{"id":"u2","title":"市场地图：几点开门","subtitle":"交易所、交易时间、盘前盘后、熔断","emoji":"🗺️","lessons":[{"id":"u2l1","title":"纳斯达克 vs 纽交所","intro":{"title":"两家\"菜市场\"，卖的都是股票","body":"美股有两大交易所，像两家菜市场：纽交所是有实体交易大厅的老字号，可口可乐、摩根大通这类老牌蓝筹扎堆；纳斯达克像纯线上超市，苹果、微软、英伟达都在这。公司在哪上市只是\"户口\"不同，不代表好坏。"},"questions":[{"type":"blank","prompt":"苹果、微软、英伟达这些科技巨头都在____上市。","options":["纽交所","上交所","纳斯达克","港交所"],"answerIndex":2,"explanation":"科技公司偏爱纳斯达克，就像新潮品牌都爱入驻线上商城。"},{"type":"choice","prompt":"下面哪家公司更可能在纽交所见到？","options":["苹果","英伟达","可口可乐","微软"],"answerIndex":2,"explanation":"可口可乐在纽交所，那里是老牌蓝筹的大本营，摩根大通也在。"},{"type":"choice","prompt":"全球第一家电子化交易所是哪家？","teach":"纳斯达克1971年成立，从出生起就没有线下大厅，全靠电脑撮合交易——这在当时是全球头一份。","options":["纽交所","纳斯达克","上交所","港交所"],"answerIndex":1,"explanation":"纳斯达克1971年一出生就是全电子化，像没有门店的纯线上超市。"},{"type":"tf","prompt":"纽交所成立于1792年，起源于一份在梧桐树下签订的协议。","teach":"纽交所1792年起家：24个经纪人在华尔街一棵梧桐树下签了协议，史称\"梧桐树协议\"。","answerBool":true,"explanation":"对，这就是著名的\"梧桐树协议\"，纽交所是200多年的老字号。"},{"type":"choice","prompt":"你研究两家公司：A在纽交所上市，B在纳斯达克上市。这能说明什么？","options":["A公司更靠谱","只是\"户口\"不同","B成长性一定更高","A规模一定更大"],"answerIndex":1,"explanation":"上市地点只是户口不同，不代表好坏，就像餐厅开在哪不决定味道。"},{"type":"match","prompt":"把左边的名词和右边的说法配对。","pairs":[{"left":"纽交所","right":"老牌蓝筹的大本营"},{"left":"纳斯达克","right":"科技公司扎堆"},{"left":"梧桐树协议","right":"纽交所的起源"},{"left":"实体交易大厅","right":"纽交所的标志"}],"explanation":"记法：纽交所=老字号带大厅，纳斯达克=线上科技范儿。"}]},{"id":"u2l2","title":"交易时间与时差","intro":{"title":"美股开门时，北京正吃夜宵","body":"美股常规交易时段是美东时间9:30-16:00，中午不休市。换成北京时间：夏令时21:30到次日凌晨4:00，冬令时22:30到次日5:00——正好是你点夜宵刷手机的点。周末和美国法定假日休市。"},"questions":[{"type":"choice","prompt":"美股常规交易时段是美东时间几点到几点？","options":["9:30-15:00","9:00-17:00","10:00-16:30","9:30-16:00"],"answerIndex":3,"explanation":"美东9:30开盘、16:00收盘，中午不休市，一口气交易6.5小时。"},{"type":"blank","prompt":"夏令时期间，美股开盘对应北京时间晚上____。","options":["20:30","21:30","22:30","23:30"],"answerIndex":1,"explanation":"夏令时21:30开盘，冬令时晚一小时22:30，记住这对\"兄弟数\"。"},{"type":"match","prompt":"把交易时间和对应说法配对。","pairs":[{"left":"夏令时开盘","right":"北京时间21:30"},{"left":"冬令时开盘","right":"北京时间22:30"},{"left":"周末与美国假日","right":"休市不交易"}],"explanation":"夏令时21:30、冬令时22:30，就差一小时，收盘同理顺延。"},{"type":"tf","prompt":"美股和A股一样，当天买入的股票要等下一个交易日才能卖。","teach":"美股实行T+0：今天买的股票今天就能卖。A股是T+1，得等下一个交易日才能卖。","answerBool":false,"explanation":"错，美股是T+0，当天买当天就能卖，不用像A股隔夜。"},{"type":"choice","prompt":"关于美股个股的涨跌停，正确的说法是？","teach":"A股主板个股一天最多涨跌10%就封板；美股个股没有这个限制，一天涨跌百分之几十都有可能。","options":["和A股一样±10%","涨跌停是±20%","没有±10%涨跌停","只有跌停没有涨停"],"answerIndex":2,"explanation":"美股个股没有涨跌停，单日大涨大跌都可能，别用A股经验套。"},{"type":"choice","prompt":"你在冬令时的周五晚上10点半买入一只美股，半小时后后悔了，能马上卖掉吗？","options":["不行，要等下周一","可以，T+0当天可卖","不行，美股是T+1","只能先卖一半"],"answerIndex":1,"explanation":"美股T+0，买入后随时能卖，后悔药当场就能吃。"}]},{"id":"u2l3","title":"盘前盘后：安静的战场","intro":{"title":"开门前后的\"安静战场\"","body":"除了9:30-16:00的正餐时段，美股开门前还有\"盘前\"、关门后还有\"盘后\"两个加时段——你刚在下单时钟里体验过。它们像菜市场开门前的批发时段：人少货少，价格容易大起大落。重要财报几乎都挑这两个时段发布。"},"questions":[{"type":"tf","prompt":"重要财报几乎都在盘前或盘后发布，很少在交易时段内公布。","answerBool":true,"explanation":"对，公司故意避开盘中发财报，所以财报夜常见盘后暴涨暴跌。"},{"type":"choice","prompt":"美股盘后交易时段是美东时间几点？","teach":"盘前时段是美东4:00-9:30，紧接着9:30开盘；16:00收盘后就是盘后时段，一直到20:00。","options":["16:00-18:00","15:00-19:00","16:00-20:00","17:00-21:00"],"answerIndex":2,"explanation":"盘后16:00-20:00，盘前4:00-9:30，两段加起来比正餐还长。"},{"type":"order","prompt":"按美东时间从早到晚，排列这些交易时段节点。","items":["盘前交易开始","常规交易开盘","常规交易收盘","盘后交易结束"],"explanation":"顺序：4:00盘前→9:30开盘→16:00收盘→20:00盘后结束。"},{"type":"blank","prompt":"盘前盘后参与者少，流动性低，买卖____很大。","teach":"同一时刻\"买价\"和\"卖价\"之间的差距叫点差。人越少点差越大，就像深夜打车要加价才有人接单。","options":["手续费","印花税","保证金","点差"],"answerIndex":3,"explanation":"人少摊少，买卖报价差距就大，像深夜打车要加价。"},{"type":"choice","prompt":"盘前盘后下单，通常只能用哪种订单？","teach":"市价单=有什么价就按什么价立刻成交；限价单=只按你指定的价格成交。人少点差大时，限价单更安全。","options":["市价单","限价单","涨跌停单","什么单都行"],"answerIndex":1,"explanation":"盘前盘后通常只能限价单，锁住价格防止在大点差里吃亏。"},{"type":"choice","prompt":"你持有的股票盘后大涨8%，第二天的开盘价会怎样？","teach":"盘后价格只是少数人交易出来的，第二天开盘时全市场重新报价，可能延续也可能反转。","options":["一定高开8%","一定回到原价","不一定等于盘后价","盘后涨幅会作废"],"answerIndex":2,"explanation":"盘后价只是给开盘定调，情绪一夜可能反转，不等于开盘价。"}]},{"id":"u2l4","title":"熔断与停牌","intro":{"title":"市场也有\"强制冷静期\"","body":"大盘跌得太猛，市场会\"熔断\"——强制暂停交易，像吵架吵急了被拉开冷静一下。规则看标普500当日跌幅：跌7%（一级）、13%（二级）各暂停15分钟，跌到20%（三级）当天直接休市到收盘。"},"questions":[{"type":"blank","prompt":"标普500当日下跌____%，触发一级熔断，暂停交易15分钟。","options":["5","7","10","13"],"answerIndex":1,"explanation":"一级7%、二级13%各停15分钟，三级20%直接休市到收盘。"},{"type":"tf","prompt":"触发三级熔断（标普500跌20%）后，暂停15分钟就恢复交易。","answerBool":false,"explanation":"错，三级熔断当天直接\"放学\"，休市到收盘不再交易。"},{"type":"choice","prompt":"美股大盘熔断，看的是哪个指数的跌幅？","teach":"标普500汇集美国500家大公司，是美股大盘的\"体温计\"，地位类似A股的上证指数。","options":["道琼斯指数","标普500","纳斯达克指数","上证指数"],"answerIndex":1,"explanation":"熔断看标普500当日跌幅，它是美股大盘的\"体温计\"。"},{"type":"choice","prompt":"美股个股没有涨跌停，靠什么机制防止价格瞬间失控？","teach":"个股没有涨跌停，但有个叫LULD的\"限速器\"：股价几分钟内冲得太猛，就自动暂停交易几分钟。","options":["±10%涨跌停","LULD波动暂停","个股跌7%也熔断","熔断到收盘"],"answerIndex":1,"explanation":"LULD：个股短时波动过猛就暂停几分钟，相当于小型冷静期。"},{"type":"choice","prompt":"你持有的个股突然停牌了，最常见的原因是什么？","teach":"停牌=个股被临时暂停交易。公司有重大消息要公布前，交易所常先停牌，防止有人提前抢跑。","options":["公司马上退市","股价跌破发行价","等待重大消息公布","交易所提前下班"],"answerIndex":2,"explanation":"个股停牌最常见是等重大消息公布，先暂停防止信息不对称。"},{"type":"match","prompt":"把跌幅或场景和对应结果配对。","pairs":[{"left":"标普500跌7%","right":"一级熔断·停15分钟"},{"left":"标普500跌13%","right":"二级熔断·停15分钟"},{"left":"标普500跌20%","right":"三级熔断·休市"},{"left":"个股波动过猛","right":"LULD暂停几分钟"}],"explanation":"口诀：7停、13停、20放学；一二级需在15:25前触发。"}]},{"id":"u2l5","title":"Boss战·市场地图通关考","boss":true,"intro":{"title":"出发前的最后一战","body":"交易所、时间、盘前盘后、熔断——地图四块碎片你都集齐了。8道混合题，通关就拿到美股世界的完整地图，冲！"},"questions":[{"type":"choice","prompt":"可口可乐、摩根大通这类老牌蓝筹，主要聚集在哪家交易所？","options":["纳斯达克","纽交所","上交所","港交所"],"answerIndex":1,"explanation":"蓝筹扎堆纽交所这家200年老字号；科技新贵才爱纳斯达克。"},{"type":"blank","prompt":"冬令时期间，美股收盘对应北京时间凌晨____。","options":["4:00","6:00","5:00","3:00"],"answerIndex":2,"explanation":"冬令时收盘是凌晨5:00，夏令时早一小时是凌晨4:00。"},{"type":"tf","prompt":"美国法定假日虽然放假，但美股照常开盘交易。","answerBool":false,"explanation":"错，周末和美国法定假日都休市，交易所也要过节。"},{"type":"order","prompt":"按标普500跌幅从小到大，排列熔断级别。","items":["一级熔断·跌7%","二级熔断·跌13%","三级熔断·跌20%"],"explanation":"跌7%、13%各停15分钟，跌20%直接休市，越跌处罚越重。"},{"type":"match","prompt":"把本单元的关键词和解释配对。","pairs":[{"left":"纳斯达克","right":"全球首家电子交易所"},{"left":"T+0","right":"当天买当天可卖"},{"left":"盘后交易","right":"美东16:00-20:00"},{"left":"三级熔断","right":"休市到收盘"}],"explanation":"户口、规则、时段、保险丝，四块拼图拼出完整市场地图。"},{"type":"choice","prompt":"你想抢买一只财报后盘前暴涨的股票，最该注意什么？","options":["和盘中一样好买卖","点差大、可能难成交","随便用市价单就行","成交价一定更便宜"],"answerIndex":1,"explanation":"盘前人少点差大，限价单也可能难成交，像凌晨叫车难打到。"},{"type":"choice","prompt":"你持有的美股个股一天跌了25%，这可能吗？","options":["不可能，最多跌10%","会触发大盘熔断","是系统显示错误","可能，个股无涨跌停"],"answerIndex":3,"explanation":"完全可能，美股个股没有涨跌停，别拿A股的±10%来套。"},{"type":"tf","prompt":"公司在哪家交易所上市只是\"户口\"不同，不代表公司好坏。","answerBool":true,"explanation":"对，交易所只是户口，公司好坏要看生意本身。"}]}]},{"emoji":"🎯","id":"u3","title":"下单基本功","subtitle":"市价限价、点差、碎股、止损","lessons":[{"id":"u3l1","title":"市价单 vs 限价单","intro":{"title":"马上走，还是等好价？","body":"下单就两种玩法：市价单像打车选“马上出发”——现在就走，贵一点也认，胜在成交快；限价单像“我就出这个价，等到为止”——保住价格，但没人接单就一直挂着，可能不成交。急着进出用市价，从容布局用限价。"},"questions":[{"type":"tf","prompt":"限价单只要挂出去，就一定能成交。","answerBool":false,"explanation":"错。限价单保价格不保成交，价格到不了就一直挂着。"},{"type":"blank","teach":"市价单求快，实际成交价可能和你下单时看到的不一样，这个差距叫“滑点”——像打车预估20块，实付21块5。","prompt":"市价单实际成交价和预期不同，这叫____。","options":["手续费","滑点","差价","跳水"],"answerIndex":1,"explanation":"成交价和预期的差距叫滑点。市价单求快，价格没保证。"},{"type":"match","prompt":"把术语和它的特点连起来。","pairs":[{"left":"市价单","right":"立刻成交，不保价格"},{"left":"限价单","right":"保住价格，不保成交"},{"left":"滑点","right":"成交价和预期的差距"}],"explanation":"市价求快、限价保价，滑点是求快付出的价格代价。"},{"type":"tf","teach":"股票也分热闹和冷清：买卖的人多叫“流动性好”；冷门股没什么人接盘，你一砸市价单，可能成交在离谱的价位。","prompt":"流动性差的冷门股，用市价单容易吃大亏。","answerBool":true,"explanation":"对。没人接盘时，市价单可能成交在离谱的价位。"},{"type":"order","prompt":"你想等苹果回落到200美元再买，把限价单流程排序。","items":["定下目标价200美元","挂出限价买单","股价回落到200美元","订单按限价成交"],"explanation":"先定价再挂单，价格到了才成交。从容布局，等到为止。"},{"type":"choice","prompt":"你有急事要马上清掉手里的股票，最合适的做法是？","options":["高挂限价单","等第二天开盘","市价单卖出","分批慢慢卖"],"answerIndex":2,"explanation":"急着离场用市价单，先成交要紧。限价单可能卖不掉。"}]},{"id":"u3l2","title":"买一卖一与点差","intro":{"title":"菜市场里的隐形成本","body":"每只股票都有两个价：bid买价是买家愿出的最高价，ask卖价是卖家愿收的最低价，像菜市场里你砍的价和摊主要的价。中间的差距叫点差，是你看不见的交易成本。越热闹的股票点差越小：苹果常只差1分钱，冷门小票可能差好几毛。"},"questions":[{"type":"choice","prompt":"bid买价指的是什么？","options":["卖家愿收的最低价","当天的开盘价","昨天的收盘价","买家愿出的最高价"],"answerIndex":3,"explanation":"bid是买家愿出的最高价。像买菜时你肯出的最高价。"},{"type":"match","prompt":"把术语和它的意思连起来。","pairs":[{"left":"bid买价","right":"买家愿出的最高价"},{"left":"ask卖价","right":"卖家愿收的最低价"},{"left":"点差","right":"买卖价之间的差距"}],"explanation":"买卖双方各报各的价，中间的差距就是点差。"},{"type":"blank","teach":"市价单的成交规则：买入时你得接受卖家的要价（ask），卖出时只能收买家肯出的价（bid）——想马上成交，就得依对方的价。","prompt":"用市价单买入时，你的成交价通常是____。","options":["bid买价","ask卖价","买卖平均价","昨日收盘价"],"answerIndex":1,"explanation":"市价买入按ask卖价成交。要买就得接受摊主的要价。"},{"type":"choice","prompt":"用市价单卖出时，按哪个价格成交？","options":["ask卖价","中间价","bid买价","开盘价"],"answerIndex":2,"explanation":"市价卖出按bid买价成交。卖东西只能收买家肯出的价。"},{"type":"tf","prompt":"流动性越好的股票，点差通常越小。","answerBool":true,"explanation":"对。人越多报价越紧，苹果的点差常只有1分钱。"},{"type":"choice","prompt":"你看到某冷门小票买价9.50、卖价9.90美元，这说明什么？","options":["它马上要大涨","点差大，成本高","报价系统出错","点差小可放心买"],"answerIndex":1,"explanation":"买卖差4毛，一买一卖就亏4%。冷门票的隐形成本很高。"}]},{"id":"u3l3","title":"一股起买与手续费","intro":{"title":"一杯奶茶钱，也能上车","body":"A股买股票要100股一手起步，美股不一样：1股就能买，部分券商还支持0.01股起的碎股——像奶茶可以单杯买，不用整箱搬。一杯奶茶钱，也能上车美股。"},"questions":[{"type":"tf","prompt":"买美股和A股一样，必须100股一手起买。","answerBool":false,"explanation":"错。100股一手是A股规则，美股1股就能买。"},{"type":"blank","prompt":"部分券商支持0.01股起买，这叫____交易。","options":["一手","碎股","散装","拼单"],"answerIndex":1,"explanation":"不足1股的叫碎股，部分券商0.01股起买。"},{"type":"match","prompt":"把市场和它的起买门槛连起来。","pairs":[{"left":"A股起步","right":"一手100股"},{"left":"美股起步","right":"1股就能买"},{"left":"碎股交易","right":"0.01股起买"}],"explanation":"A股一手100股，美股1股起，碎股门槛更低到0.01股。"},{"type":"choice","teach":"很多美国券商号称“零佣金”，但零佣金不等于零成本：买卖价之间的点差、人民币换美元的汇率损耗，都是看不见的开销。","prompt":"零佣金券商的隐形成本可能来自哪里？","options":["完全没成本","只有印花税","点差和汇率","只有每月会员费"],"answerIndex":2,"explanation":"零佣金不等于零成本，点差和汇率是隐形开销。"},{"type":"choice","prompt":"你只有50美元，想买500美元一股的股票，行得通吗？","options":["不行，至少买1股","行，买0.1股碎股","不行，要凑一手","行，先跟券商借钱买"],"answerIndex":1,"explanation":"支持碎股的券商能买0.1股。像奶茶按杯买，不用整箱。"},{"type":"tf","prompt":"交易越频繁，手续费和点差吃掉的收益越多。","answerBool":true,"explanation":"对。高频买卖，各种小成本会一点点啃掉你的收益。"}]},{"id":"u3l4","title":"止损与止盈","intro":{"title":"先系安全带，再踩油门","body":"止损单像给持仓系安全带：股价跌到你设的触发价，就自动变成市价单卖出，把亏损锁在能承受的范围。反过来，涨到目标价挂限价单卖出、锁住利润，叫止盈。买入前先想好最多亏多少能接受，这是纪律。"},"questions":[{"type":"choice","prompt":"止损单的主要作用是什么？","options":["保证只赚不亏","自动卖出控亏损","让股价停止下跌","锁定最低买价"],"answerIndex":1,"explanation":"止损单帮你自动离场控制亏损。像汽车的安全带。"},{"type":"tf","prompt":"止损单触发后，会变成市价单卖出。","answerBool":true,"explanation":"对。跌到触发价就变市价单卖出，求快离场。"},{"type":"order","prompt":"把止损单从设置到成交的流程按先后排序。","items":["买入前设好止损触发价","股价跌到触发价","止损单变成市价单","按当时市场价卖出"],"explanation":"先设定，跌到触发价后变市价单，最后按市场价成交。"},{"type":"blank","teach":"股价有时开盘直接比昨天低一大截，中间的价位一笔都没成交过，像“瞬移”——这叫跳空。它可能直接越过你设的止损触发价。","prompt":"股价开盘直接低开、越过你的止损价，这叫____。","options":["滑点","熔断","跳空","跌停"],"answerIndex":2,"explanation":"低开越过触发价叫跳空，实际卖价会比设定更差。"},{"type":"tf","prompt":"只要设了止损单，就保证按设定价格卖出。","answerBool":false,"explanation":"错。跳空低开会跳过触发价，实际卖得更差。止损不是保险箱。"},{"type":"choice","prompt":"你50美元买入，最多接受亏10%，止损触发价该设在？","options":["55美元","45美元","40美元","25美元"],"answerIndex":1,"explanation":"50美元亏10%就是45美元。买前先定纪律。"}]},{"id":"u3l5","title":"Boss战·下单基本功考核","boss":true,"intro":{"title":"Boss战：下单考核","body":"市价限价、点差、碎股、止损都学完了。深呼吸，打穿这8题，你就能带着一手真功夫出新手村！"},"questions":[{"type":"choice","prompt":"你急着离场，挂了高于现价的限价卖单一直没成交，为什么？","options":["券商系统出故障","限价单保价不保成交","卖出要等到第二天","美股不允许挂单"],"answerIndex":1,"explanation":"限价单保价格不保成交。急着走该用市价单，先成交要紧。"},{"type":"match","prompt":"把下单工具和它的特点连起来。","pairs":[{"left":"市价单","right":"求快，不保价格"},{"left":"限价单","right":"保价，不保成交"},{"left":"止损单","right":"触发后市价卖出"},{"left":"点差","right":"隐形交易成本"}],"explanation":"市价求快、限价保价、止损控亏、点差是成本。"},{"type":"blank","prompt":"市价买入按____成交，市价卖出按bid买价成交。","options":["bid买价","中间价","ask卖价","开盘价"],"answerIndex":2,"explanation":"买按ask、卖按bid，中间的点差就是隐形成本。"},{"type":"tf","prompt":"美股1股就能买，部分券商还支持碎股。","answerBool":true,"explanation":"对。1股起买，碎股0.01股起。和A股一手100股不同。"},{"type":"choice","prompt":"关于美股交易成本，下面哪句是对的？","options":["零佣金就是全免费","买美股要交印花税","交易成本可忽略","零佣金仍有点差成本"],"answerIndex":3,"explanation":"零佣金仍有点差、汇率等成本。天下没有免费的外卖。"},{"type":"order","prompt":"把一次有纪律的建仓流程按先后排序。","items":["想好最多能亏多少","挂限价买单等成交","成交后设好止损单","到目标价限价止盈"],"explanation":"先定亏损底线，再从容挂单，成交后立刻系上安全带。"},{"type":"tf","prompt":"设好止损单后，最多只会亏到设定的幅度。","answerBool":false,"explanation":"错。跳空低开时实际成交价可能比设定更差。"},{"type":"choice","prompt":"你市价买入冷门小票，成交价比刚看到的报价高不少，最可能因为？","options":["券商偷偷加价","美股有涨跌停","点差大加滑点","一定是系统故障"],"answerIndex":2,"explanation":"冷门票点差大，市价单还有滑点。冷清市场买菜更贵。"}]}]},{"id":"u4","title":"看懂行情","subtitle":"K线、成交量、估值、财报季","emoji":"📊","lessons":[{"id":"u4l1","title":"K线入门","intro":{"title":"一根蜡烛，装下一整天的行情","body":"K线就像给股价拍的“一日vlog”：开盘价是早上出门，收盘价是晚上到家，最高价和最低价是今天去过最远和最近的地方。一根小蜡烛，四个价格全记录。敲黑板：美股惯例绿色=涨、红色=跌，和A股正好相反，看盘先认颜色！"},"questions":[{"type":"tf","prompt":"在美股行情软件里，红色K线代表下跌。","answerBool":true,"explanation":"对，美股红跌绿涨，和A股正好相反；见红别高兴，先看清数字。"},{"type":"blank","prompt":"美股K线的绿色代表____，和A股正好相反。","options":["下跌","上涨","不涨不跌","暂停交易"],"answerIndex":1,"explanation":"美股绿=涨、红=跌；A股老股民最容易看反，先把颜色掰过来。"},{"type":"choice","prompt":"一根K线里，不包含下面哪个信息？","options":["当天开盘价","当天收盘价","当天最高价","当天成交的人数"],"answerIndex":3,"explanation":"K线只记录开、收、最高、最低四个价；成交多少要看旁边的量柱。"},{"type":"choice","prompt":"一根K线拖着长长的上影线，说明什么？","teach":"K线实体上下伸出的细线叫影线，记录盘中“去过又回来”的路程：上影线=冲高又回落，下影线=探底又回升。","options":["全天单边上涨","盘中探底又回升","盘中冲高又回落","当天暂停交易了"],"answerIndex":2,"explanation":"长上影线=冲高回落；像跳起来够苹果没抓住，又掉了回来。"},{"type":"match","prompt":"把K线的部件和它的含义配对起来。","pairs":[{"left":"开盘价","right":"当天第一笔成交价"},{"left":"收盘价","right":"当天最后一笔成交价"},{"left":"上影线","right":"盘中冲高又回落"},{"left":"下影线","right":"盘中探底又回升"}],"explanation":"实体记录开收盘的结果；影线记录盘中“去过又回来”的路程。"},{"type":"order","prompt":"把K线周期按时间颗粒度从小到大排列。","teach":"K线可以按周期打包：分钟K一分钟一根，日K一天一根，周K一周一根，月K一月一根。打包的时间长短就叫“颗粒度”。","items":["分钟K","日K","周K","月K"],"explanation":"颗粒度越大，一根K线打包的时间越长；切周K后根数自然变少。"}]},{"id":"u4l2","title":"成交量","intro":{"title":"别只看菜价，要看有没有人排队","body":"成交量=今天实际换手成交的股数，好比菜市场今天真实卖出了多少斤菜。价格只是老板喊价，成交量才是真人气：只看价不看量，就像只听老板喊价、不看摊位前有没有人排队。"},"questions":[{"type":"choice","prompt":"成交量指的是什么？","options":["公司的总市值","换手成交的股数","股价涨跌的幅度","股东的总人数"],"answerIndex":1,"explanation":"成交量=换手的股数；它代表市场的关注度和分歧程度。"},{"type":"tf","prompt":"放量上涨，通常说明买盘很积极。","teach":"“放量”=成交量比平时明显放大。放量上涨说明真金白银在抢着买，像奶茶店门口突然排起长队。","answerBool":true,"explanation":"对，量价齐升说明真金白银在买；像奶茶店排长队，人气是真的。"},{"type":"blank","prompt":"缩量阴跌，说明市场上____。","teach":"“缩量”=成交量比平时明显萎缩，“阴跌”=慢慢地跌。缩量阴跌就像降了价也没人光顾的摊位。","options":["买盘非常积极","公司确定退市","没人愿意接盘","买卖双方都很活跃"],"answerIndex":2,"explanation":"缩量阴跌=想卖的没人接；像摊位降价也没人光顾。"},{"type":"order","prompt":"把“突发巨量”的典型剧情按先后排好。","teach":"个股突然爆出比平时大好几倍的“巨量”，多半有突发消息：新闻一出，买卖双方蜂拥而至，价格随之大幅波动。","items":["突发新闻出现","买卖盘蜂拥而至","成交量急剧放大","股价大幅波动"],"explanation":"突发巨量多半有消息驱动；像店门口突然排队，八成上了热搜。"},{"type":"match","prompt":"把量价现象和它的含义配对。","pairs":[{"left":"放量上涨","right":"买盘积极抢着买"},{"left":"缩量阴跌","right":"没人愿意接盘"},{"left":"突发巨量","right":"多半有新闻事件"}],"explanation":"量是人气计：放量看买卖热情，巨量常有消息驱动。"},{"type":"choice","prompt":"你看到一只股票涨了1%，但成交量只有平时的两成，该怎么看？","options":["说明买的人特别多","缩量涨，说服力弱","明天必定大涨","量不重要看价就行"],"answerIndex":1,"explanation":"缩量上涨人气不足；价格变动要结合量看才有分量。"}]},{"id":"u4l3","title":"市值与PE","intro":{"title":"盘下这家店，几年能回本？","body":"市值就是把整家公司买下来的总价，像盘下一整家奶茶店要花多少钱。在美股，市值超过100亿美元的就算大盘股，相当于商圈里的连锁巨头。"},"questions":[{"type":"choice","prompt":"美股的大盘股，通常指市值超过多少？","options":["1亿美元","100亿人民币","100亿美元","1000万美元"],"answerIndex":2,"explanation":"大盘股通常指市值超100亿美元；相当于商圈里的连锁巨头。"},{"type":"match","prompt":"把估值术语和它的白话含义配对。","teach":"EPS每股收益=公司净利润摊到每一股上的钱；PE市盈率=股价÷EPS，粗算“按现在的赚钱速度，回本要几年”。","pairs":[{"left":"市值","right":"买下整家公司的总价"},{"left":"EPS","right":"每一股分到的利润"},{"left":"PE","right":"按当前盈利回本要几年"}],"explanation":"市值看店的总价，EPS看每股赚多少，PE粗算几年回本。"},{"type":"tf","prompt":"PE越高的公司一定越贵，越不值得买。","teach":"生意长得快的公司，大家愿意提前出高价买它的未来，PE天然更高——像月月生意翻倍的网红店，转让费自然贵。","answerBool":false,"explanation":"不一定；高成长公司PE天然高，像生意猛涨的网红店转让费贵。"},{"type":"blank","prompt":"EPS每股收益 = 净利润 ÷ ____。","teach":"公司发行的全部股票数量叫“总股本”。EPS=净利润÷总股本，相当于把全年利润平分到每一股头上。","options":["总市值","总股本","股价","员工人数"],"answerIndex":1,"explanation":"EPS=净利润÷总股本；相当于每一股能分到的利润。"},{"type":"order","prompt":"把计算PE市盈率的步骤按顺序排好。","teach":"PE两步算：先用净利润÷总股本得到EPS，再用股价÷EPS得到PE。注意：亏损公司EPS是负数，PE算不出来。","items":["查出公司净利润","除以总股本得到EPS","用股价除以EPS","得出PE回本年数"],"explanation":"先算EPS再算PE；若公司亏损，EPS为负，PE根本算不出来。"},{"type":"choice","prompt":"你发现银行股PE只有8，AI软件股PE有40，能直接下结论软件股太贵吗？","options":["能，PE高就是贵","不能，跨行业不可比","能，银行股更良心","不能，PE毫无意义"],"answerIndex":1,"explanation":"不同行业PE不可直接比；奶茶店和银行的回本逻辑不一样。"}]},{"id":"u4l4","title":"财报季","intro":{"title":"美股一年四次的期末考试","body":"美股公司每季度发一次财报，一年4次，像学生一年考4次期末考试。财报是检验公司赚钱能力的成绩单，一发布，股价常常大幅波动，是持股人最紧张的日子。"},"questions":[{"type":"choice","prompt":"美股上市公司多久发一次财报？","options":["每月一次","每半年一次","每季度一次","每年一次"],"answerIndex":2,"explanation":"美股财报一季一发、一年4次；像日期固定的期末考试。"},{"type":"blank","prompt":"财报季重点看三件事：营收、EPS和下季度____。","teach":"看财报重点盯三件事：营收（这季卖了多少钱）、EPS（每股赚多少）、guidance（公司给下季度的业绩指引）。","options":["分红派息金额","指引guidance","股东总人数","公司注册地址"],"answerIndex":1,"explanation":"财报三件事：营收、EPS、指引；guidance是下季度的展望。"},{"type":"match","prompt":"把财报季黑话和它的意思配对。","teach":"beat和miss是财报季口头禅：beat=成绩超过分析师预期，miss=不及预期。比的都是“预期”，不是及格线。","pairs":[{"left":"beat","right":"业绩超分析师预期"},{"left":"miss","right":"业绩不及分析师预期"},{"left":"guidance","right":"下季度业绩指引"}],"explanation":"beat和miss比的都是分析师预估；guidance是公司给的展望。"},{"type":"tf","prompt":"财报超预期，股价当天就一定会涨。","teach":"股价里早就藏着大家的预期：如果市场提前押你考98分，你考了95分，也会被当成“没考好”。","answerBool":false,"explanation":"不一定涨；市场可能早已定价更高期望，这就是预期博弈。"},{"type":"order","prompt":"把财报日的典型剧情，按时间先后排好。","teach":"美股财报都避开正常交易时段发布，热门公司多选在收盘后（盘后），所以财报日的剧烈波动常出现在盘后。","items":["分析师提前给出预期","公司盘后发布财报","对比预期看beat或miss","盘后股价剧烈波动"],"explanation":"先有预期后有对比；财报多在盘后发，波动也集中在盘后。"},{"type":"choice","prompt":"你持有的公司财报大超预期，盘后股价却跌了8%，最可能的原因是？","options":["盘后交易不算数","数据肯定出错了","市场已定价更高期望","触发了涨跌停板"],"answerIndex":2,"explanation":"利好出尽是利空；大家预期98分，考95也算“没考好”。"}]},{"id":"u4l5","title":"Boss战·行情阅读理解考试","boss":true,"intro":{"title":"Boss战：行情阅读大考","body":"四关的招式都学完了：认颜色、看量、算PE、读财报。现在进考场，把这份“行情阅读理解”一次通关。别慌，就当去菜市场转一圈，考的全是你见过的摊位。"},"questions":[{"type":"choice","prompt":"你的美股持仓页满屏绿色，第一时间该明白什么？","options":["大部分持仓在跌","大部分持仓在涨","账户被冻结了","行情软件坏了"],"answerIndex":1,"explanation":"美股绿涨红跌；满屏绿是好事，别把A股习惯带过来。"},{"type":"tf","prompt":"日K、周K、月K的区别，只是时间颗粒度不同。","answerBool":true,"explanation":"对，只是打包周期不同；像照片按天、按周、按月整理。"},{"type":"order","prompt":"把K线按时间颗粒度从小到大排列。","items":["日K","周K","月K"],"explanation":"日K一天一根、周K一周一根；颗粒度不同，行情是同一份。"},{"type":"blank","prompt":"PE市盈率 = 股价 ÷ ____。","options":["总股本","净利润","每股收益EPS","成交量"],"answerIndex":2,"explanation":"PE=股价÷每股收益EPS；粗略等于按当前盈利回本几年。"},{"type":"match","prompt":"把本单元的术语和含义配对。","pairs":[{"left":"上影线","right":"盘中冲高又回落"},{"left":"放量上涨","right":"买盘积极"},{"left":"高PE","right":"可能是高成长股"},{"left":"guidance","right":"下季度业绩指引"}],"explanation":"影线看盘中，量看人气，PE看估值，指引看未来。"},{"type":"choice","prompt":"你盯的股票没出新闻却突然放量，第一反应应该是？","options":["闭眼全仓追进去","先查有没有突发消息","放量必跌赶紧卖","量和价没有关系"],"answerIndex":1,"explanation":"突发放量常有新闻驱动；先找原因再动手，别闭眼追。"},{"type":"tf","prompt":"亏损公司的PE很低，所以股票特别便宜。","answerBool":false,"explanation":"错，亏损公司根本没有PE；EPS为负算不出“回本几年”。"},{"type":"choice","prompt":"你看到某公司财报beat，但下季指引下调，盘后放量大跌，怎么解读？","options":["beat了就该涨","市场更在意未来指引","盘后波动不用理会","放量下跌也算人气旺"],"answerIndex":1,"explanation":"股价买的是未来；下调指引比本季beat更有分量。"}]}]},{"id":"u10","title":"估值课：给公司称重","subtitle":"价格与价值、PE深入、PB/PS、估值的锚","emoji":"⚖️","lessons":[{"id":"u10l1","title":"价格与价值","intro":{"title":"股价500的不一定贵","body":"股价2美元的股票可能贵得离谱，500美元的反而可能便宜——贵贱从来不看价格标签，而看价格背后换到多少赚钱能力。就像2000元的旧手机可能是坑，8000元的新旗舰反而划算。估值，就是给公司称重：先弄清它值多少，再看它卖多少。"},"questions":[{"type":"tf","prompt":"股价高就是股票贵，股价低就是股票便宜。","answerBool":false,"explanation":"贵贱=价格vs价值：2美元的烂生意可能比500美元的印钞机贵。"},{"type":"choice","prompt":"判断一只股票贵不贵，正确姿势是？","options":["比较价格和公司赚钱能力","只看股价数字大小","看最近涨没涨","看公司名字洋不洋气"],"answerIndex":0,"explanation":"价格标签要对照价值看，这就是估值要干的事。"},{"type":"choice","teach":"好公司≠好股票：公司再好，买入价太贵也赚不到钱——旗舰手机加价三倍卖，就不值了。","prompt":"同事说\"这是伟大公司，什么价买都行\"，他忽略了？","options":["股价从来不重要","买太贵好公司也亏钱","应该买便宜的烂公司","伟大公司也会倒闭"],"answerIndex":1,"explanation":"为好公司付出离谱的价，剩下的只有漫长的还债——价格永远重要。"},{"type":"blank","prompt":"估值，就是给公司____。","options":["打广告","起名字","称重定价","办上市"],"answerIndex":2,"explanation":"先称出值多少，再对比卖多少——买贵买贱心里就有数。"},{"type":"tf","prompt":"亏损的烂生意，只要股价跌到2美元就一定值得买。","answerBool":false,"explanation":"便宜的烂生意还是烂生意；价值不够，价格再低也不叫便宜。"},{"type":"choice","teach":"比贵贱看\"花多少钱买到1元年利润\"：A是500÷50=10元，B是2÷0.01=200元。","prompt":"A股价500年赚50/股，B股价2年赚0.01/股，谁更便宜？","options":["B更便宜","一样贵","A更便宜","没法比较"],"answerIndex":2,"explanation":"A花10元买1元年利润，B要花200元——标签低不等于便宜。"}]},{"id":"u10l2","title":"PE 实战","intro":{"title":"倍数：市场的情绪温度计","body":"你刚在估值器里体验过：同一家年赚10万的奶茶店，按15倍利润定价是150万，按50倍就是500万。这个\"倍数\"就是PE市盈率（看懂行情单元学过：股价÷每股收益）。直觉含义：市场愿意为1元年利润出多少钱，也约等于按当前利润几年回本。倍数，是市场情绪的温度计。"},"questions":[{"type":"choice","prompt":"一家店年赚10万，按20倍PE估值，值多少钱？","options":["2000万","20万","100万","200万"],"answerIndex":3,"explanation":"估值=利润×倍数：10万×20=200万，估值器里你拖过的算术。"},{"type":"blank","prompt":"PE 20倍，粗略理解为按当前利润____年回本。","options":["20","200","2","5"],"answerIndex":0,"explanation":"PE的直觉翻译就是回本年数：倍数越高，回本越慢。"},{"type":"choice","teach":"高倍数=市场愿为1元利润付更多钱=对未来非常乐观（也可能过热）；低倍数=便宜货，或没人看好。","prompt":"一只股票PE冲到50倍，市场情绪通常是？","options":["极度悲观","非常乐观甚至过热","毫无关注","准备让它退市"],"answerIndex":1,"explanation":"50倍=为1元利润掏50元，情绪温度计已经发烫。"},{"type":"tf","prompt":"PE低的股票，一定比PE高的更值得买。","answerBool":false,"explanation":"低PE可能是便宜也可能是没人看好；高PE可能是泡沫也可能是高成长。"},{"type":"blank","teach":"美股大盘长期PE中枢约15-20倍，可当粗略的锚：远高于它，要多问一句凭什么。","prompt":"美股大盘长期PE中枢大约是____倍。","options":["2-3","50-60","100-120","15-20"],"answerIndex":3,"explanation":"15-20倍是历史的\"常温\"；离常温越远，越要想清楚原因。"},{"type":"choice","prompt":"某明星公司PE被炒到120倍，你的正确姿势是？","options":["无脑冲，大家都在买","举报它数据造假","想清楚它凭什么再决定","立刻做空它"],"answerIndex":2,"explanation":"120倍=押注利润未来暴涨；想不明白凭什么，就别接这杯热奶茶。"}]},{"id":"u10l3","title":"PB与PS：不同行业不同尺子","intro":{"title":"没利润的公司怎么称重？","body":"PE要用利润算，可有的公司还在亏损，怎么办？换尺子：PS市销率=市值÷年营收，先看它卖货的本事；而银行、地产这类家底厚重的行业，更常用PB市净率=股价÷每股净资产，相当于按\"家底\"打几折买。记住：不同行业用不同尺子，别拿体重秤去量身高。"},"questions":[{"type":"choice","prompt":"还在亏损、算不出PE的成长公司，常先看哪把尺子？","options":["成交量","K线颜色","PS市销率","PE市盈率"],"answerIndex":2,"explanation":"没利润就看营收：PS=市值÷年营收，先量卖货的本事。"},{"type":"blank","prompt":"PB市净率 = 股价 ÷ 每股____。","options":["营收","净资产","成交量","利润"],"answerIndex":1,"explanation":"PB拿\"家底\"当秤砣，资产厚重的行业用它最顺手。"},{"type":"choice","prompt":"给银行股称重，通常更常用哪把尺子？","options":["涨跌幅","PB市净率","PS市销率","成交量"],"answerIndex":1,"explanation":"银行家底厚重，看净资产打几折买最直观。"},{"type":"tf","prompt":"不同行业要用不同的估值尺子。","answerBool":true,"explanation":"对，软件和银行生意模式天差地别，尺子和合理倍数都不同。"},{"type":"choice","teach":"PB=1倍是按净资产原价买；低于1倍=打折买家底，高于1倍=溢价买。","prompt":"某银行股PB=0.8倍，意味着你在？","options":["按利润8倍买","免费白拿","溢价20%买","按家底打8折买"],"answerIndex":3,"explanation":"0.8倍=家底价的八折；至于为什么打折，还得看它的生意。"},{"type":"match","prompt":"把三把尺子和称重对象连起来。","pairs":[{"left":"PE","right":"按利润称重"},{"left":"PS","right":"按营收称重"},{"left":"PB","right":"按净资产称重"}],"explanation":"有利润看PE，没利润看PS，重资产看PB——三把尺子各管一段。"}]},{"id":"u10l4","title":"估值的锚：跟谁比","intro":{"title":"20倍算贵吗？看跟谁比","body":"单看一个PE数字毫无意义，估值高低是\"比\"出来的。三种比法：①跟自己历史比——现在20倍、过去五年一直10-15倍，那就偏贵；②跟同行比——可口可乐和百事互为参照；③跟利率比——PE 20倍相当于每年赚回5%（1÷20），如果存款利率就有5%，股票的吸引力就打折了。"},"questions":[{"type":"choice","prompt":"判断\"20倍PE贵不贵\"，正确做法是？","options":["背结论：20倍就是贵","只看股价高低","背结论：20倍就是便宜","跟历史、同行、利率比一比"],"answerIndex":3,"explanation":"估值是比较出来的，孤零零一个数字没有意义。"},{"type":"tf","prompt":"某公司现在PE 30倍，过去五年都在10-15倍，相对自己的历史偏贵。","answerBool":true,"explanation":"对，跟自己历史比是第一把锚：明显高出老区间就要问为什么。"},{"type":"choice","prompt":"想判断可口可乐的估值贵不贵，最合适的同行参照是？","options":["英伟达","工商银行","特斯拉","百事可乐"],"answerIndex":3,"explanation":"同行同生意才可比；拿可乐比芯片，是拿体重秤量身高。"},{"type":"blank","teach":"盈利收益率=1÷PE：PE 20倍≈每年赚回5%。它是股票和存款利率比较的桥梁。","prompt":"PE 20倍的股票，盈利收益率约是____。","options":["5%","1%","20%","50%"],"answerIndex":0,"explanation":"1÷20=5%：这只股票按当前利润，每年帮你赚回5%。"},{"type":"choice","teach":"利率是估值的引力：存款利率越高，钱越有别处可去，股票的高估值越难撑住。","prompt":"存款利率大幅上升，股市整体估值通常会？","options":["完全无关","承压下移","立刻翻倍","大幅抬升"],"answerIndex":1,"explanation":"别处收益高了，股票就得\"降价\"才留得住钱。"},{"type":"order","prompt":"按逻辑排出\"利率压估值\"的传导链。","items":["利率上升","存款吸引力变大","资金要求股票更便宜","估值倍数下移"],"explanation":"钱是流动的：无风险收益越高，股票的溢价越难维持。"}]},{"id":"u10l5","title":"Boss战·估值师执照考试","boss":true,"intro":{"title":"考前打气","body":"价格与价值、PE、PB、PS、三种锚——称重工具全齐了。8道题，拿下估值师执照，从此看股票先看贵贱！"},"questions":[{"type":"choice","prompt":"股价2美元的股票，一定比200美元的便宜吗？","options":["一定，能买更多股","不一定，要看价格vs价值","无法判断所以都别买","一定，数字小就是便宜"],"answerIndex":1,"explanation":"贵贱看单位利润的价格，不看标签数字。"},{"type":"blank","prompt":"股价100美元，每股收益EPS为5美元，PE=____倍。","options":["20","500","5","0.05"],"answerIndex":0,"explanation":"100÷5=20倍：为1元年利润付20元。"},{"type":"choice","prompt":"年赚20万的奶茶店按15倍估值，值多少钱？","options":["300万","20万","150万","30万"],"answerIndex":0,"explanation":"20万×15=300万，估值=利润×倍数。"},{"type":"match","prompt":"把估值工具和公式配对。","pairs":[{"left":"PE","right":"股价÷每股收益"},{"left":"PB","right":"股价÷每股净资产"},{"left":"PS","right":"市值÷年营收"},{"left":"盈利收益率","right":"1÷PE"}],"explanation":"四个公式是估值的四件套，配对全对就算持证上岗。"},{"type":"tf","prompt":"亏损公司算不出PE，可以先用PS看营收。","answerBool":true,"explanation":"对，没利润就先量卖货本事，等它赚钱了再换PE的尺子。"},{"type":"choice","prompt":"某公司PE 40倍，自己历史区间是15-20倍，说明？","options":["马上会跌回15倍","财务数据一定造假","比自己历史明显偏贵","绝对是便宜货"],"answerIndex":2,"explanation":"偏贵是事实，但会不会跌、有没有新故事，要再研究。"},{"type":"blank","prompt":"PE 25倍的股票，盈利收益率=1÷25=____。","options":["40%","2.5%","4%","25%"],"answerIndex":2,"explanation":"4%——拿它和存款利率一比，贵贱立见。"},{"type":"choice","prompt":"下面哪个判断用对了估值尺子？","options":["给银行股看PS","用成交量算贵贱","给银行股看PB","拿PE跨行业硬比"],"answerIndex":2,"explanation":"重资产看PB用对了；跨行业硬比PE是拿体重秤量身高。"}]}]},{"id":"u5","title":"杠杆特训营","subtitle":"杠杆、保证金、杠杆ETF与磨损、做空","emoji":"⚡","lessons":[{"id":"u5l1","title":"杠杆是什么","intro":{"title":"借钱开店，赚亏都翻倍","body":"杠杆就是借钱投资。你有10万，再借10万，凑20万开奶茶店——这就是2倍杠杆。生意赚10%，20万变22万，赚的2万全归你，本金收益20%；亏10%同理亏20%。记住：放大器不挑方向，收益亏损一起放大。"},"questions":[{"type":"choice","prompt":"杠杆投资的本质是什么？","options":["借钱投资，盈亏一起放大","只放大收益不放大亏损","稳赚不赔的高级技巧","券商给老客户的福利"],"answerIndex":0,"explanation":"杠杆=借钱投资。放大器不挑方向，赚亏都按倍数放大。"},{"type":"tf","prompt":"2倍杠杆下，标的涨10%，你的本金收益约是20%。","answerBool":true,"explanation":"对。20万仓位涨10%赚2万，除以10万本金正好是20%。"},{"type":"blank","prompt":"2倍杠杆下，标的跌10%，你的本金亏约____。","options":["5%","10%","20%","40%"],"answerIndex":2,"explanation":"亏损同样翻倍：仓位亏10%，对你的本金就是亏20%。"},{"type":"choice","teach":"亏钱时，先亏光的是你自己的本金：2倍杠杆买入20万，一旦市值跌到只剩借来的那10万，还完借款你一分不剩。","prompt":"2倍杠杆下，标的跌多少你的本金就归零？","options":["10%","25%","50%","100%"],"answerIndex":2,"explanation":"跌50%时20万剩10万，刚好只够还借款，本金清零。"},{"type":"choice","prompt":"你有10万，再借10万，20万全买入。股价涨15%，不计利息你赚多少？","options":["1.5万","3万","4.5万","6万"],"answerIndex":1,"explanation":"20万×15%=3万，全归你，相当于本金赚了30%。"},{"type":"choice","prompt":"你10万本金加2倍杠杆买入20万元股票，股价跌30%，不计利息你的本金还剩多少？","options":["7万","4万","10万","1万"],"answerIndex":1,"explanation":"20万跌30%剩14万，还掉10万借款，只剩4万。"}]},{"id":"u5l2","title":"保证金与爆仓","intro":{"title":"券商的钱，不是白借的","body":"融资账户（margin）能向券商借钱炒股，像租铺面要交押金：你账户里的净值就是押金，不能低于'维持保证金'这条线。刚才的爆仓模拟器你已经亲身体验过了——这一关，把里面每个环节看明白。"},"questions":[{"type":"choice","prompt":"想借券商的钱买股票，需要哪种账户？","options":["现金账户","融资账户margin","退休账户","银行储蓄账户"],"answerIndex":1,"explanation":"融资账户才能向券商借钱，现金账户只能花自己的钱。"},{"type":"blank","teach":"账户净值跌破维持保证金线时，券商会发'Margin Call'（追加保证金通知），像房东催你补押金：限期补钱或减仓。","prompt":"账户净值跌破维持保证金线，券商会发____。","options":["分红通知","Margin Call","开户成功通知","对账单"],"answerIndex":1,"explanation":"Margin Call就是催款单：限期补钱或减仓，否则强平。"},{"type":"tf","teach":"Margin Call限期内没补钱，券商有权不经你同意、直接卖掉你的持仓抵债——这叫强制平仓，模拟器里你就是这么爆的。","prompt":"收到Margin Call后一直不补钱，券商也无权卖出你的股票。","answerBool":false,"explanation":"错。不按时补足，券商有权强制平仓，不用经你同意。"},{"type":"tf","teach":"极端行情下股价一夜跳水，强平卖出的钱可能不够还借款——缺口仍要你掏，也就是亏光本金还倒欠券商。","prompt":"极端行情下爆仓，可能亏光本金后还倒欠券商的钱。","answerBool":true,"explanation":"对。强平价格可能不够还借款，缺口还得你补上。"},{"type":"choice","prompt":"长期融资持仓，除了股价涨跌还得算哪笔账？","options":["借款利息，日积月累","没有任何额外成本","只有交易佣金","持有不动就不收利息"],"answerIndex":0,"explanation":"融资利息每天都在滚，拿得越久成本越高，别忽视它。"},{"type":"order","prompt":"按发生的先后，排出一次爆仓的全过程","items":["融资加杠杆买入","股价大跌净值缩水","跌破维持保证金线","收到Margin Call","没补钱被强制平仓"],"explanation":"先跌破线、再收通知、最后强平；每一步都有机会止损。"}]},{"id":"u5l3","title":"杠杆ETF是什么","intro":{"title":"3倍快乐？先看清'当日'俩字","body":"杠杆ETF是自带放大器的基金：比如TQQQ，追踪纳指100'当日'涨跌的3倍——纳指今天涨1%，它约涨3%；跌1%就约跌3%。重点是'当日'俩字：它只承诺今天的3倍，不承诺长期3倍，每天从头算。"},"questions":[{"type":"choice","prompt":"TQQQ是一只什么产品？","options":["纳指100三倍做多ETF","纳指100三倍做空ETF","普通的纳指指数基金","一只科技公司股票"],"answerIndex":0,"explanation":"TQQQ追踪纳指100当日涨跌的3倍，是做多方向。"},{"type":"tf","prompt":"TQQQ的3倍，指的是当日涨跌幅的3倍，不是长期的3倍。","answerBool":true,"explanation":"对。它每天只对当天负责，长期涨幅可能远偏离3倍。"},{"type":"match","teach":"杠杆ETF三兄弟：Q开头的盯纳指100——TQQQ三倍做多，SQQQ三倍做空（S=Short，空）；SOXL盯半导体，三倍做多。","prompt":"把杠杆ETF和它的玩法连起来","pairs":[{"left":"TQQQ","right":"纳指100三倍做多"},{"left":"SQQQ","right":"纳指100三倍做空"},{"left":"SOXL","right":"半导体三倍做多"}],"explanation":"Q开头俩兄弟盯纳指，一多一空；SOXL盯半导体做多。"},{"type":"blank","teach":"为了每天都精确保持3倍，杠杆ETF每天收盘后要'再平衡'——像奶茶店每晚重新备料，第二天从头算。","prompt":"为了维持杠杆倍数，杠杆ETF每天收盘后要____。","options":["分红","再平衡","强制平仓","停牌"],"answerIndex":1,"explanation":"每天再平衡，倍数才能日日清零重来，这也是磨损来源。"},{"type":"choice","prompt":"纳指100今天涨2%，TQQQ今天大约涨多少？","options":["2%","3%","6%","8%"],"answerIndex":2,"explanation":"当日3倍：2%×3=6%。反过来跌2%它就跌约6%。"},{"type":"tf","prompt":"纳指100一年涨30%，TQQQ这一年就一定涨90%。","answerBool":false,"explanation":"错。3倍只管当日，长期受路径影响，可能多也可能少。"}]},{"id":"u5l4","title":"磨损的数学","intro":{"title":"涨10%再跌10%，居然不是回原点","body":"拿出计算器：100涨10%是110，再跌10%是99——白坐一趟过山车还倒亏1%。换成3倍ETF：涨30%到130，再跌30%只剩91，亏的是9%不是3%！震荡市像颠簸的货车，车斗里的钱一路被颠掉，这叫波动损耗。记住：杠杆ETF是短跑鞋，不是存钱罐。"},"questions":[{"type":"choice","prompt":"100元先涨10%再跌10%，最后是多少元？","options":["100元","99元","101元","98元"],"answerIndex":1,"explanation":"110×0.9=99。跌的10%是按110算的，所以回不到原点。"},{"type":"blank","prompt":"震荡市里杠杆ETF净值被反复消耗，这叫____。","options":["追加保证金","波动损耗","强制平仓","高抛低吸"],"answerIndex":1,"explanation":"波动损耗：涨跌交替中天天再平衡，净值越磨越薄。"},{"type":"choice","teach":"磨损算法示范：3倍ETF当日涨跌=标的×3，多天就连乘。标的+10%→ETF当天×1.3；标的-10%→ETF当天×0.7。","prompt":"3倍ETF净值100元，标的先涨10%再跌10%，ETF最后约多少？","options":["97元","94元","91元","100元"],"answerIndex":2,"explanation":"100×1.3=130，再×0.7=91。亏9%，是标的亏1%的9倍。"},{"type":"tf","prompt":"只要标的最后涨回原点，3倍杠杆ETF也能回到原点。","answerBool":false,"explanation":"错。标的回原点，3倍ETF可能已被磨损亏掉一大截。"},{"type":"choice","prompt":"标的连涨两天各10%，3倍ETF从100元涨到约多少？","options":["130元","160元","169元","190元"],"answerIndex":2,"explanation":"每天各涨30%再连乘：100×1.3×1.3=169，单边市反超3倍。"},{"type":"choice","prompt":"你打算把TQQQ当存钱罐躺平十年，最大的坑是什么？","options":["震荡磨损，标的没跌你先亏","收益只会打个小折扣","长期恰好是标的3倍","只要不卖就不算亏"],"answerIndex":0,"explanation":"杠杆ETF是短线工具：震荡市反复磨损，躺平可能亏惨。"}]},{"id":"u5l5","title":"做空入门","intro":{"title":"先卖后买，跌了也能赚？","body":"做空像找邻居借一箱茶叶先卖100元，等降价花60元买回还他，白赚40。放到股市：先借股票卖出，跌了再低价买回还券，差价归你。但小心：做多最多亏100%，做空亏损没上限——股价可以无限涨。新手别裸做空。"},"questions":[{"type":"choice","prompt":"做空的人靠什么赚钱？","options":["股价下跌，低买回补","股价上涨，越涨越赚","等公司分红","收借券的人利息"],"answerIndex":0,"explanation":"高价先卖、低价买回，差价就是利润，所以盼着跌。"},{"type":"order","prompt":"按正确顺序排出一次做空操作","items":["向券商借入股票","把借来的股票卖出","股价下跌后低价买回","还券落袋，赚取差价"],"explanation":"先借再卖、跌了买回、还券收工：做空就是反着做多。"},{"type":"tf","prompt":"不加杠杆做多一只股票，最多亏掉100%本金。","answerBool":true,"explanation":"对。股价最惨跌到0，亏损封顶100%；做空可没这个顶。"},{"type":"choice","prompt":"做空的理论最大亏损是多少？","options":["最多100%","无上限，股价可无限涨","最多50%","有涨停板封顶10%"],"answerIndex":1,"explanation":"股价上不封顶，做空亏损也上不封顶，这是最大风险。"},{"type":"blank","teach":"2021年GME大战：空头认输时必须买回股票，这些买单反而把股价推得更高，逼更多空头高位回补——这种连环踩踏叫'轧空'。","prompt":"空头被迫高价回补、反而进一步推高股价，这叫____。","options":["割肉","强制平仓","轧空","抄底"],"answerIndex":2,"explanation":"轧空short squeeze，2021年GME就是教科书案例。"},{"type":"choice","prompt":"你以10元/股做空，股价飙到25元被迫买回还券，每股亏多少？","options":["5元","10元","15元","最多亏10元"],"answerIndex":2,"explanation":"25-10=15元，比10元本钱还多——做空能亏超100%。"}]},{"id":"u5l6","title":"Boss战·杠杆特训营结业考","boss":true,"intro":{"title":"结业考：杠杆老司机认证","body":"深呼吸，掏出计算器——算得清磨损的人，才配碰杠杆。"},"questions":[{"type":"choice","prompt":"10万本金借10万，共20万买入，股价涨20%，不计利息你赚多少？","options":["2万","4万","6万","8万"],"answerIndex":1,"explanation":"20万×20%=4万，本金收益40%：2倍杠杆的放大效果。"},{"type":"choice","prompt":"2倍杠杆下，标的跌多少你的本金就亏光？","options":["25%","50%","75%","100%"],"answerIndex":1,"explanation":"跌50%时市值只够还借款，本金归零，这是杠杆的悬崖。"},{"type":"choice","prompt":"标的连跌两天各10%，3倍ETF从100元跌到约多少？","options":["70元","61元","49元","40元"],"answerIndex":2,"explanation":"每天各跌30%：100×0.7×0.7=49，两天就直接腰斩。"},{"type":"tf","prompt":"标的从100涨10%再跌10%只亏1%，3倍ETF同样只亏1%左右。","answerBool":false,"explanation":"错。ETF走的是100→130→91，亏9%——磨损远超直觉。"},{"type":"match","prompt":"把黑话和人话配对","pairs":[{"left":"Margin Call","right":"追加保证金通知"},{"left":"强制平仓","right":"不补钱券商卖你持仓"},{"left":"轧空","right":"空头回补推高股价"},{"left":"波动损耗","right":"震荡磨掉杠杆ETF"}],"explanation":"四个词指向同一件事：杠杆的风险来得又快又狠。"},{"type":"order","prompt":"按发生顺序排出一场轧空（如2021年GME）","items":["大量空头做空同一只股票","股价意外持续大涨","空头被迫买回股票止损","回补买盘把股价推得更高"],"explanation":"空头止损要买股票，买盘又推高股价，逼更多人回补。"},{"type":"blank","prompt":"杠杆ETF的3倍，指的是____涨跌幅的3倍。","options":["一年","当日","长期","一周"],"answerIndex":1,"explanation":"只保当日3倍；长期看路径：震荡被磨损，单边被放大。"},{"type":"choice","prompt":"朋友裸做空后安慰自己：'大不了亏光本金，归零离场'。他错在哪？","options":["做空亏损无上限，可能亏掉不止本金","做空和做多一样，最多亏光本金","券商会自动帮他止损兜底","股价跌到0他才会亏光"],"answerIndex":0,"explanation":"做多才封顶100%；做空股价上不封顶，亏损能超过本金。"}]}]},{"id":"u6","title":"韭菜防身术","subtitle":"心态、仓位、防骗、长期主义","emoji":"🛡️","lessons":[{"id":"u6l1","title":"追涨杀跌与FOMO","intro":{"title":"全网晒收益的时候，最危险","body":"看到别人赚钱就心慌手痒，这叫FOMO——害怕错过。就像一家奶茶店排队排到街尾你才想加盟，最挤的时候往往是最贵的时候。记住：涨了很多天的股票，风险是在积累，不是在消失；人多的地方，先别去凑热闹。"},"questions":[{"type":"blank","prompt":"FOMO的意思是：害怕____，看别人赚钱就忍不住追。","options":["错过","亏损","收盘","缴税"],"answerIndex":0,"explanation":"FOMO=害怕错过。它让你在最贵的时候冲进去，就像排队最长时才去买奶茶。"},{"type":"tf","prompt":"“人多的地方不要去”，是提醒你别在最热闹时追高。","answerBool":true,"explanation":"对。全网都喊买入时，便宜筹码早被抢完，你多半是来接盘的。"},{"type":"tf","prompt":"一只股票连涨十天，说明风险已经释放，追进去更安全。","answerBool":false,"explanation":"错。涨了很多天，风险在积累而不是消失，追高等于接更贵的盘。"},{"type":"order","prompt":"把韭菜的情绪周期按先后顺序排好。","teach":"股民黑话：「被套」=买贵了亏着舍不得卖；「割肉」=终于认亏卖出。韭菜的老路五步：犹豫→眼红→追高→被套→割肉。","items":["犹豫观望不敢买","眼红别人晒收益","高位忍不住追入","被套后死扛装死","地板价绝望割肉"],"explanation":"犹豫→眼红→追高→被套→割肉在地板，这条老路千万别走完。"},{"type":"choice","prompt":"追高背后最常见的心理是哪种？","options":["眼红别人赚钱怕错过","冷静算过公司估值","研究透了财报数据","提前定好退出计划"],"answerIndex":0,"explanation":"追高多半是情绪驱动。眼红加怕踏空一上头，价格再贵也敢冲。"},{"type":"choice","prompt":"你刷到某股连涨7天，群里天天晒翻倍截图，你手痒想全仓冲。此刻最该想的是？","options":["涨这么多风险在积累","再不上车就永远错过","全仓才能一把赚回来","跟着群友买总没错"],"answerIndex":0,"explanation":"连涨越久越要冷静。人多的地方不要去，热闹顶点常是风险顶点。"}]},{"id":"u6l2","title":"仓位与分散","intro":{"title":"亏多少，你还睡得着？","body":"仓位管理说白了就一句话：决定亏多少你还睡得着。别把全部家当押一只股票，就像菜市场进货不能只囤一种菜，行情不好全砸手里。鸡蛋分几个篮子：跨公司、跨行业，再留点现金当救命钱。还有个懒人神器叫定投——固定时间买固定金额，用纪律代替猜涨跌，自动摊平成本。"},"questions":[{"type":"tf","prompt":"仓位管理的核心，是把可能的亏损控制在睡得着的范围。","answerBool":true,"explanation":"对。仓位决定亏损上限，睡得着的仓位才拿得住好股票。"},{"type":"blank","prompt":"定投=固定时间买入____，用纪律代替猜涨跌。","options":["固定金额","全部存款","随机金额","借来的钱"],"answerIndex":0,"explanation":"定投就是定时定额。像每月自动交房租，不用猜时机还能摊平成本。"},{"type":"tf","prompt":"把全部资金押一只最看好的股票，是控制风险的好办法。","answerBool":false,"explanation":"错。all in等于命运系在一只股上，它一跌你就全军覆没。"},{"type":"choice","prompt":"下面哪种做法不算分散风险？","options":["买五只同行业股票","买不同行业的公司","股票之外留点现金","分散买多家公司"],"answerIndex":0,"explanation":"同行业股票一起涨跌，鸡蛋还在一个篮子里，只是换了摆法。"},{"type":"choice","prompt":"你有10万准备入市，同事劝你全仓他推荐的“必涨股”。更稳妥的做法是？","options":["分散行业还留现金","信同事全仓一只","借钱加杠杆跟买","全押他推荐的行业"],"answerIndex":0,"explanation":"没有必涨股。分散加留现金，判断错了也不至于伤筋动骨。"},{"type":"match","prompt":"把做法和它的效果连起来。","pairs":[{"left":"全仓一只股","right":"一亏全亏"},{"left":"跨行业分散","right":"东边不亮西边亮"},{"left":"留部分现金","right":"下跌时有钱捡便宜"},{"left":"定期定额买入","right":"摊平持仓成本"}],"explanation":"分散、留现金、定投三件套，让你亏得慢、扛得住、睡得着。"}]},{"id":"u6l3","title":"骗局识别","intro":{"title":"“老师”喊你进群，图你什么？","body":"天上不会掉馅饼。荐股群、老师带单、内部消息，大概率是杀猪盘：像拼团里的托儿先晒到账截图，等你真金白银进场，他们高位跑路。记住两条铁律：收益和风险永远成正比，宣称保本又高收益的就是诈骗；真正的内幕交易是违法的，敢公开发到群里的“内幕”只能是鱼饵。"},"questions":[{"type":"tf","prompt":"有产品宣传“保本高收益”，说明它特别靠谱值得抢购。","answerBool":false,"explanation":"错。收益和风险永远成正比，保本又高收益的话术就是诈骗信号。"},{"type":"blank","prompt":"宣传语出现“____”，基本可以直接判定是诈骗。","options":["保本高收益","有涨也有跌","投资需谨慎","风险自负"],"answerIndex":0,"explanation":"保本和高收益天生矛盾，敢这么承诺的只能是骗子。"},{"type":"tf","prompt":"用真正的内幕消息交易是违法的，不管消息从哪来。","answerBool":true,"explanation":"对。内幕交易本身违法；群里敢公开发的“内幕”，多半是鱼饵。"},{"type":"order","prompt":"把“拉高出货”骗局的步骤按先后排好。","teach":"「拉高出货」骗局：庄家（操盘的大资金）先低价囤股叫「吸筹」，再四处吹嘘引散户（普通小股民）追买抬价，最后高位卖光跑路叫「砸盘」。","items":["庄家低价悄悄吸筹","四处吹嘘拉人进场","散户跟风推高股价","庄家高位砸盘跑路"],"explanation":"先囤货再吆喝，拉高就跑路。吹得最响的时候，就是出货的时候。"},{"type":"choice","prompt":"荐股群“老师”免费带你炒股，最可能图什么？","options":["拉你高位接盘","单纯做慈善","练习教学水平","交个朋友而已"],"answerIndex":0,"explanation":"免费的最贵。老师的收益来自你接盘，不是来自股票上涨。"},{"type":"choice","prompt":"你被拉进股票群，“老师”晒盈利截图，让你去指定小平台充值跟单。你该？","options":["退群拉黑并举报","小额充值试试水","先跟一单看准头","让他先证明实力"],"answerIndex":0,"explanation":"指定小平台充值是杀猪盘标配，钱进去就取不出来，跑为上策。"}]},{"id":"u6l4","title":"长期与复利","intro":{"title":"巴菲特99%的钱，50岁后才赚到","body":"复利就是利滚利，像滚雪球：雪球小没关系，坡要够长。72法则帮你速算：72÷年化收益率≈本金翻倍年数，年化8%约9年翻一倍。比起天天猜顶猜底做“择时”，“在市场里的时间”更值钱——错过涨幅最大的那几天，长期收益会大打折扣。所以巴菲特99%的财富，是50岁以后才滚出来的。"},"questions":[{"type":"tf","prompt":"复利就是利滚利，本金生的利息也会继续生利息。","answerBool":true,"explanation":"对。复利像滚雪球，越滚越大，时间越长威力越猛。"},{"type":"choice","prompt":"72法则里，本金翻倍所需年数约等于？","options":["72÷年化收益率","72×年化收益率","年化收益率÷72","本金÷72"],"answerIndex":0,"explanation":"翻倍年数≈72÷年化收益率。收益率越高，翻倍越快。"},{"type":"choice","prompt":"长期投资中，错过涨幅最大的少数几天，结果是？","options":["收益大打折扣","几乎没有影响","收益反而更高","错过会自动补涨"],"answerIndex":0,"explanation":"大涨常挤在少数几天里，错过它们收益断崖缩水，在场比择时重要。"},{"type":"tf","prompt":"频繁买卖择时，长期收益通常比一直待在市场里更高。","answerBool":false,"explanation":"错。择时容易错过大涨的那几天，在场时间比挑时机更重要。"},{"type":"blank","prompt":"按72法则，年化收益8%，本金翻倍约需____年。","options":["9","5","15","20"],"answerIndex":0,"explanation":"72÷8=9。72法则是速算翻倍年数的小抄，除一下就有答案。"},{"type":"match","prompt":"把概念和它的关键点连起来。","pairs":[{"left":"复利","right":"利滚利"},{"left":"72法则","right":"速算翻倍年数"},{"left":"时间","right":"复利最重要变量"},{"left":"频繁择时","right":"容易错过大涨日"}],"explanation":"复利的燃料是时间。安心待在场内，常常胜过反复跳进跳出。"}]},{"id":"u6l5","title":"毕业考·韭菜防身术","boss":true,"intro":{"title":"毕业考来了！","body":"防身术学完了，最后8题检验成色，顺便回顾几位老朋友。深呼吸，上！"},"questions":[{"type":"choice","prompt":"一只股票已经连涨很多天，它的风险正在？","options":["悄悄积累","逐渐消失","已经归零","和涨跌无关"],"answerIndex":0,"explanation":"涨得越久积累的风险越多，人多的地方别急着挤进去。"},{"type":"tf","prompt":"“老师”带单群让你去陌生小平台充值，大概率是杀猪盘。","answerBool":true,"explanation":"对。指定平台充值是杀猪盘标配，盈利截图都是演给你看的。"},{"type":"blank","prompt":"分散投资：跨公司、跨____，再留一部分现金。","options":["行业","账户","券商","代码"],"answerIndex":0,"explanation":"分散要分到不同行业。同行业几只股一起跌，篮子还是同一个。"},{"type":"order","prompt":"按本金翻倍所需时间，从短到长排序。","items":["年化12%","年化9%","年化6%"],"explanation":"72法则：72÷12=6年、÷9=8年、÷6=12年，收益率越高翻倍越快。"},{"type":"match","prompt":"把关键词和它的真面目连起来。","pairs":[{"left":"FOMO","right":"怕错过而追高"},{"left":"定投","right":"纪律代替择时"},{"left":"保本高收益","right":"诈骗信号"},{"left":"复利","right":"利滚利"}],"explanation":"心态、仓位、防骗、复利，四招记牢就是完整的防身术。"},{"type":"choice","prompt":"回顾：盘前盘后交易的普遍特点是？","options":["成交清淡波动大","流动性比盘中好","价格更加稳定","涨跌幅限制更严"],"answerIndex":0,"explanation":"盘前盘后人少单薄，价差大、波动猛，新手最好盘中再动手。"},{"type":"tf","prompt":"回顾：杠杆ETF适合长期拿着不动，放得越久赚得越多。","answerBool":false,"explanation":"错。杠杆ETF每日调仓有磨损，震荡市里越拿越亏，只宜短线。"},{"type":"choice","prompt":"回顾：你只想在不超过100美元时买入，该用哪种订单？","options":["限价单","市价单","止损单","止盈单"],"answerIndex":0,"explanation":"限价单只在100美元或更低才成交；市价单是现在就要，多贵都买。"}]}]},{"emoji":"🇭🇰","id":"u7","title":"港股入门","subtitle":"恒生指数、午休、一手制度、港股规则","lessons":[{"id":"u7l1","title":"认识港股","intro":{"title":"港股是什么？","body":"港股就是在香港交易所（HKEX）上市交易的股票。想看港股整体涨跌，就看恒生指数——它之于港股，就像标普500之于美股，是整个市场的“温度计”。学完美股再学港股，就像会骑自行车再学电动车，上手飞快！"},"questions":[{"type":"choice","prompt":"代表港股大盘的“温度计”是哪个指数？","options":["上证指数","标普500","纳斯达克指数","恒生指数"],"answerIndex":3,"explanation":"恒生指数是港股大盘代表，就像标普500代表美股，看它就知道港股冷暖。"},{"type":"tf","prompt":"港股是在香港交易所（HKEX）上市交易的股票。","answerBool":true,"explanation":"对！港股的“菜市场”就是香港交易所HKEX，所有港股都在这里买卖。"},{"type":"choice","teach":"恒生科技指数汇集了港股的大科技公司：腾讯、阿里、美团、小米都在里面。","prompt":"下面哪家公司在恒生科技指数里？","options":["中国石油","工商银行","腾讯","贵州茅台"],"answerIndex":2,"explanation":"腾讯、阿里、美团、小米都住在恒生科技指数里；茅台是A股的。"},{"type":"blank","teach":"港股股票都用港币标价和交易，就像去香港买奶茶要付港币。","prompt":"港股的股票用____计价。","options":["人民币","日元","美元","港币"],"answerIndex":3,"explanation":"港股用港币计价，就像去香港买奶茶得付港币，买港股也一样。"},{"type":"choice","teach":"港币和美元实行联系汇率：约7.8港币兑1美元，汇率长期基本固定。","prompt":"大约多少港币能兑换1美元？","options":["1港币","100港币","7.8港币","0.78港币"],"answerIndex":2,"explanation":"联系汇率把港币和美元“拴”在一起，约7.8兑1，基本不变。"},{"type":"choice","teach":"很多内地公司选择在香港上市，所以港股里能买到不少你熟悉的中国公司。","prompt":"你想买腾讯的股票，它在香港上市，你该去哪个市场？","options":["美股","A股","外汇市场","港股"],"answerIndex":3,"explanation":"腾讯等很多内地公司在香港上市，想买它们就得去港股市场。"}]},{"id":"u7l2","title":"交易时间与午休","intro":{"title":"不用熬夜的股市","body":"好消息：港股用北京时间交易，不用像看美股那样熬夜！但港股有个特色——每天12:00-13:00全市场午休，所有交易暂停，像学校午休铃一响，全班放下笔。你刚在“下单时钟”里体验过：午休时下单，订单只能排队等待。"},"questions":[{"type":"tf","prompt":"港股用北京时间交易，白天就能看盘，不用熬夜。","answerBool":true,"explanation":"对！港股和你没有时差，喝着下午茶就能看盘，美股才需要熬夜。"},{"type":"choice","teach":"港股早市9:30开盘，12:00收早市，和内地上班族的上午时间几乎一样。","prompt":"港股早市几点开盘？","options":["21:30","13:00","8:00","9:30"],"answerIndex":3,"explanation":"早市9:30开盘，和A股开盘时间一样；21:30那是美股的事。"},{"type":"blank","teach":"午休结束后，港股13:00开午市，一直交易到16:00收盘。","prompt":"港股午市从13:00一直交易到____收盘。","options":["17:00","15:00","16:00","21:00"],"answerIndex":2,"explanation":"港股16:00收盘，比A股的15:00多“加班”一小时。"},{"type":"choice","prompt":"你在12:30下单卖出腾讯，订单会怎样？","options":["立刻成交","转到明天交易","挂起等午市开盘","直接被取消"],"answerIndex":2,"explanation":"午休全市场暂停，订单排队等13:00午市开门，就像食堂午休只能等窗口重开。"},{"type":"choice","teach":"开市前9:00-9:30是竞价时段：先收集买卖订单撮合出开盘价，还没正式连续交易。","prompt":"北京时间9:00-9:30，港股处于什么时段？","options":["开市前竞价时段","午休","早市交易","午市交易"],"answerIndex":0,"explanation":"9:00-9:30先收集订单撮合开盘价，像演唱会开场前先排队入场。"},{"type":"order","prompt":"把港股一天的时段按先后排好顺序。","items":["开市前竞价","早市","午休","午市"],"explanation":"先竞价定开盘价，再早市，午休一小时，最后午市干到16:00收工。"}]},{"id":"u7l3","title":"一手制度","intro":{"title":"按“手”买股票","body":"港股买股票不按1股来，而是按“手”——就像超市鸡蛋按盒卖，不单卖一个。更特别的是，一手是多少股由每家公司自己定：腾讯一手=100股，别家可能不一样。所以买港股前，先看清这家公司一手是多少股。"},"questions":[{"type":"choice","prompt":"在港股买股票，最少要买多少？","options":["十股","想买几股都行","一手","一股"],"answerIndex":2,"explanation":"港股按“手”买卖，像鸡蛋按盒卖，一手就是最小起买单位。"},{"type":"tf","prompt":"港股所有公司的一手都是100股。","answerBool":false,"explanation":"错啦，一手几股由每家公司自己定：腾讯100股一手，别家可能不同。"},{"type":"choice","teach":"小米在港股规定一手=200股。每家公司的一手股数可能都不一样。","prompt":"小米的股票一手是多少股？","options":["1股","100股","500股","200股"],"answerIndex":3,"explanation":"小米一手200股，是腾讯的两倍——下单前一定先查一手几股。"},{"type":"blank","teach":"港股的买入门槛=股价×一手股数，钱不够一整手就买不了。","prompt":"腾讯股价300港币，一手100股，买一手至少要____港币。","options":["100","3000","300","30000"],"answerIndex":3,"explanation":"300×100=30000港币。一手制让港股门槛常比美股高不少。"},{"type":"choice","teach":"不足一手的股票叫“碎股”，要去专门的碎股市场交易，那里买家少。","prompt":"你手里有50股腾讯碎股想卖掉，最可能遇到什么？","options":["交易所帮你补成一手","和整手一样好卖","价格吃亏不好卖","必须凑满一手才能卖"],"answerIndex":2,"explanation":"碎股市场买家少，像卖零散扑克牌不如整副好卖，价格常吃亏。"},{"type":"tf","teach":"美股1股起买，还能买0.01股的碎股，没有整手门槛。","prompt":"买美股1股起买，买港股通常得整手整手地买。","answerBool":true,"explanation":"对！美股像散称糖果想买多少买多少，港股得按盒拿。"}]},{"id":"u7l4","title":"港股规则彩蛋","intro":{"title":"买卖都要交的印花税","body":"港股有一笔美股没有的成本：印花税。买入时交0.1%，卖出时再交0.1%，双向都收——就像停车场进出各收一次费。交易越频繁交得越多，所以高频买卖在港股比在美股更贵。"},"questions":[{"type":"choice","prompt":"港股买卖要交、美股却没有的税是？","options":["个人所得税","关税","增值税","印花税"],"answerIndex":3,"explanation":"印花税是港股特色成本，像进出停车场各收一次费，美股没有这笔钱。"},{"type":"tf","prompt":"在美股买卖股票也要交印花税。","answerBool":false,"explanation":"错，美股没有印花税，这正是高频交易在港股更贵的原因。"},{"type":"blank","teach":"港股T+0：今天买的股票今天就能卖；但钱货正式交收要等2个交易日。","prompt":"港股当天买当天可卖，但资金交收要等T+____。","options":["2","0","3","1"],"answerIndex":0,"explanation":"买卖当天就能做（T+0），交收像快递签收，T+2才正式到账。"},{"type":"choice","teach":"港股没有涨跌停，但有市调机制VCM：指定证券5分钟内涨跌超10%，触发5分钟冷静期。","prompt":"某指定证券5分钟内暴涨12%，会发生什么？","options":["什么也不会发生","触发5分钟冷静期","全天停牌","直接涨停封板"],"answerIndex":1,"explanation":"港股无涨跌停，但VCM会给暴涨暴跌按下5分钟暂停键，让市场冷静。"},{"type":"choice","teach":"港股通是内地资金买港股的通道，新闻里说的“南向资金”指的就是它。","prompt":"新闻说“南向资金大举流入港股”，这是谁的钱？","options":["香港本地的存款","南方城市的社保","美国机构的美元","内地经港股通的资金"],"answerIndex":3,"explanation":"南向资金=内地资金经港股通“南下”买港股，方向从内地指向香港。"},{"type":"match","prompt":"把港股规则和它的含义连起来。","pairs":[{"left":"印花税","right":"买卖双向各0.1%"},{"left":"T+2","right":"资金正式交收日"},{"left":"VCM","right":"5分钟冷静期"},{"left":"港股通","right":"内地买港股通道"}],"explanation":"四大规则各就各位，记住它们，港股的成本和节奏就心里有数了。"}]},{"id":"u7l5","title":"Boss战·港股通行证考试","boss":true,"intro":{"title":"考前打气","body":"港股通行证考试来了！恒指、午休、一手、印花税……你全都学过。深呼吸，8道题，拿下它！"},"questions":[{"type":"choice","prompt":"代表港股大盘整体表现的指数是？","options":["恒生科技指数","上证指数","恒生指数","标普500"],"answerIndex":2,"explanation":"恒生指数是港股大盘温度计；恒生科技指数只代表科技板块。"},{"type":"order","prompt":"按时间先后排出港股一天的日程。","items":["9:00竞价时段","9:30早市开盘","12:00开始午休","13:00午市开盘","16:00收盘"],"explanation":"竞价→早市→午休→午市→收盘，中午那一小时全市场都在“吃饭”。"},{"type":"blank","prompt":"小米一手200股，股价20港币，买一手要____港币。","options":["200","400","2000","4000"],"answerIndex":3,"explanation":"20×200=4000港币。门槛=股价×一手股数，先查一手几股再下单。"},{"type":"tf","prompt":"港股和A股一样，设有10%的涨跌停板。","answerBool":false,"explanation":"错，港股没有涨跌停，只有VCM在5分钟暴动超10%时给5分钟冷静期。"},{"type":"choice","prompt":"周三中午12:20，你下单买腾讯，订单会怎样？","options":["挂起等13:00午市","立刻成交","自动作废","按美股时间成交"],"answerIndex":0,"explanation":"12:00-13:00全市场午休，订单排队等午市开门再撮合。"},{"type":"match","prompt":"把港股名词和解释配对。","pairs":[{"left":"恒生科技指数","right":"腾讯美团聚集地"},{"left":"联系汇率","right":"约7.8港币兑1美元"},{"left":"碎股","right":"不足一手的股票"},{"left":"南向资金","right":"内地资金买港股"}],"explanation":"这四个词是港股新闻高频词，配对全对说明你已经入门了。"},{"type":"blank","prompt":"10万港币买入再按原价全部卖出，印花税共约____港币。","options":["200","0","2000","100"],"answerIndex":0,"explanation":"买卖各0.1%：100+100=200港币，像停车进出各刷一次卡。"},{"type":"choice","prompt":"晚上21:00你想买港股，为什么买不了？","options":["港股16:00已收盘","要先换成美元","触发VCM冷静期","正在午休"],"answerIndex":0,"explanation":"港股16:00就收工了，晚上开门的是美股——没时差的好处与“代价”。"}]}]},{"id":"u8","title":"3倍ETF特训","subtitle":"做多做空家族、使用纪律、2022教训","emoji":"🎢","lessons":[{"id":"u8l1","title":"3倍做多家族图鉴","intro":{"title":"3倍做多家族","body":"杠杆特训营里你认识了TQQQ——纳指100的当日3倍做多ETF。它其实有一整个家族：不同指数、不同行业都有自己的3倍版本，像奶茶店的“三倍糖”菜单，各种口味都能加倍。这一关带你认全家族成员，并学会一眼识别谁是杠杆产品。"},"questions":[{"type":"choice","prompt":"TQQQ追踪的是哪种表现？","options":["标普500的当日3倍","纳指100的长期3倍","上证指数的3倍","纳指100的当日3倍"],"answerIndex":3,"explanation":"TQQQ盯纳指100，当日3倍做多；像三倍糖奶茶，一天一杯现调。"},{"type":"tf","prompt":"TQQQ的“3倍”只保证当日，持有一年并不等于全年收益的3倍。","answerBool":true,"explanation":"对。它每天收盘重置重新算，拿久了会因磨损偏离3倍。"},{"type":"blank","teach":"UPRO是标普500的当日3倍做多ETF，和TQQQ是同门师兄弟，只是盯的指数不同。","prompt":"UPRO追踪的是____的当日3倍。","options":["半导体行业","上证指数","标普500","纳指100"],"answerIndex":2,"explanation":"UPRO盯标普500，TQQQ盯纳指100；师兄弟各管一个指数。"},{"type":"choice","prompt":"你看好芯片行业要大涨，想当日3倍做多，该选谁？","options":["UPRO","SOXL","TQQQ","SQQQ"],"answerIndex":1,"explanation":"SOXL盯半导体当日3倍做多；芯片股集体涨1%，它约涨3%。","teach":"SOXL是半导体行业的当日3倍做多ETF——芯片股集体涨1%，它约涨3%。"},{"type":"choice","teach":"识别技巧：ETF名字里带Ultra、Bull或3x的，大多是杠杆产品，看到就要多留个心眼。","prompt":"浏览ETF列表时，名字里出现哪个词要警惕是杠杆产品？","options":["Index","Global","Bull","Fund"],"answerIndex":2,"explanation":"Ultra、Bull、3x是杠杆产品的常用名，像辣椒标志，见到先查倍数。"},{"type":"choice","teach":"NVDL是单股杠杆ETF：只押英伟达一只股票的单日2倍。押单一股票比押整个指数更集中，风险更大。","prompt":"你朋友说：“NVDL和TQQQ都是杠杆ETF，风险差不多。”他忽略了什么？","options":["两者完全一样","TQQQ的倍数其实更高","NVDL其实没有杠杆","NVDL只押一只股票更集中"],"answerIndex":3,"explanation":"TQQQ押一篮子股票，NVDL全押英伟达；鸡蛋放一个篮子里更集中。"}]},{"id":"u8l2","title":"反向ETF","intro":{"title":"反着开的车","body":"SQQQ你在特训营听过名字，现在正式认识：它是纳指100的“当日反向3倍”ETF——指数当天跌1%，它约涨3%；指数涨1%，它约跌3%。像一辆反着开的车，大盘倒车它前进。它和TQQQ一样每日重置，同样会被震荡磨损。"},"questions":[{"type":"choice","prompt":"纳指100当天跌1%，SQQQ当天大约怎么走？","options":["跌约3%","基本不动","涨约3%","涨约1%"],"answerIndex":2,"explanation":"反向3倍：指数跌1%它约涨3%。大盘倒车，它踩油门。"},{"type":"tf","teach":"反向ETF把“看跌”打包成了普通ETF：像做多一样直接买入就行，不用自己融券借股票。","prompt":"想用SQQQ表达看跌，必须先向券商融券借股票。","answerBool":false,"explanation":"错。SQQQ直接买入即可，看跌已被打包成普通ETF，省去融券。"},{"type":"blank","prompt":"SQQQ同样每日重置，在震荡行情里也会被____。","options":["分红","加倍","磨损","保护"],"answerIndex":2,"explanation":"反向3倍一样每天重置，行情来回震荡照样磨损净值。"},{"type":"choice","prompt":"纳指100当天涨2%，SQQQ当天约变动多少？","options":["跌约6%","涨约6%","跌约2%","涨约2%"],"answerIndex":0,"explanation":"反向3倍：指数涨2%，它约跌6%。方向相反，幅度乘3。"},{"type":"choice","teach":"长期拿反向ETF等大盘跌是双重错误：美股指数长期向上，方向先输一半；每日磨损再亏一层。","prompt":"你舍友打算长期持有SQQQ，“总有一天能等到大跌”。这个计划错在哪？","options":["没错，非常稳健","方向和磨损双重错误","错在杠杆倍数不够","只错在手续费贵"],"answerIndex":1,"explanation":"指数长期向上，他先逆水行舟；磨损再天天抽水——双重错误。"},{"type":"order","prompt":"按一天内的先后，排出SQQQ的工作流程。","items":["纳指100当天下跌1%","SQQQ当天涨约3%","收盘重置，次日重新计算"],"explanation":"当日反向3倍，收盘归零重算；“当日”两个字是它的命门。"}]},{"id":"u8l3","title":"使用纪律","intro":{"title":"特辣火锅守则","body":"杠杆ETF像特辣火锅：偶尔吃一顿过瘾，顿顿吃伤身。第一条纪律：只适合短线和单边行情，震荡市会被磨损。第二条纪律：小仓位，业内常见建议不超过总仓位的10%，这样就算看错，也不伤筋动骨。"},"questions":[{"type":"choice","prompt":"杠杆ETF适合什么样的场景？","options":["短线＋单边行情","买了放着不管十年","养老储蓄","长期定投"],"answerIndex":0,"explanation":"只适合短线和单边行情；像特辣火锅，偶尔吃，别当三餐。"},{"type":"blank","prompt":"业内常见建议：杠杆ETF别超过总仓位的____。","options":["10%","50%","80%","100%"],"answerIndex":0,"explanation":"小仓位是安全带，10%以内就算看错也不伤筋动骨。"},{"type":"tf","teach":"杠杆ETF跌起来又快又深，买入时就要定好止损价：跌到就卖，绝不硬扛。","prompt":"买杠杆ETF时就该定好止损价，跌到就执行。","answerBool":true,"explanation":"对。它跌得又快又深，止损是逃生门，进场前就要画好。"},{"type":"choice","teach":"杠杆ETF管理费贵：TQQQ约0.9%/年，普通指数ETF如QQQ约0.2%，贵了4倍多，拿得越久交得越多。","prompt":"TQQQ年费用率约0.9%，约是QQQ（约0.2%）的多少？","options":["差不多","100倍","4倍多","一半"],"answerIndex":2,"explanation":"0.9%对0.2%，贵4倍多；像会员费翻几倍的健身房，久留不划算。"},{"type":"choice","teach":"定投靠长期持有摊平成本，而杠杆ETF长期有磨损加高费用，和定投、养老钱天生相克。","prompt":"同事说：“我每月定投TQQQ，攒二十年养老。”这个计划的问题是？","options":["定投金额太小了","TQQQ倍数不够高","杠杆ETF不适合定投养老","应该改成定投SQQQ"],"answerIndex":2,"explanation":"定投要长期拿，杠杆ETF长期磨损加高费——工具从根上就选错了。"},{"type":"match","prompt":"把使用纪律和对应做法配对。","pairs":[{"left":"持有时长","right":"只做短线"},{"left":"仓位控制","right":"不超总仓位10%"},{"left":"风险底线","right":"进场就设止损"},{"left":"养老钱","right":"别碰杠杆ETF"}],"explanation":"短线、小仓位、设止损、养老钱别碰——四条纪律缺一不可。"}]},{"id":"u8l4","title":"2022年的教训","intro":{"title":"回放机看完了？","body":"你刚在2022熊市回放机里按完四个季度：纳指100全年约-33%，TQQQ却约-79%，远不止“亏得多一点”。为什么差这么多？高波动熊市里，暴跌和磨损轮番上阵，像下坡路上又结了冰。这一关，把这笔账算清楚。"},"questions":[{"type":"choice","prompt":"2022年纳指100约跌33%，TQQQ全年大约跌了多少？","options":["约33%","约50%","约10%","约79%"],"answerIndex":3,"explanation":"回放机里你亲手按出来的：-33%对-79%，杠杆在熊市杀伤惊人。"},{"type":"tf","prompt":"2022年TQQQ的全年跌幅，正好是纳指100全年跌幅乘以3。","answerBool":false,"explanation":"错。3倍只保证当日；全年经过每日重置和磨损，不是简单乘3。"},{"type":"choice","teach":"回本比想象难：100元跌50%剩50元，得再涨100%才能回到100元。跌得越深，回本要的涨幅越大。","prompt":"基金跌了50%，之后要涨多少才能回本？","options":["50%","100%","150%","25%"],"answerIndex":1,"explanation":"100元剩50元，翻一倍才回得去；坑挖多深，爬出来就多费劲。"},{"type":"blank","teach":"跌79%后，100元只剩21元；21元要涨回100元，需要涨约376%。","prompt":"像TQQQ那样跌79%，之后要涨约____才能回本。","options":["376%","158%","79%","237%"],"answerIndex":0,"explanation":"剩21元要回到100元，得涨约376%，本金得变将近5倍。"},{"type":"match","teach":"跌10%剩90元，回本只要涨约11%；跌50%要涨100%；跌79%要涨约376%。浅坑好爬，深坑难出。","prompt":"把跌幅和回本所需涨幅配对。","pairs":[{"left":"跌10%","right":"涨约11%"},{"left":"跌50%","right":"涨100%"},{"left":"跌79%","right":"涨约376%"}],"explanation":"跌幅每深一截，回本涨幅涨更凶；这就是别让自己深套的原因。"},{"type":"choice","prompt":"回放机里2022年也有几波大反弹，TQQQ却仍跌约79%，为什么？","options":["基金公司暗中扣钱","暴跌加震荡磨损双杀","纳指其实没怎么跌","3倍机制当年失灵"],"answerIndex":1,"explanation":"高波动熊市＝暴跌＋磨损轮番上阵，反弹只是下坡路上的减速带。"}]},{"id":"u8l5","title":"Boss战·杠杆ETF驾照考试","boss":true,"intro":{"title":"考前打气","body":"四关学完，路考开始！8道题混考本单元：家族图鉴、反向ETF、使用纪律、2022教训。拿下这本“驾照”，你就比绝大多数散户更懂杠杆ETF了。"},"questions":[{"type":"choice","prompt":"想当日3倍做多标普500，应该选哪个？","options":["SQQQ","TQQQ","SOXL","UPRO"],"answerIndex":3,"explanation":"UPRO盯标普500；TQQQ盯纳指100，SOXL盯半导体，SQQQ是反向。"},{"type":"match","prompt":"把产品和它的玩法配对。","pairs":[{"left":"TQQQ","right":"纳指100当日3倍"},{"left":"SQQQ","right":"纳指100反向3倍"},{"left":"SOXL","right":"半导体当日3倍"},{"left":"NVDL","right":"英伟达单日2倍"}],"explanation":"前三只押指数或行业，NVDL押单一股票，风险最集中。"},{"type":"blank","prompt":"纳指100当天跌2%，SQQQ当天约____。","options":["跌约2%","跌约6%","涨约6%","涨约2%"],"answerIndex":2,"explanation":"反向3倍：指数跌2%它约涨6%，方向相反幅度乘3。"},{"type":"tf","prompt":"指数长期向上加每日磨损，长期持有SQQQ等大跌是双重错误。","answerBool":true,"explanation":"对。方向上逆水行舟，磨损再天天抽水，两头都在亏。"},{"type":"choice","prompt":"你的TQQQ从100元跌到50元，要涨多少才能回本？","options":["75%","50%","100%","200%"],"answerIndex":2,"explanation":"50元回到100元要翻一倍；跌50%从来不是涨50%能救回来的。"},{"type":"choice","prompt":"指数先涨10%再跌10%，3倍杠杆ETF两天下来大约？","options":["赚约9%","亏约1%","不赚不亏","亏约9%"],"answerIndex":3,"explanation":"特训营的老公式：普通亏约1%，3倍放大成约9%，震荡最磨人。"},{"type":"choice","prompt":"以下哪种用法符合杠杆ETF的使用纪律？","options":["越跌越加倍补仓","短线小仓位并设止损","满仓拿三年不看盘","每月定投攒养老钱"],"answerIndex":1,"explanation":"短线、不超10%仓位、设止损，三件套齐了才算持照上路。"},{"type":"order","prompt":"按正确顺序排出一次合格的杠杆ETF操作。","items":["确认短线单边行情","只动用一成以内仓位","买入同时设好止损价","到目标或止损立即离场"],"explanation":"看行情、控仓位、设止损、果断离场；纪律就是你的安全带。"}]}]}]};
+
+</script>
+<script>
+/* ============ 互动实验室 LabKit + 知识卡牌 ============ */
+(function () {
+  'use strict';
+
+  /* ---------- 卡牌图鉴：每关首通掉落 ---------- */
+  var CARDS = {
+    u1l1: { name: '股票', emoji: '🧾', rarity: 'N', text: '公司所有权的碎片，买了就是股东。' },
+    u1l2: { name: '市值', emoji: '💰', rarity: 'R', text: '股价×总股本，比公司大小看它不看股价。' },
+    u1l3: { name: '标普500', emoji: '🏆', rarity: 'R', text: '500家大公司，"大盘涨了"多半说它。' },
+    u1l4: { name: '新手村毕业证', emoji: '🎓', rarity: 'SSR', text: '股票=所有权，价格=预期，指数=一篮子。' },
+    u2l1: { name: '交易所双雄', emoji: '🏛️', rarity: 'R', text: '纽交所1792老钱风，纳斯达克1971全电子。' },
+    u2l2: { name: 'T+0', emoji: '⏰', rarity: 'R', text: '美股当日可买卖，个股没有涨跌停。' },
+    u2l3: { name: '盘前盘后', emoji: '🌙', rarity: 'SR', text: '人少、点差大、波动猛，财报都在盘外发。' },
+    u2l4: { name: '熔断', emoji: '🚦', rarity: 'R', text: '标普跌7%/13%各停15分钟，20%当日休市。' },
+    u2l5: { name: '市场活地图', emoji: '🗺️', rarity: 'SSR', text: '几点开门、去哪交易、何时熔断，全通了。' },
+    u3l1: { name: '限价单', emoji: '🎯', rarity: 'SR', text: '保价格不保成交；市价单正好反过来。' },
+    u3l2: { name: '点差', emoji: '👀', rarity: 'SR', text: '买一卖一之间的缝，是看不见的成本。' },
+    u3l3: { name: '碎股', emoji: '🍰', rarity: 'N', text: '0.01股也能买，一杯奶茶钱就能上车。' },
+    u3l4: { name: '止损单', emoji: '🛡️', rarity: 'R', text: '触发后变市价单，跳空时可能滑过设定价。' },
+    u3l5: { name: '下单老司机证', emoji: '🚗', rarity: 'SSR', text: '会挂单、懂点差、设止损，稳。' },
+    u4l1: { name: 'K线', emoji: '🕯️', rarity: 'SR', text: '开高低收一根线，美股绿涨红跌。' },
+    u4l2: { name: '成交量', emoji: '📊', rarity: 'R', text: '价格要结合量看才有意义。' },
+    u4l3: { name: '市盈率PE', emoji: '🔍', rarity: 'R', text: '股价÷每股收益≈按当前盈利回本几年。' },
+    u4l4: { name: '财报季', emoji: '📅', rarity: 'R', text: '看营收、EPS、指引，比的是预期。' },
+    u4l5: { name: '行情阅读者证', emoji: '📖', rarity: 'SSR', text: 'K线、量、估值、财报，都能看懂了。' },
+    u5l1: { name: '杠杆', emoji: '⚡', rarity: 'SR', text: '借钱放大一切：2倍杠杆跌50%就归零。' },
+    u5l2: { name: 'Margin Call', emoji: '📞', rarity: 'SR', text: '净值跌破维持线：要么补钱，要么被强平。' },
+    u5l3: { name: '杠杆ETF', emoji: '🎢', rarity: 'R', text: '3倍指的是"当日"涨跌幅，不是长期。' },
+    u5l4: { name: '波动损耗', emoji: '🕳️', rarity: 'SSR', text: '+10%再-10%≠回原点，3倍ETF在震荡中融化。' },
+    u5l5: { name: '做空', emoji: '📉', rarity: 'R', text: '先借后卖赚差价，亏损理论上无上限。' },
+    u5l6: { name: '杠杆驯兽师证', emoji: '🦁', rarity: 'SSR', text: '懂杠杆、会算磨损、敬畏爆仓。' },
+    u9l1: { name: '赚钱机器', emoji: '🏭', rarity: 'SR', text: '股票=公司未来赚钱能力的一小份。' },
+    u9l2: { name: '股权融资', emoji: '🤝', rarity: 'R', text: '卖股份换钱不用还，投资人共担风险。' },
+    u9l3: { name: '二级市场', emoji: '🔁', rarity: 'SR', text: '你买股票的钱给了上家股民，不进公司。' },
+    u9l4: { name: '回购', emoji: '♻️', rarity: 'R', text: '公司买回股票注销，每股含金量变高。' },
+    u9l5: { name: '金融基础毕业证', emoji: '💸', rarity: 'SSR', text: '本质、融资、一二级、分红回购全通。' },
+    u10l1: { name: '价格与价值', emoji: '🏷️', rarity: 'R', text: '贵贱看价格vs赚钱能力，不看标签数字。' },
+    u10l2: { name: 'PE温度计', emoji: '🌡️', rarity: 'SR', text: '市场为1元利润出的价，也是情绪温度。' },
+    u10l3: { name: '三把尺子', emoji: '📏', rarity: 'R', text: '有利润PE、没利润PS、重资产PB。' },
+    u10l4: { name: '盈利收益率', emoji: '⚓', rarity: 'SR', text: '1÷PE，和存款利率比贵贱的桥梁。' },
+    u10l5: { name: '估值师执照', emoji: '⚖️', rarity: 'SSR', text: '称重定价、三把尺子、三种锚全掌握。' },
+    u7l1: { name: '恒生指数', emoji: '🏮', rarity: 'R', text: '港股大盘代表，腾讯美团小米都在里面。' },
+    u7l2: { name: '午休', emoji: '🍱', rarity: 'R', text: '12:00-13:00 全港停止交易，美股没有。' },
+    u7l3: { name: '一手', emoji: '✋', rarity: 'SR', text: '港股按手买，一手几股每家公司自己定。' },
+    u7l4: { name: '印花税', emoji: '🧾', rarity: 'SR', text: '港股买卖双向各收 0.1%，美股没有这项。' },
+    u7l5: { name: '港股通行证', emoji: '🇭🇰', rarity: 'SSR', text: '零时差、有午休、按手买，港股规则全通。' },
+    u8l1: { name: 'TQQQ', emoji: '🚀', rarity: 'R', text: '纳指100当日3倍，Ultra/Bull 是杠杆暗号。' },
+    u8l2: { name: '反向ETF', emoji: '🙃', rarity: 'R', text: 'SQQQ 指数跌它涨，同样每日重置照样磨损。' },
+    u8l3: { name: '仓位纪律', emoji: '🧯', rarity: 'SR', text: '短线、小仓位、设止损，费率是QQQ的4倍。' },
+    u8l4: { name: '回本数学', emoji: '📉', rarity: 'SSR', text: '2022纳指-33%时TQQQ-79%，回本要+376%。' },
+    u8l5: { name: '杠杆ETF驾照', emoji: '🪪', rarity: 'SSR', text: '会选、会空、懂纪律、记得2022。' },
+    u6l1: { name: 'FOMO', emoji: '🔥', rarity: 'R', text: '害怕错过是追高的开始，人多的地方别去。' },
+    u6l2: { name: '分散', emoji: '🧺', rarity: 'R', text: '鸡蛋别放一个篮子，永远留点现金。' },
+    u6l3: { name: '杀猪盘', emoji: '🐷', rarity: 'SR', text: '"保本高收益"四个字出现=诈骗。' },
+    u6l4: { name: '复利', emoji: '⏳', rarity: 'SSR', text: '72÷年化≈翻倍年数，时间是最大的杠杆。' },
+    u6l5: { name: '毕业证书', emoji: '👑', rarity: 'SSR', text: '韭菜防身术满级，市场见。' }
+  };
+
+  var LABS = {
+    u1l2: { type: 'stockcup', title: '股票世界杯', goal: '滑动卡片 2 选 1，选出你的本命股票', tag: '🎮 互动小游戏' },
+    u2l3: { type: 'session', title: '下单时钟', goal: '拨动时钟，在盘前/盘中/休市各下一次单' },
+    u3l2: { type: 'orderbook', title: '点差实验室', goal: '市价买一次、限价挂一次，再去冷门股踩个坑' },
+    u4l1: { type: 'candle', title: '捏一根K线', goal: '完成 3 个捏K线小任务' },
+    u5l2: { type: 'leverage', title: '爆仓模拟器', goal: '把模拟盘玩到爆仓（这里爆仓不花钱）' },
+    u5l4: { type: 'decay', title: '磨损制造机', goal: '亲手让 3倍ETF 比标的多亏 8 个百分点' },
+    u6l4: { type: 'compound', title: '复利时光机', goal: '只用调滑杆，让 1 万块变成 4 万块' },
+    u10l2: { type: 'pevalue', title: '奶茶店估值器', goal: '完成三次定价：常温、发烧、遇冷' },
+    u7l2: { type: 'hksession', title: '港股下单时钟', goal: '在早市/午市、午休、收市后各下一次单' },
+    u8l4: { type: 'replay2022', title: '2022熊市回放机', goal: '按完四个季度，看看拿一年 TQQQ 会怎样' }
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function el(html) {
+    var d = document.createElement('div');
+    d.innerHTML = html;
+    return d.firstElementChild ? d : d;
+  }
+  function fmtPct(x) { return (x >= 0 ? '+' : '') + (x * 100).toFixed(1) + '%'; }
+  function fmtMoney(x) { return Math.round(x).toLocaleString('zh-CN'); }
+
+  /* ---------- 折线画布 ---------- */
+  function drawLines(canvas, series, colors, base) {
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height, PAD = 8;
+    ctx.clearRect(0, 0, W, H);
+    var all = [];
+    series.forEach(function (s) { all = all.concat(s); });
+    var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all);
+    if (mx - mn < 1e-6) { mx = mn + 1; }
+    function X(i, n) { return PAD + (W - 2 * PAD) * (n <= 1 ? 0 : i / (n - 1)); }
+    function Y(v) { return H - PAD - (H - 2 * PAD) * ((v - mn) / (mx - mn)); }
+    if (base != null && base >= mn && base <= mx) {
+      ctx.strokeStyle = 'rgba(128,128,160,.35)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(PAD, Y(base)); ctx.lineTo(W - PAD, Y(base)); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    series.forEach(function (s, si) {
+      ctx.strokeStyle = colors[si];
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      s.forEach(function (v, i) {
+        var x = X(i, s.length), y = Y(v);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      var lx = X(s.length - 1, s.length), ly = Y(s[s.length - 1]);
+      ctx.fillStyle = colors[si];
+      ctx.beginPath(); ctx.arc(lx, ly, 3.5, 0, 7); ctx.fill();
+    });
+  }
+
+  /* ============ 各实验引擎 ============ */
+  var ENGINES = {};
+
+  /* ---- 股票世界杯：滑卡 2 选 1，选出本命股票 ---- */
+  ENGINES.stockcup = function (mount, done) {
+    var STOCKS = [
+      { t: 'AAPL', n: '苹果', e: '🍎', d: 'iPhone在手，全球最会赚钱的公司之一' },
+      { t: 'TSLA', n: '特斯拉', e: '🚗', d: '电动车顶流，马斯克的情绪过山车' },
+      { t: 'NVDA', n: '英伟达', e: '🎮', d: 'AI淘金热里那个卖铲子的' },
+      { t: 'MCD', n: '麦当劳', e: '🍟', d: '卖汉堡是副业，全球收租才是主业' },
+      { t: 'KO', n: '可口可乐', e: '🥤', d: '巴菲特一拿就是三十多年' },
+      { t: 'DIS', n: '迪士尼', e: '🏰', d: '米老鼠+漫威+星战，快乐印钞机' },
+      { t: 'SBUX', n: '星巴克', e: '☕', d: '打工人的续命水，一杯杯喝出来的市值' },
+      { t: 'NKE', n: '耐克', e: '👟', d: 'Just Do It，一个对钩卖遍全球' }
+    ];
+    var pool = STOCKS.slice();
+    for (var si = pool.length - 1; si > 0; si--) {
+      var sj = Math.floor(Math.random() * (si + 1));
+      var sw = pool[si]; pool[si] = pool[sj]; pool[sj] = sw;
+    }
+    var ROUNDS = [
+      { name: '⚔️ 八强赛', hint: '👆 点击 或 滑走你更喜欢的那张卡' },
+      { name: '🔥 半决赛', hint: '越来越难选了吧？跟着感觉走' },
+      { name: '🏆 总决赛', hint: '最后一战，选出你的唯一' }
+    ];
+    var round = 0, match = 0, cur = pool, winners = [], busy = false;
+
+    mount.innerHTML =
+      '<div class="lab-stage cup-stage">' +
+      '<div class="cup-top"><span class="cup-round" id="cup-round"></span><span class="cup-count" id="cup-count"></span></div>' +
+      '<div class="cup-adv" id="cup-adv"></div>' +
+      '<div class="cup-arena" id="cup-arena"></div>' +
+      '<div class="cup-hint" id="cup-hint"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+
+    function cardHtml(s, side) {
+      return '<div class="cup-card enter-' + side + '">' +
+        '<div class="cup-stamp">晋级 ✓</div>' +
+        '<div class="cup-emoji">' + s.e + '</div>' +
+        '<div class="cup-name">' + esc(s.n) + '</div>' +
+        '<div class="cup-ticker">' + esc(s.t) + '</div>' +
+        '<div class="cup-desc">' + esc(s.d) + '</div></div>';
+    }
+
+    function paintMeta() {
+      $('#cup-round').textContent = ROUNDS[round].name;
+      $('#cup-count').textContent = '第 ' + Math.min(match + 1, cur.length / 2) + '/' + (cur.length / 2) + ' 场';
+      $('#cup-hint').textContent = ROUNDS[round].hint;
+      var seats = cur.length / 2, html = '';
+      for (var i = 0; i < seats; i++) {
+        html += '<span class="cup-seat' + (winners[i] ? ' filled' : '') + '">' + (winners[i] ? winners[i].e : '') + '</span>';
+      }
+      $('#cup-adv').innerHTML = html;
+    }
+
+    function renderMatch() {
+      busy = false;
+      var a = cur[match * 2], b = cur[match * 2 + 1];
+      paintMeta();
+      var arena = $('#cup-arena');
+      arena.innerHTML = cardHtml(a, 'l') + '<div class="cup-vs">VS</div>' + cardHtml(b, 'r');
+      var cards = arena.querySelectorAll('.cup-card');
+      bindCard(cards[0], a, cards[1], 'l');
+      bindCard(cards[1], b, cards[0], 'r');
+    }
+
+    function bindCard(el, stock, rival, side) {
+      var sx = 0, sy = 0, dx = 0, dy = 0, dragging = false;
+      el.addEventListener('pointerdown', function (ev) {
+        if (busy) return;
+        dragging = true; sx = ev.clientX; sy = ev.clientY; dx = dy = 0;
+        el.classList.remove('enter-l', 'enter-r');
+        el.classList.add('dragging');
+        try { el.setPointerCapture(ev.pointerId); } catch (e) {}
+      });
+      el.addEventListener('pointermove', function (ev) {
+        if (!dragging || busy) return;
+        dx = ev.clientX - sx; dy = ev.clientY - sy;
+        el.style.transform = 'translate(' + dx + 'px,' + dy * 0.5 + 'px) rotate(' + dx * 0.07 + 'deg)';
+      });
+      function release() {
+        if (!dragging) return;
+        dragging = false;
+        el.classList.remove('dragging');
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        /* 甩出超过阈值 = 选它；几乎没动 = 点选；中间量 = 弹回 */
+        if (!busy && (dist >= 56 || dist < 8)) pick(el, stock, rival, side);
+        else el.style.transform = '';
+      }
+      el.addEventListener('pointerup', release);
+      el.addEventListener('pointercancel', function () {
+        dragging = false;
+        el.classList.remove('dragging');
+        el.style.transform = '';
+      });
+    }
+
+    function pick(el, stock, rival, side) {
+      busy = true;
+      el.style.transform = '';
+      el.classList.add('win');
+      rival.classList.add('lose', side === 'l' ? 'right' : 'left');
+      winners.push(stock);
+      paintMeta();
+      setTimeout(function () {
+        match++;
+        if (match * 2 >= cur.length) {
+          cur = winners; winners = []; match = 0; round++;
+          if (cur.length === 1) { crown(cur[0]); return; }
+        }
+        renderMatch();
+      }, 820);
+    }
+
+    function burst() {
+      var colors = ['#6F00FF', '#A050FF', '#F9F339', '#00B578', '#7C9CFD', '#FF4B4B'];
+      for (var k = 0; k < 44; k++) {
+        var c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        var sz = 6 + Math.random() * 7;
+        c.style.width = sz + 'px';
+        c.style.height = sz * (0.5 + Math.random()) + 'px';
+        c.style.background = colors[k % colors.length];
+        c.style.animationDuration = (1.3 + Math.random() * 1.5) + 's';
+        c.style.animationDelay = Math.random() * 0.25 + 's';
+        document.body.appendChild(c);
+        (function (n) { setTimeout(function () { n.remove(); }, 3200); })(c);
+      }
+    }
+
+    function crown(champ) {
+      try { localStorage.setItem('bullcamp_fav_stock', JSON.stringify({ t: champ.t, n: champ.n, e: champ.e })); } catch (e) {}
+      mount.querySelector('.cup-stage').innerHTML =
+        '<div class="cup-final">' +
+        '<div class="cup-crown">👑</div>' +
+        '<div class="kcard rar-SSR"><div class="kcard-in">' +
+        '<div class="cup-emoji" style="font-size:56px">' + champ.e + '</div>' +
+        '<div class="kcard-name">' + esc(champ.n) + '</div>' +
+        '<span class="cup-ticker">' + esc(champ.t) + '</span>' +
+        '<div class="kcard-text">' + esc(champ.d) + '</div></div></div>' +
+        '<div class="cup-final-t">🏆 你的本命股票诞生！</div>' +
+        '<div class="cup-final-sub">连赢三轮的冠军：' + esc(champ.n) + '（' + esc(champ.t) + '）<br>已收进「我的」页，随时能回去看它</div>' +
+        '<button class="lab-btn hot cup-done" id="cup-done">🎉 就是它了！</button></div>';
+      burst();
+      $('#cup-done').addEventListener('click', function () {
+        done('本命股票选好了：' + champ.n + '，代码 ' + champ.t + '。美股下单认代码不认名字——像 ' + champ.t + ' 这样的字母组合，就是公司在市场里的身份证。接下来这关就来搞清楚：你的本命股为什么天天上蹿下跳。');
+      });
+    }
+
+    renderMatch();
+  };
+
+  /* ---- 磨损制造机 ---- */
+  ENGINES.decay = function (mount, done) {
+    var base = 100, etf = 100, hb = [100], he = [100], finished = false, mooned = false;
+    mount.innerHTML =
+      '<div class="lab-stage"><canvas class="lab-canvas" width="640" height="240"></canvas>' +
+      '<div class="lab-legend"><span><i style="background:#7C9CFD"></i>标的指数</span><span><i style="background:#A050FF"></i>3倍杠杆ETF</span></div>' +
+      '<div class="lab-stats"><div class="lab-stat"><b id="lb-b">100.0</b><span>标的 <em id="lb-bp">+0.0%</em></span></div>' +
+      '<div class="lab-stat"><b id="lb-e">100.0</b><span>3倍ETF <em id="lb-ep">+0.0%</em></span></div>' +
+      '<div class="lab-stat"><b id="lb-d" style="color:var(--down)">0.0</b><span>被磨掉的差距(pp)</span></div></div>' +
+      '<div class="lab-note" id="lb-note">试试下面的按钮，注意两条线的关系 👇</div>' +
+      '<div class="lab-btns"><button class="lab-btn" data-a="up">📈 涨10%</button><button class="lab-btn" data-a="down">📉 跌10%</button><button class="lab-btn hot" data-a="chop">🌊 震荡4天</button><button class="lab-btn ghost" data-a="reset">↺ 重来</button></div></div>';
+    var cv = mount.querySelector('canvas');
+    function paint() {
+      drawLines(cv, [hb, he], ['#7C9CFD', '#A050FF'], 100);
+      var bp = base / 100 - 1, ep = etf / 100 - 1, diff = (bp - ep) * 100;
+      mount.querySelector('#lb-b').textContent = base.toFixed(1);
+      mount.querySelector('#lb-e').textContent = etf.toFixed(1);
+      mount.querySelector('#lb-bp').textContent = fmtPct(bp);
+      mount.querySelector('#lb-ep').textContent = fmtPct(ep);
+      mount.querySelector('#lb-d').textContent = diff.toFixed(1);
+      var note = mount.querySelector('#lb-note');
+      if (!finished && !mooned && bp > 0.2 && ep > 3 * bp) {
+        mooned = true;
+        note.textContent = '🧐 有意思：单边上涨时它居然不止3倍（复利同向）！但先别高兴，试试"震荡4天"…';
+      }
+      if (!finished && diff >= 8) {
+        finished = true;
+        done('你亲手做出了磨损！同一段行情：标的 ' + fmtPct(bp) + '，3倍ETF 却是 ' + fmtPct(ep) + '，凭空少了 ' + diff.toFixed(1) + ' 个百分点。每日重置的杠杆在震荡里反复"追涨杀跌"，把自己磨没了——单边趋势它很爽，横盘震荡它融化。所以它是短线工具，不是存钱罐。');
+      }
+    }
+    function day(r) { base *= (1 + r); etf *= (1 + 3 * r); hb.push(base); he.push(etf); }
+    mount.querySelectorAll('.lab-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = b.dataset.a;
+        if (a === 'up') day(0.10);
+        else if (a === 'down') day(-0.10);
+        else if (a === 'chop') {
+          var signs = [0.10, -0.10, 0.10, -0.10];
+          for (var i = signs.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = signs[i]; signs[i] = signs[j]; signs[j] = t; }
+          signs.forEach(day);
+        } else { base = 100; etf = 100; hb = [100]; he = [100]; }
+        paint();
+      });
+    });
+    paint();
+  };
+
+  /* ---- 爆仓模拟器 ---- */
+  ENGINES.leverage = function (mount, done) {
+    var lev = 0, equity = 10000, noLev = 10000, day = 0, dead = false;
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-note" id="lv-note">第一步：选一个杠杆倍数（想体验爆仓建议胆子大点）</div>' +
+      '<div class="lab-btns" id="lv-pick"><button class="lab-btn" data-l="1">1倍(不借钱)</button><button class="lab-btn" data-l="2">2倍</button><button class="lab-btn hot" data-l="5">5倍</button></div>' +
+      '<div id="lv-game" style="display:none">' +
+      '<div class="lab-meter"><div class="lab-meter-fill" id="lv-fill" style="width:100%"></div><div class="lab-meter-line" style="left:30%"></div></div>' +
+      '<div class="lab-meter-cap"><span>💀 强平线 ¥3,000（维持保证金）</span><span id="lv-day">第 0 天</span></div>' +
+      '<div class="lab-stats"><div class="lab-stat"><b id="lv-eq">¥10,000</b><span>你的净值(<em id="lv-lev"></em>)</span></div>' +
+      '<div class="lab-stat"><b id="lv-nl">¥10,000</b><span>不加杠杆的平行宇宙</span></div>' +
+      '<div class="lab-stat"><b id="lv-mv">—</b><span>今日标的涨跌</span></div></div>' +
+      '<div class="lab-btns"><button class="lab-btn hot" id="lv-go">⏭ 过一天</button><button class="lab-btn ghost" id="lv-re">↺ 重开一局</button></div></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    mount.querySelectorAll('#lv-pick .lab-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        lev = parseInt(b.dataset.l, 10);
+        $('#lv-pick').style.display = 'none';
+        $('#lv-game').style.display = '';
+        $('#lv-lev').textContent = lev + '倍';
+        $('#lv-note').textContent = lev === 1 ? '1倍老实人是很难爆仓的…要不重开选个5倍？' : '本金1万，' + lev + '倍杠杆 = 操作 ' + lev + ' 万的仓位。开始过日子吧。';
+      });
+    });
+    $('#lv-re').addEventListener('click', function () {
+      lev = 0; equity = 10000; noLev = 10000; day = 0; dead = false;
+      $('#lv-pick').style.display = ''; $('#lv-game').style.display = 'none';
+      $('#lv-note').textContent = '第一步：选一个杠杆倍数（想体验爆仓建议胆子大点）';
+    });
+    $('#lv-go').addEventListener('click', function () {
+      if (dead || !lev) return;
+      day++;
+      var r = (0.02 + Math.random() * 0.06) * (Math.random() < 0.5 ? -1 : 1);
+      equity = equity * (1 + lev * r);
+      noLev = noLev * (1 + r);
+      $('#lv-day').textContent = '第 ' + day + ' 天';
+      $('#lv-eq').textContent = '¥' + fmtMoney(Math.max(0, equity));
+      $('#lv-nl').textContent = '¥' + fmtMoney(noLev);
+      var mv = $('#lv-mv');
+      mv.textContent = fmtPct(r) + ' → 你 ' + fmtPct(lev * r);
+      mv.style.color = r >= 0 ? 'var(--up)' : 'var(--down)';
+      var pct = Math.max(0, Math.min(100, equity / 10000 * 100));
+      $('#lv-fill').style.width = pct + '%';
+      $('#lv-fill').style.background = equity <= 4500 ? 'var(--down)' : '';
+      if (equity <= 3000 && !dead) {
+        dead = true;
+        $('#lv-note').textContent = '💥 BOOM！净值跌破强平线，券商把你的仓位强制卖了。';
+        done('第 ' + day + ' 天，一根 ' + fmtPct(r) + ' 的阴线在 ' + lev + ' 倍杠杆下变成了 ' + fmtPct(lev * r) + '，你的净值击穿维持保证金线，被强制平仓离场。而平行宇宙里不加杠杆的你还有 ¥' + fmtMoney(noLev) + '，完全活得下去。记住：杠杆不改变方向，只加快结局——而且借的钱每天都在算利息。');
+      } else if (day >= 15 && !dead && lev === 1) {
+        $('#lv-note').textContent = '看，1倍杠杆过了 ' + day + ' 天也没事。想看爆仓？重开一局选5倍。';
+      }
+    });
+  };
+
+  /* ---- 下单时钟 ---- */
+  ENGINES.session = function (mount, done) {
+    var hour = 8.0; /* 美东小时，从盘前开始 */
+    var tried = { open: false, ext: false, closed: false };
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-clock"><div><div class="lab-clock-t" id="sc-et">--:--</div><div class="lab-clock-l">🇺🇸 美东时间</div></div>' +
+      '<div><div class="lab-clock-t" id="sc-bj">--:--</div><div class="lab-clock-l">🇨🇳 北京时间(夏令)</div></div>' +
+      '<div class="lab-pill" id="sc-st">—</div></div>' +
+      '<input type="range" class="lab-range" id="sc-r" min="0" max="47" step="1" value="16">' +
+      '<div class="lab-note" id="sc-note">拖动滑杆改变时间，然后试着下单</div>' +
+      '<div class="lab-btns"><button class="lab-btn hot" id="sc-buy">🛒 现在下市价单</button></div>' +
+      '<div class="lab-todo" id="sc-todo"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    function status() {
+      var m = hour * 60;
+      if (m >= 240 && m < 570) return { k: 'ext', label: '盘前 4:00-9:30', cls: 'warn' };
+      if (m >= 570 && m < 960) return { k: 'open', label: '盘中 9:30-16:00', cls: 'ok' };
+      if (m >= 960 && m < 1200) return { k: 'ext', label: '盘后 16:00-20:00', cls: 'warn' };
+      return { k: 'closed', label: '休市', cls: 'off' };
+    }
+    function fmt(h) {
+      var hh = Math.floor(h) % 24, mm = Math.round((h - Math.floor(h)) * 60);
+      return String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+    }
+    function todo() {
+      $('#sc-todo').innerHTML =
+        '<span class="' + (tried.open ? 'done' : '') + '">' + (tried.open ? '✅' : '⬜') + ' 盘中下单</span>' +
+        '<span class="' + (tried.ext ? 'done' : '') + '">' + (tried.ext ? '✅' : '⬜') + ' 盘前/盘后下单</span>' +
+        '<span class="' + (tried.closed ? 'done' : '') + '">' + (tried.closed ? '✅' : '⬜') + ' 休市时下单</span>';
+    }
+    function paint() {
+      var st = status();
+      $('#sc-et').textContent = fmt(hour);
+      $('#sc-bj').textContent = fmt(hour + 12);
+      var pill = $('#sc-st');
+      pill.textContent = st.label;
+      pill.className = 'lab-pill ' + st.cls;
+      todo();
+    }
+    $('#sc-r').addEventListener('input', function () { hour = this.value / 2; paint(); });
+    $('#sc-buy').addEventListener('click', function () {
+      var st = status(), note = $('#sc-note');
+      if (st.k === 'open') {
+        tried.open = true;
+        note.innerHTML = '⚡ <b>0.1秒成交</b>。盘中流动性最好，点差只有1分钱，市价单几乎无损耗。';
+      } else if (st.k === 'ext') {
+        tried.ext = true;
+        note.innerHTML = '🌙 成交是成交了，但<b>贵了0.8%</b>——盘外参与者少、点差是盘中的几十倍，而且很多券商此时只接受限价单。财报偏偏都在这时候发布。';
+      } else {
+        tried.closed = true;
+        note.innerHTML = '😴 市场睡了，订单<b>进队列等开盘</b>。明早开盘价可能和昨天收盘差很远（跳空），你的成交价没人能保证。';
+      }
+      todo();
+      if (tried.open && tried.ext && tried.closed) {
+        done('同一只股票，不同时刻下单待遇天差地别：盘中(9:30-16:00 ET)秒成交点差小；盘前盘后能交易但人少点差大、常只能挂限价单；休市只能排队赌开盘跳空。重要财报几乎都在盘外发布——所以盘后常见暴涨暴跌，但那恰恰是流动性最差、最容易买贵卖便宜的时候。');
+      }
+    });
+    paint();
+  };
+
+  /* ---- 点差实验室 ---- */
+  ENGINES.orderbook = function (mount, done) {
+    var stock = 'AAPL', limitFlip = 0;
+    var tried = { mkt: false, lmt: false, cold: false };
+    var BOOKS = {
+      AAPL: { name: '苹果 AAPL（顶流）', bid: 100.00, ask: 100.05, bq: 300, aq: 200 },
+      XYZ: { name: '冷门小票 XYZ', bid: 9.50, ask: 10.00, bq: 20, aq: 15 }
+    };
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-btns" id="ob-tabs"><button class="lab-btn sel" data-s="AAPL">🍎 AAPL</button><button class="lab-btn" data-s="XYZ">🕸️ 冷门股XYZ</button></div>' +
+      '<div class="lab-book"><div class="lab-book-row ask"><span>卖一 <b id="ob-ask"></b></span><span id="ob-aq"></span></div>' +
+      '<div class="lab-book-mid" id="ob-sp"></div>' +
+      '<div class="lab-book-row bid"><span>买一 <b id="ob-bid"></b></span><span id="ob-bq"></span></div></div>' +
+      '<div class="lab-note" id="ob-note">上面是盘口：想买的话，你出多少钱？</div>' +
+      '<div class="lab-btns"><button class="lab-btn hot" id="ob-mkt">🚀 市价买入</button><button class="lab-btn" id="ob-lmt">⏳ 按买一价挂限价单</button></div>' +
+      '<div class="lab-todo" id="ob-todo"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    function paint() {
+      var b = BOOKS[stock];
+      $('#ob-ask').textContent = '$' + b.ask.toFixed(2);
+      $('#ob-bid').textContent = '$' + b.bid.toFixed(2);
+      $('#ob-aq').textContent = b.aq + ' 股';
+      $('#ob-bq').textContent = b.bq + ' 股';
+      var spr = b.ask - b.bid, mid = (b.ask + b.bid) / 2;
+      $('#ob-sp').textContent = '↕ 点差 $' + spr.toFixed(2) + '（占价格 ' + (spr / mid * 100).toFixed(2) + '%）';
+      $('#ob-todo').innerHTML =
+        '<span class="' + (tried.mkt ? 'done' : '') + '">' + (tried.mkt ? '✅' : '⬜') + ' 市价成交</span>' +
+        '<span class="' + (tried.lmt ? 'done' : '') + '">' + (tried.lmt ? '✅' : '⬜') + ' 限价挂单</span>' +
+        '<span class="' + (tried.cold ? 'done' : '') + '">' + (tried.cold ? '✅' : '⬜') + ' 在冷门股买贵一次</span>';
+    }
+    function check() {
+      if (tried.mkt && tried.lmt && tried.cold) {
+        done('看到了吧：市价单按"卖一价"立刻成交，你永远比中间价多付半个点差——苹果这种顶流只亏1分钱，冷门股能坑你2.6%；限价单能锁住价格，但没人卖给你就一直挂着。所以：流动性好的股票随便市价，冷门股一定用限价单，点差就是你看不见的手续费。');
+      }
+    }
+    mount.querySelectorAll('#ob-tabs .lab-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        stock = b.dataset.s;
+        mount.querySelectorAll('#ob-tabs .lab-btn').forEach(function (x) { x.classList.remove('sel'); });
+        b.classList.add('sel');
+        $('#ob-note').textContent = stock === 'XYZ' ? '注意这个盘口的点差…再试试市价买？' : '上面是盘口：想买的话，你出多少钱？';
+        paint();
+      });
+    });
+    $('#ob-mkt').addEventListener('click', function () {
+      var b = BOOKS[stock], mid = (b.ask + b.bid) / 2, extra = (b.ask - mid) / mid * 100;
+      if (stock === 'AAPL') {
+        tried.mkt = true;
+        $('#ob-note').innerHTML = '⚡ 成交 @ $' + b.ask.toFixed(2) + '（卖一价）。比中间价多付了 ' + extra.toFixed(2) + '%，顶流股的点差损耗几乎可以无视。';
+      } else {
+        tried.cold = true; tried.mkt = true;
+        $('#ob-note').innerHTML = '💸 成交 @ $10.00，但中间价才 $9.75——你瞬间多付了 <b>' + extra.toFixed(1) + '%</b>！冷门股的点差是真金白银的坑。';
+      }
+      paint(); check();
+    });
+    $('#ob-lmt').addEventListener('click', function () {
+      var b = BOOKS[stock];
+      $('#ob-note').textContent = '⏳ 已按买一价 $' + b.bid.toFixed(2) + ' 挂单，等待有人愿意卖…';
+      setTimeout(function () {
+        limitFlip++;
+        if (limitFlip % 2 === 1) {
+          tried.lmt = true;
+          $('#ob-note').innerHTML = '✅ 等到了！有人按 $' + b.bid.toFixed(2) + ' 卖给你，<b>一分点差都没多付</b>。这就是限价单：保价格。';
+        } else {
+          $('#ob-note').innerHTML = '😤 等了一整天没人卖，废单收场。限价单<b>保价格但不保成交</b>——再挂一次试试？';
+        }
+        paint(); check();
+      }, 1200);
+    });
+    paint();
+  };
+
+  /* ---- 捏K线 ---- */
+  ENGINES.candle = function (mount, done) {
+    var o = 100, c = 104, h = 106, l = 98;
+    var tasks = [
+      { id: 0, name: '捏出一根大阳线（实体≥8）', test: function () { return c - o >= 8; }, done: false },
+      { id: 1, name: '捏出一根大阴线（实体≥8）', test: function () { return o - c >= 8; }, done: false },
+      { id: 2, name: '捏出长上影线（冲高回落）', test: function () { return h - Math.max(o, c) >= 6 && Math.abs(c - o) <= 4; }, done: false }
+    ];
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-candle-wrap"><div class="lab-candle-area" id="cd-area"><div class="lab-wick" id="cd-wick"></div><div class="lab-body" id="cd-body"></div></div>' +
+      '<div class="lab-candle-info" id="cd-info"></div></div>' +
+      '<div class="lab-sliders">' +
+      '<label>开盘 <b id="v-o">100</b><input type="range" class="lab-range" id="r-o" min="90" max="110" value="100"></label>' +
+      '<label>收盘 <b id="v-c">104</b><input type="range" class="lab-range" id="r-c" min="90" max="110" value="104"></label>' +
+      '<label>最高 <b id="v-h">106</b><input type="range" class="lab-range" id="r-h" min="90" max="115" value="106"></label>' +
+      '<label>最低 <b id="v-l">98</b><input type="range" class="lab-range" id="r-l" min="85" max="110" value="98"></label></div>' +
+      '<div class="lab-todo lab-todo-col" id="cd-tasks"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    function paint() {
+      h = Math.max(h, o, c); l = Math.min(l, o, c);
+      $('#r-h').value = h; $('#r-l').value = l;
+      $('#v-o').textContent = o; $('#v-c').textContent = c; $('#v-h').textContent = h; $('#v-l').textContent = l;
+      var top = 115, span = 30; /* 85-115 映射到 180px */
+      function Y(v) { return (top - v) / span * 180; }
+      var wick = $('#cd-wick'), body = $('#cd-body');
+      wick.style.top = Y(h) + 'px';
+      wick.style.height = Math.max(2, Y(l) - Y(h)) + 'px';
+      var bt = Y(Math.max(o, c)), bh = Math.max(3, Math.abs(Y(o) - Y(c)));
+      body.style.top = bt + 'px';
+      body.style.height = bh + 'px';
+      var up = c >= o;
+      body.style.background = up ? 'var(--up)' : 'var(--down)';
+      $('#cd-info').innerHTML = (up ? '<b style="color:var(--up)">阳线(涨)</b>' : '<b style="color:var(--down)">阴线(跌)</b>') + '<br>开' + o + ' 收' + c + '<br>高' + h + ' 低' + l;
+      var allDone = true;
+      tasks.forEach(function (t) { if (!t.done && t.test()) t.done = true; if (!t.done) allDone = false; });
+      $('#cd-tasks').innerHTML = tasks.map(function (t) {
+        return '<span class="' + (t.done ? 'done' : '') + '">' + (t.done ? '✅' : '⬜') + ' ' + esc(t.name) + '</span>';
+      }).join('');
+      if (allDone) {
+        done('一根K线四个价：开、高、低、收。实体是开收之间的博弈结果，影线是盘中试探的痕迹——长上影=冲高被砸回来，多头没顶住。还有最容易踩的坑：美股惯例绿涨红跌，和A股正好相反，看盘别搞反方向。');
+      }
+    }
+    [['r-o', function (v) { o = v; }], ['r-c', function (v) { c = v; }], ['r-h', function (v) { h = v; }], ['r-l', function (v) { l = v; }]].forEach(function (pair) {
+      $('#' + pair[0]).addEventListener('input', function () { pair[1](parseInt(this.value, 10)); paint(); });
+    });
+    paint();
+  };
+
+  /* ---- 复利时光机 ---- */
+  ENGINES.compound = function (mount, done) {
+    var r = 5, n = 10, finished = false;
+    mount.innerHTML =
+      '<div class="lab-stage"><canvas class="lab-canvas" width="640" height="220"></canvas>' +
+      '<div class="lab-stats"><div class="lab-stat"><b id="cp-fv">—</b><span>1万元变成</span></div>' +
+      '<div class="lab-stat"><b id="cp-x">—</b><span>翻了几倍</span></div>' +
+      '<div class="lab-stat"><b id="cp-72">—</b><span>72法则:翻倍约需</span></div></div>' +
+      '<div class="lab-sliders">' +
+      '<label>年化收益 <b id="cp-r">5%</b><input type="range" class="lab-range" id="cp-rr" min="1" max="15" value="5"></label>' +
+      '<label>投资年数 <b id="cp-n">10年</b><input type="range" class="lab-range" id="cp-nn" min="1" max="40" value="10"></label></div>' +
+      '<div class="lab-note" id="cp-note">拖拖看：是年化重要，还是年数重要？</div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    var cv = mount.querySelector('canvas');
+    function paint() {
+      var fv = 10000 * Math.pow(1 + r / 100, n);
+      var series = [];
+      for (var i = 0; i <= n; i++) series.push(10000 * Math.pow(1 + r / 100, i));
+      drawLines(cv, [series], ['#A050FF'], 10000);
+      $('#cp-fv').textContent = '¥' + fmtMoney(fv);
+      $('#cp-x').textContent = (fv / 10000).toFixed(1) + '倍';
+      $('#cp-72').textContent = (72 / r).toFixed(0) + '年';
+      $('#cp-r').textContent = r + '%';
+      $('#cp-n').textContent = n + '年';
+      if (!finished && fv >= 40000) {
+        finished = true;
+        done('翻4倍=翻倍两次。72法则口算：72÷' + r + '≈' + Math.round(72 / r) + '年翻一倍，两倍就是' + Math.round(2 * 72 / r) + '年左右——和你调出来的 ' + n + '年/年化' + r + '% 对上了。复利前期慢得让人想放弃，后期陡得不讲道理：巴菲特99%的财富是50岁后赚到的。比起追求刺激的年化，"在市场里待得够久"才是普通人最大的杠杆。');
+      }
+    }
+    $('#cp-rr').addEventListener('input', function () { r = parseInt(this.value, 10); paint(); });
+    $('#cp-nn').addEventListener('input', function () { n = parseInt(this.value, 10); paint(); });
+    paint();
+  };
+
+  /* ---- 奶茶店估值器（PE 直觉） ---- */
+  ENGINES.pevalue = function (mount, done) {
+    var profit = 10, pe = 25;
+    var tasks = { normal: false, hot: false, cold: false };
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-stats"><div class="lab-stat"><b id="pv-val" style="font-size:22px">—</b><span>这家奶茶店的估值</span></div></div>' +
+      '<div class="lab-sliders">' +
+      '<label>店铺年利润 <b id="pv-p">10万</b><input type="range" class="lab-range" id="pv-pp" min="5" max="50" value="10"></label>' +
+      '<label>市场愿出的倍数(PE) <b id="pv-e">25倍</b><input type="range" class="lab-range" id="pv-ee" min="5" max="60" value="25"></label></div>' +
+      '<div class="lab-note" id="pv-note">同一家店，倍数不同价格天差地别。试试完成三个定价任务 👇</div>' +
+      '<div class="lab-todo lab-todo-col" id="pv-todo"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    function paint() {
+      var val = profit * pe;
+      $('#pv-val').textContent = val + ' 万';
+      $('#pv-p').textContent = profit + '万';
+      $('#pv-e').textContent = pe + '倍';
+      var note = $('#pv-note');
+      if (pe >= 45 && !tasks.hot) {
+        tasks.hot = true;
+        note.innerHTML = '🔥 ' + pe + '倍！市场为1元利润掏' + pe + '元——对未来疯狂乐观，也可能是泡沫在烧。';
+      } else if (pe <= 8 && !tasks.cold) {
+        tasks.cold = true;
+        note.innerHTML = '🥶 ' + pe + '倍：要么是没人发现的便宜货，要么是大家觉得这生意没未来。低价也要问为什么。';
+      } else if (pe >= 14 && pe <= 20 && profit === 10 && !tasks.normal) {
+        tasks.normal = true;
+        note.innerHTML = '✅ 年赚10万 × ' + pe + '倍 = ' + val + '万，这是市场的"常温"定价区间。';
+      }
+      $('#pv-todo').innerHTML =
+        '<span class="' + (tasks.normal ? 'done' : '') + '">' + (tasks.normal ? '✅' : '⬜') + ' 常温定价：年利润调到10万，倍数调到14-20倍</span>' +
+        '<span class="' + (tasks.hot ? 'done' : '') + '">' + (tasks.hot ? '✅' : '⬜') + ' 发烧定价：把倍数拉到45倍以上</span>' +
+        '<span class="' + (tasks.cold ? 'done' : '') + '">' + (tasks.cold ? '✅' : '⬜') + ' 遇冷定价：把倍数压到8倍以下</span>';
+      if (tasks.normal && tasks.hot && tasks.cold) {
+        done('估值=利润×倍数。利润是店自己的本事，倍数是市场的情绪：45倍是抢购的狂热（可能是泡沫），8倍是无人问津的冷清（可能是便宜货也可能是烂生意），15-20倍是历史常温。买股票前先看一眼：你付的是常温价、发烧价、还是跳楼价。');
+      }
+    }
+    $('#pv-pp').addEventListener('input', function () { profit = parseInt(this.value, 10); paint(); });
+    $('#pv-ee').addEventListener('input', function () { pe = parseInt(this.value, 10); paint(); });
+    paint();
+  };
+
+  /* ---- 港股下单时钟（有午休的市场） ---- */
+  ENGINES.hksession = function (mount, done) {
+    var hour = 9.5;
+    var tried = { trade: false, lunch: false, closed: false };
+    mount.innerHTML =
+      '<div class="lab-stage"><div class="lab-clock"><div><div class="lab-clock-t" id="hk-t">--:--</div><div class="lab-clock-l">🇭🇰 香港时间 = 北京时间</div></div>' +
+      '<div class="lab-pill" id="hk-st">—</div></div>' +
+      '<input type="range" class="lab-range" id="hk-r" min="0" max="47" step="1" value="19">' +
+      '<div class="lab-note" id="hk-note">好消息：港股和北京零时差，不用熬夜。拖时间试试下单 👇</div>' +
+      '<div class="lab-btns"><button class="lab-btn hot" id="hk-buy">🛒 现在下单买腾讯</button></div>' +
+      '<div class="lab-todo" id="hk-todo"></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    function status() {
+      var m = hour * 60;
+      if (m >= 540 && m < 570) return { k: 'auction', label: '开市前竞价 9:00-9:30', cls: 'warn' };
+      if (m >= 570 && m < 720) return { k: 'am', label: '早市 9:30-12:00', cls: 'ok' };
+      if (m >= 720 && m < 780) return { k: 'lunch', label: '午休 12:00-13:00', cls: 'warn' };
+      if (m >= 780 && m < 960) return { k: 'pm', label: '午市 13:00-16:00', cls: 'ok' };
+      return { k: 'closed', label: '休市', cls: 'off' };
+    }
+    function fmt(h) {
+      var hh = Math.floor(h) % 24, mm = Math.round((h - Math.floor(h)) * 60);
+      return String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
+    }
+    function todo() {
+      $('#hk-todo').innerHTML =
+        '<span class="' + (tried.trade ? 'done' : '') + '">' + (tried.trade ? '✅' : '⬜') + ' 早市/午市成交</span>' +
+        '<span class="' + (tried.lunch ? 'done' : '') + '">' + (tried.lunch ? '✅' : '⬜') + ' 午休时下单</span>' +
+        '<span class="' + (tried.closed ? 'done' : '') + '">' + (tried.closed ? '✅' : '⬜') + ' 收市后下单</span>';
+    }
+    function paint() {
+      var st = status();
+      $('#hk-t').textContent = fmt(hour);
+      var pill = $('#hk-st');
+      pill.textContent = st.label;
+      pill.className = 'lab-pill ' + st.cls;
+      todo();
+    }
+    $('#hk-r').addEventListener('input', function () { hour = this.value / 2; paint(); });
+    $('#hk-buy').addEventListener('click', function () {
+      var st = status(), note = $('#hk-note');
+      if (st.k === 'am' || st.k === 'pm') {
+        tried.trade = true;
+        note.innerHTML = '⚡ <b>成交！</b>连续交易时段正常撮合。注意现在是北京时间——你没熬夜。';
+      } else if (st.k === 'lunch') {
+        tried.lunch = true;
+        note.innerHTML = '🍱 <b>全港吃午饭去了！</b>12:00-13:00 全市场停止交易，订单挂起，等 13:00 午市开盘再撮合。美股可没有午休这回事。';
+      } else if (st.k === 'auction') {
+        note.innerHTML = '📋 开市前竞价时段：订单进集合竞价池，9:30 按竞价结果一次性开盘。';
+      } else {
+        tried.closed = true;
+        note.innerHTML = '😴 收市了。港股 16:00 收盘，订单排队到下个交易日 9:30。';
+      }
+      todo();
+      if (tried.trade && tried.lunch && tried.closed) {
+        done('港股和北京零时差：早市 9:30-12:00、午休 12:00-13:00、午市 13:00-16:00。午休全市场停摆一小时是港股特色，美股则是 9:30-16:00 连续交易不吃饭。对上班族的好消息：港股在你摸鱼的时间开门，不用像炒美股那样熬到半夜。');
+      }
+    });
+    paint();
+  };
+
+  /* ---- 2022熊市回放机（真实历史行情） ---- */
+  ENGINES.replay2022 = function (mount, done) {
+    var Q = [
+      { name: '2022 Q1', r: -0.091 },
+      { name: '2022 Q2', r: -0.225 },
+      { name: '2022 Q3', r: -0.046 },
+      { name: '2022 Q4', r: -0.003 }
+    ];
+    var i = 0, ndx = 100, tq = 100, hn = [100], ht = [100];
+    mount.innerHTML =
+      '<div class="lab-stage"><canvas class="lab-canvas" width="640" height="240"></canvas>' +
+      '<div class="lab-legend"><span><i style="background:#7C9CFD"></i>纳指100</span><span><i style="background:#A050FF"></i>TQQQ（3倍做多）</span></div>' +
+      '<div class="lab-stats"><div class="lab-stat"><b id="rp-n">100.0</b><span>纳指100 <em id="rp-np">0%</em></span></div>' +
+      '<div class="lab-stat"><b id="rp-t">100.0</b><span>TQQQ <em id="rp-tp">0%</em></span></div>' +
+      '<div class="lab-stat"><b id="rp-back">—</b><span>TQQQ回本需再涨</span></div></div>' +
+      '<div class="lab-note" id="rp-note">这是2022年的真实行情（按季近似）。年初你各买了100元，按下按钮开始过这一年 👇</div>' +
+      '<div class="lab-btns"><button class="lab-btn hot" id="rp-go">▶ 过一个季度（2022 Q1）</button></div></div>';
+    var $ = function (s) { return mount.querySelector(s); };
+    var cv = mount.querySelector('canvas');
+    function paint() {
+      drawLines(cv, [hn, ht], ['#7C9CFD', '#A050FF'], 100);
+      $('#rp-n').textContent = ndx.toFixed(1);
+      $('#rp-t').textContent = tq.toFixed(1);
+      $('#rp-np').textContent = ((ndx / 100 - 1) * 100).toFixed(0) + '%';
+      $('#rp-tp').textContent = ((tq / 100 - 1) * 100).toFixed(0) + '%';
+      $('#rp-back').textContent = tq < 100 ? '+' + ((100 / tq - 1) * 100).toFixed(0) + '%' : '已回本';
+    }
+    $('#rp-go').addEventListener('click', function () {
+      if (i >= Q.length) return;
+      var q = Q[i];
+      ndx *= (1 + q.r);
+      tq *= (1 + 3 * q.r);
+      hn.push(ndx); ht.push(tq);
+      i++;
+      paint();
+      var btn = $('#rp-go');
+      if (i < Q.length) {
+        btn.textContent = '▶ 过一个季度（' + Q[i].name + '）';
+        $('#rp-note').textContent = q.name + '：纳指 ' + (q.r * 100).toFixed(1) + '%，TQQQ 单季约 ' + (q.r * 300).toFixed(0) + '%。继续。';
+      } else {
+        btn.style.display = 'none';
+        done('2022年全年：纳指100 约 -33%，TQQQ 却是约 -80%——不是 -33%×3=-99%，也远不止3倍疼。最残酷的是回本数学：跌33%只需涨49%回本，跌80%却要涨 +400%。后来纳指创了新高，2022年初买TQQQ拿着不动的人还在坑底仰望。3倍ETF是短跑鞋，穿它跑马拉松会要命。');
+      }
+    });
+    paint();
+  };
+
+  /* ============ 对外接口 ============ */
+  window.LabKit = {
+    labs: LABS,
+    cards: CARDS,
+    has: function (lessonId) { return !!LABS[lessonId]; },
+    meta: function (lessonId) { return LABS[lessonId]; },
+    cardFor: function (lessonId) { return CARDS[lessonId]; },
+    render: function (lessonId, mountEl, onComplete) {
+      var lab = LABS[lessonId];
+      if (!lab || !ENGINES[lab.type]) { onComplete(''); return; }
+      ENGINES[lab.type](mountEl, onComplete);
+    }
+  };
+})();
+
+</script>
+<script>
+/* ============ BullCamp 美股新手村 · 游戏引擎 ============ */
+(function () {
+  'use strict';
+
+  var DATA = window.CURRICULUM || { units: [] };
+  var $app = document.getElementById('app');
+  var $nav = document.getElementById('nav');
+
+  /* ---------- 数值配置 ---------- */
+  var CFG = {
+    xpFirst: 10, xpRetry: 5, xpLessonBonus: 20, xpBossBonus: 40, xpDaily: 10, xpReview: 5,
+    hearts: 3, heartsBoss: 4,
+    dailyCount: 5, reviewCount: 10,
+    star3: 0.9, star2: 0.7
+  };
+
+  var TITLES = [
+    { xp: 0, name: '韭菜幼苗', emoji: '🌱' },
+    { xp: 100, name: '见习股民', emoji: '📈' },
+    { xp: 300, name: '图表学徒', emoji: '📊' },
+    { xp: 600, name: '财报侦探', emoji: '🔍' },
+    { xp: 1000, name: '风控骑士', emoji: '🛡️' },
+    { xp: 1600, name: '华尔街之狼预备役', emoji: '🐺' },
+    { xp: 2500, name: '传奇操盘手', emoji: '👑' }
+  ];
+
+  var BADGES = [
+    { id: 'first', emoji: '🎉', name: '新手上路', desc: '完成第一关' },
+    { id: 'streak3', emoji: '🔥', name: '三日之约', desc: '连续学习 3 天' },
+    { id: 'streak7', emoji: '☄️', name: '七日火焰', desc: '连续学习 7 天' },
+    { id: 'u1', emoji: '🐣', name: '新手村毕业', desc: '通关单元 1' },
+    { id: 'u2', emoji: '🗺️', name: '市场活地图', desc: '通关单元 2' },
+    { id: 'u3', emoji: '🎯', name: '下单老司机', desc: '通关单元 3' },
+    { id: 'u4', emoji: '📊', name: '行情阅读者', desc: '通关单元 4' },
+    { id: 'u5', emoji: '⚡', name: '杠杆驯兽师', desc: '通关单元 5' },
+    { id: 'u6', emoji: '🛡️', name: '防割毕业生', desc: '通关单元 6' },
+    { id: 'u9', emoji: '💸', name: '金融明白人', desc: '通关金融基础课' },
+    { id: 'u10', emoji: '⚖️', name: '持证估值师', desc: '通关估值课' },
+    { id: 'u7', emoji: '🇭🇰', name: '港股通行者', desc: '通关港股入门' },
+    { id: 'u8', emoji: '🎢', name: '3倍老司机', desc: '通关3倍ETF特训' },
+    { id: 'boss100', emoji: '💯', name: '满分Boss', desc: 'Boss 战三星通关' },
+    { id: 'cleaner', emoji: '🧹', name: '错题清道夫', desc: '清空一次错题本' },
+    { id: 'daily5', emoji: '⚡', name: '挑战常客', desc: '完成 5 次每日挑战' },
+    { id: 'xp1000', emoji: '💎', name: '千钻大佬', desc: '累计 1000 XP' }
+  ];
+
+  /* ---------- 存档 ---------- */
+  var KEY = 'bullcamp_state';
+  var state = load();
+  function defaults() {
+    return {
+      xp: 0, streak: 0, lastActive: null, history: {},
+      lessons: {}, wrong: [], cards: [],
+      daily: { date: null, done: false, score: 0 }, dailyTotal: 0,
+      badges: [], sound: true, everWrong: false,
+      stats: { answered: 0, correct: 0 }
+    };
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return defaults();
+      var s = JSON.parse(raw);
+      var d = defaults();
+      for (var k in d) if (!(k in s)) s[k] = d[k];
+      /* 旧存档迁移：错题引用由 {u,l,q} 序号改为 {id,q}，与单元排序解耦 */
+      if (s.wrong && s.wrong.length && s.wrong[0].id === undefined) {
+        s.wrong = s.wrong.map(function (w) {
+          return { id: 'u' + (w.u + 1) + 'l' + (w.l + 1), q: w.q, n: w.n || 1 };
+        });
+      }
+      return s;
+    } catch (e) { return defaults(); }
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  /* ---------- 日期 & 连胜 ---------- */
+  function todayStr(offset) {
+    var d = new Date();
+    if (offset) d.setDate(d.getDate() + offset);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function refreshStreak() {
+    if (state.lastActive && state.lastActive !== todayStr() && state.lastActive !== todayStr(-1)) {
+      state.streak = 0; save();
+    }
+  }
+  function markActiveToday() {
+    var t = todayStr();
+    if (state.lastActive === t) return;
+    state.history[t] = true;
+    state.streak = (state.lastActive === todayStr(-1)) ? state.streak + 1 : 1;
+    state.lastActive = t;
+    save();
+  }
+  function streakLitToday() { return state.lastActive === todayStr(); }
+
+  /* ---------- 美东时间市场状态 ---------- */
+  function marketStatus() {
+    try {
+      var fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour12: false, weekday: 'short', hour: '2-digit', minute: '2-digit' });
+      var parts = {};
+      fmt.formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+      var wd = parts.weekday, mins = (parseInt(parts.hour, 10) % 24) * 60 + parseInt(parts.minute, 10);
+      var hm = parts.hour + ':' + parts.minute;
+      if (wd === 'Sat' || wd === 'Sun') return { key: 'closed', label: '休市', tip: '周末休市，正好来学两关', time: hm };
+      if (mins >= 240 && mins < 570) return { key: 'pre', label: '盘前交易中', tip: '流动性低、点差大，就是第2单元讲的那样', time: hm };
+      if (mins >= 570 && mins < 960) return { key: 'open', label: '盘中交易', tip: '常规时段 9:30-16:00 ET', time: hm };
+      if (mins >= 960 && mins < 1200) return { key: 'post', label: '盘后交易中', tip: '财报大多这个时候发布', time: hm };
+      return { key: 'closed', label: '休市', tip: '美股睡了，你学一关再睡', time: hm };
+    } catch (e) { return { key: 'closed', label: '—', tip: '', time: '' }; }
+  }
+
+  /* ---------- 音效 ---------- */
+  var audioCtx = null;
+  function beep(freqs, dur, type) {
+    if (!state.sound) return;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      freqs.forEach(function (f, i) {
+        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.type = type || 'sine'; o.frequency.value = f;
+        g.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.02 + i * dur);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (i + 1) * dur + 0.05);
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start(audioCtx.currentTime + i * dur); o.stop(audioCtx.currentTime + (i + 1) * dur + 0.1);
+      });
+    } catch (e) {}
+  }
+  var sfx = {
+    good: function () { beep([660, 880], 0.09); },
+    bad: function () { beep([196], 0.22, 'triangle'); },
+    win: function () { beep([523, 659, 784, 1047], 0.11); }
+  };
+
+  /* ---------- 撒花 ---------- */
+  function confetti() {
+    var colors = ['#6F00FF', '#F9F339', '#A050FF', '#00B578', '#7C9CFD'];
+    for (var i = 0; i < 46; i++) {
+      var el = document.createElement('div');
+      el.className = 'confetti';
+      var s = 6 + Math.random() * 8;
+      el.style.cssText = 'left:' + (Math.random() * 100) + 'vw;width:' + s + 'px;height:' + (s * 1.4) + 'px;background:' + colors[i % colors.length] + ';animation-duration:' + (1.8 + Math.random() * 1.6) + 's;animation-delay:' + (Math.random() * 0.5) + 's;';
+      document.body.appendChild(el);
+      setTimeout(function (n) { return function () { n.remove(); }; }(el), 4200);
+    }
+  }
+
+  /* ---------- 工具 ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function allLessons() {
+    var out = [];
+    DATA.units.forEach(function (u, ui) {
+      u.lessons.forEach(function (l, li) { out.push({ unit: u, ui: ui, lesson: l, li: li }); });
+    });
+    return out;
+  }
+  function lessonDone(id) { return !!state.lessons[id]; }
+  function lessonUnlocked(flatIdx, flat) {
+    if (flatIdx === 0) return true;
+    return lessonDone(flat[flatIdx - 1].lesson.id);
+  }
+  function currentTitle() {
+    var t = TITLES[0];
+    TITLES.forEach(function (x) { if (state.xp >= x.xp) t = x; });
+    return t;
+  }
+  function nextTitle() {
+    for (var i = 0; i < TITLES.length; i++) if (state.xp < TITLES[i].xp) return TITLES[i];
+    return null;
+  }
+  var LESSON_INDEX = null;
+  function lessonById(id) {
+    if (!LESSON_INDEX) {
+      LESSON_INDEX = {};
+      DATA.units.forEach(function (u, ui) {
+        u.lessons.forEach(function (l) { LESSON_INDEX[l.id] = { lesson: l, unit: u, ui: ui }; });
+      });
+    }
+    return LESSON_INDEX[id] || null;
+  }
+  function questionByRef(ref) {
+    var e = lessonById(ref.id);
+    return (e && e.lesson.questions[ref.q]) || null;
+  }
+  function grantBadges() {
+    var earned = [];
+    function chk(id, cond) {
+      if (cond && state.badges.indexOf(id) < 0) { state.badges.push(id); earned.push(id); }
+    }
+    chk('first', Object.keys(state.lessons).length >= 1);
+    chk('streak3', state.streak >= 3);
+    chk('streak7', state.streak >= 7);
+    DATA.units.forEach(function (u) {
+      chk(u.id, u.lessons.every(function (l) { return lessonDone(l.id); }));
+    });
+    chk('daily5', state.dailyTotal >= 5);
+    chk('xp1000', state.xp >= 1000);
+    chk('cleaner', state.everWrong && state.wrong.length === 0);
+    save();
+    return earned;
+  }
+  function showBadgePopups(ids, then) {
+    if (!ids.length) { if (then) then(); return; }
+    var b = BADGES.filter(function (x) { return x.id === ids[0]; })[0];
+    if (!b) { showBadgePopups(ids.slice(1), then); return; }
+    var pop = document.createElement('div');
+    pop.className = 'badge-pop';
+    pop.innerHTML = '<div class="badge-card"><div class="badge-emoji">' + b.emoji + '</div>' +
+      '<div class="badge-name">获得徽章 · ' + esc(b.name) + '</div>' +
+      '<div class="badge-desc">' + esc(b.desc) + '</div>' +
+      '<button class="btn btn-primary">太强了</button></div>';
+    document.body.appendChild(pop);
+    sfx.win();
+    pop.querySelector('button').onclick = function () {
+      pop.remove();
+      showBadgePopups(ids.slice(1), then);
+    };
+  }
+
+  /* ================= 路由 ================= */
+  var view = 'home';
+  function go(v) {
+    view = v;
+    $nav.querySelectorAll('.nav-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.view === v);
+    });
+    $nav.classList.remove('hidden');
+    window.scrollTo(0, 0);
+    if (v === 'home') renderHome();
+    else if (v === 'daily') renderDaily();
+    else if (v === 'review') renderReview();
+    else if (v === 'profile') renderProfile();
+  }
+  $nav.querySelectorAll('.nav-btn').forEach(function (b) {
+    b.addEventListener('click', function () { go(b.dataset.view); });
+  });
+
+  function topbar() {
+    var lit = streakLitToday();
+    return '<div class="topbar"><div class="logo">🦄 美股新手村<span class="logo-by">✦ by Bobby</span></div>' +
+      '<div class="stat-pill pill-streak' + (lit ? '' : ' cold') + '"><span class="ico">🔥</span>' + state.streak + '</div>' +
+      '<div class="stat-pill pill-xp"><span class="ico">💎</span>' + state.xp + '</div></div>';
+  }
+  function marketBar() {
+    var m = marketStatus();
+    return '<div class="market-bar"><span class="market-dot ' + m.key + '"></span>' +
+      '<span>美股现在：<b>' + m.label + '</b>' + (m.time ? ' · 美东 ' + m.time : '') + '</span></div>';
+  }
+
+  /* ================= 首页地图 ================= */
+  function renderHome() {
+    refreshStreak();
+    var flat = allLessons();
+    var html = topbar() + marketBar() + '<div class="map fade-in">';
+    var flatIdx = 0;
+    var zig = ['', 'off-l', '', 'off-r'];
+    var firstCurrent = true;
+
+    DATA.units.forEach(function (u, ui) {
+      var doneCount = u.lessons.filter(function (l) { return lessonDone(l.id); }).length;
+      var unitUnlocked = flatIdx === 0 || lessonDone(flat[flatIdx - 1].lesson.id) || doneCount > 0;
+      html += '<div class="unit-head' + (unitUnlocked ? '' : ' locked') + '">' +
+        '<div class="u-emoji">' + u.emoji + '</div>' +
+        '<div class="u-title">单元 ' + (ui + 1) + ' · ' + esc(u.title) + '</div>' +
+        '<div class="u-sub">' + esc(u.subtitle) + '</div>' +
+        '<div class="u-progress">' + doneCount + ' / ' + u.lessons.length + '</div></div>';
+      html += '<div class="path">';
+      u.lessons.forEach(function (l, li) {
+        var unlocked = lessonUnlocked(flatIdx, flat);
+        var done = lessonDone(l.id);
+        var cur = unlocked && !done;
+        var cls = done ? 'done' : (cur ? 'current' : 'locked');
+        if (l.boss) cls += ' boss';
+        var inner;
+        if (done) {
+          var st = state.lessons[l.id].stars;
+          inner = (l.boss ? '👑' : '✓') + '<div class="stars">' + '★★★'.slice(0, st) + '<span style="opacity:.35">' + '★★★'.slice(st) + '</span></div>';
+        } else if (cur) {
+          inner = (firstCurrent ? '<div class="start-tip">从这里开始</div>' : '') + (l.boss ? '👑' : '▶');
+          firstCurrent = false;
+        } else {
+          inner = l.boss ? '👑' : '🔒';
+        }
+        html += '<div class="node-row ' + zig[(flatIdx) % 4] + '">' +
+          '<button class="node ' + cls + '" data-lesson="' + esc(l.id) + '" ' + (unlocked ? '' : 'disabled') + '>' +
+          inner + '<span class="n-label">' + esc(l.title) + '</span></button></div>';
+        flatIdx++;
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+    $app.innerHTML = html;
+    $app.querySelectorAll('.node[data-lesson]').forEach(function (btn) {
+      if (btn.disabled) return;
+      btn.addEventListener('click', function () { startLesson(btn.dataset.lesson); });
+    });
+  }
+
+  /* ================= 课程会话 ================= */
+  var session = null;
+
+  function startLesson(lessonId) {
+    var found = null;
+    DATA.units.forEach(function (u, ui) {
+      u.lessons.forEach(function (l, li) { if (l.id === lessonId) found = { u: u, ui: ui, l: l, li: li }; });
+    });
+    if (!found) return;
+    var qs = found.l.questions.map(function (q, qi) {
+      return { q: q, ref: { id: found.l.id, q: qi }, retry: false };
+    });
+    var LK = window.LabKit;
+    session = {
+      kind: 'lesson', lesson: found.l, unit: found.u,
+      queue: qs, idx: 0,
+      total: qs.length, firstCorrect: 0,
+      hearts: found.l.boss ? CFG.heartsBoss : CFG.hearts,
+      xp: 0, showIntro: !!found.l.intro,
+      showLab: !!(LK && LK.has(found.l.id))
+    };
+    $nav.classList.add('hidden');
+    renderSession();
+  }
+
+  function startQuiz(kind, questions, meta) {
+    session = {
+      kind: kind, queue: questions.map(function (x) { return { q: x.q, ref: x.ref, retry: false }; }),
+      idx: 0, total: questions.length, firstCorrect: 0,
+      hearts: Infinity, xp: 0, showIntro: false, meta: meta || {}
+    };
+    $nav.classList.add('hidden');
+    renderSession();
+  }
+
+  function quitSession() {
+    session = null;
+    go('home');
+  }
+
+  function renderSession() {
+    var s = session;
+    if (!s) return;
+    if (s.showIntro) { renderIntro(); return; }
+    if (s.showLab) { renderLab(); return; }
+    if (s.idx >= s.queue.length) { finishSession(); return; }
+    var item = s.queue[s.idx];
+    var q = item.q;
+    var progress = Math.round((s.idx / s.queue.length) * 100);
+    var heartsHtml = s.hearts === Infinity ? '' :
+      '<div class="hearts">❤️ ' + s.hearts + '</div>';
+    var typeTag = { choice: '单选题', tf: '判断题', match: '配对题', order: '排序题', blank: '选词填空' }[q.type] || '题目';
+    if (item.retry) typeTag += ' · 再来一次';
+
+    /* 教-考闭环：新知识随题微教学（复习/每日挑战为回忆模式，不给拐杖） */
+    var teachHtml = (q.teach && s.kind === 'lesson') ?
+      '<div class="teach-box"><div class="teach-tag">📖 新知识 · 先看这个</div><div class="teach-body">' + esc(q.teach) + '</div></div>' : '';
+
+    var html = '<div class="lesson-top"><button class="quit-btn" id="quit">✕</button>' +
+      '<div class="progress-track"><div class="progress-fill" style="width:' + progress + '%"></div></div>' +
+      heartsHtml + '</div><div class="q-area fade-in"><div class="q-type-tag">' + typeTag + '</div>' + teachHtml;
+
+    if (q.type === 'choice' || q.type === 'tf' || q.type === 'blank') html += renderChoiceLike(q);
+    else if (q.type === 'match') html += renderMatch(q);
+    else if (q.type === 'order') html += renderOrder(q);
+    html += '</div><div class="check-bar"><button class="btn btn-up" id="check" disabled>检查</button></div>';
+    $app.innerHTML = html;
+    document.getElementById('quit').onclick = function () {
+      if (s.kind === 'lesson' && s.idx > 0) {
+        if (!window.confirm('中途退出不保存本关进度，确定吗？')) return;
+      }
+      quitSession();
+    };
+    if (q.type === 'choice' || q.type === 'tf' || q.type === 'blank') bindChoiceLike(q);
+    else if (q.type === 'match') bindMatch(q);
+    else if (q.type === 'order') bindOrder(q);
+    window.scrollTo(0, 0);
+  }
+
+  function renderIntro() {
+    var s = session, intro = s.lesson.intro;
+    $app.innerHTML = '<div class="lesson-top"><button class="quit-btn" id="quit">✕</button>' +
+      '<div class="progress-track"><div class="progress-fill" style="width:0%"></div></div></div>' +
+      '<div class="q-area fade-in"><div class="card intro-card">' +
+      '<div class="intro-mascot">🦄</div><span class="intro-tag">知识卡片 · Bobby 开讲 ✦</span>' +
+      '<div class="intro-title">' + esc(intro.title) + '</div>' +
+      '<div class="intro-body">' + esc(intro.body) + '</div></div></div>' +
+      '<div class="check-bar"><button class="btn btn-primary" id="check">懂了，开始答题</button></div>';
+    document.getElementById('quit').onclick = quitSession;
+    document.getElementById('check').onclick = function () {
+      s.showIntro = false;
+      renderSession();
+    };
+  }
+
+  /* ---- 互动实验室 ---- */
+  function renderLab() {
+    var s = session, LK = window.LabKit;
+    var meta = LK.meta(s.lesson.id);
+    $app.innerHTML = '<div class="lesson-top"><button class="quit-btn" id="quit">✕</button>' +
+      '<div class="progress-track"><div class="progress-fill" style="width:4%"></div></div></div>' +
+      '<div class="q-area fade-in"><div class="lab-head">' +
+      '<div class="q-type-tag">' + (meta.tag || '🧪 动手实验') + '</div>' +
+      '<div class="lab-title">' + esc(meta.title) + '</div>' +
+      '<div class="lab-goal">🎯 任务：' + esc(meta.goal) + '</div></div>' +
+      '<div id="lab-mount"></div></div>' +
+      '<div class="check-bar"><button class="btn btn-ghost" id="lab-skip">先跳过，直接答题</button></div>';
+    document.getElementById('quit').onclick = quitSession;
+    document.getElementById('lab-skip').onclick = function () {
+      s.showLab = false;
+      renderSession();
+    };
+    LK.render(s.lesson.id, document.getElementById('lab-mount'), function (conclusion) {
+      if (!session || session !== s) return;
+      s.xp += 15;
+      save();
+      sfx.win();
+      var fb = document.createElement('div');
+      fb.className = 'feedback ok';
+      fb.innerHTML = '<div class="fb-title">🧪 实验成功！</div>' +
+        '<div class="fb-expl">🦄 ' + esc(conclusion) + '</div>' +
+        '<div class="fb-xp">+15 XP</div>' +
+        '<button class="btn btn-up">带着结论去答题</button>';
+      document.body.appendChild(fb);
+      void fb.offsetHeight;
+      fb.classList.add('show');
+      var cb = document.querySelector('.check-bar');
+      if (cb) cb.style.visibility = 'hidden';
+      fb.querySelector('button').onclick = function () {
+        fb.remove();
+        s.showLab = false;
+        renderSession();
+      };
+    });
+    window.scrollTo(0, 0);
+  }
+
+  /* ---- 知识卡牌 ---- */
+  function showCardPop(lessonId, then) {
+    var LK = window.LabKit;
+    var card = LK && LK.cardFor(lessonId);
+    if (!card || state.cards.indexOf(lessonId) >= 0) { if (then) then(); return; }
+    state.cards.push(lessonId);
+    save();
+    var pop = document.createElement('div');
+    pop.className = 'badge-pop';
+    pop.innerHTML = '<div class="badge-card"><div style="font-size:13px;font-weight:800;color:var(--text-2);margin-bottom:12px">🎁 掉落知识卡牌</div>' +
+      '<div class="kcard rar-' + card.rarity + '"><div class="kcard-in">' +
+      '<div class="kcard-emoji">' + card.emoji + '</div>' +
+      '<div class="kcard-name">' + esc(card.name) + '</div>' +
+      '<span class="kcard-rar rar-' + card.rarity + '">' + card.rarity + '</span>' +
+      '<div class="kcard-text">' + esc(card.text) + '</div></div></div>' +
+      '<button class="btn btn-primary" style="margin-top:16px">收下</button></div>';
+    document.body.appendChild(pop);
+    if (card.rarity === 'SSR') { confetti(); sfx.win(); } else { sfx.good(); }
+    pop.querySelector('button').onclick = function () {
+      pop.remove();
+      if (then) then();
+    };
+  }
+
+  /* ---- 单选 / 判断 / 填空 ---- */
+  function renderChoiceLike(q) {
+    var html = '';
+    if (q.type === 'blank') {
+      var parts = esc(q.prompt).split('____');
+      html += '<div class="blank-sentence">' + parts.join('<span class="blank-hole" id="hole">？</span>') + '</div>';
+    } else {
+      html += '<div class="q-prompt">' + esc(q.prompt) + '</div>';
+    }
+    if (q.type === 'tf') {
+      html += '<div class="opts opts-tf">' +
+        '<button class="opt" data-i="1">✅ 对</button>' +
+        '<button class="opt" data-i="0">❌ 错</button></div>';
+    } else {
+      html += '<div class="opts">';
+      (q._shuffled = q._shuffled || shuffle(q.options.map(function (o, i) { return { o: o, i: i }; })));
+      q._shuffled.forEach(function (x) {
+        html += '<button class="opt" data-i="' + x.i + '">' + esc(x.o) + '</button>';
+      });
+      html += '</div>';
+    }
+    return html;
+  }
+  function bindChoiceLike(q) {
+    var sel = null;
+    var $check = document.getElementById('check');
+    var opts = $app.querySelectorAll('.opt');
+    opts.forEach(function (o) {
+      o.addEventListener('click', function () {
+        opts.forEach(function (x) { x.classList.remove('sel'); });
+        o.classList.add('sel');
+        sel = parseInt(o.dataset.i, 10);
+        if (q.type === 'blank') {
+          var hole = document.getElementById('hole');
+          if (hole) { hole.textContent = q.options[sel]; hole.classList.add('filled'); }
+        }
+        $check.disabled = false;
+      });
+    });
+    $check.onclick = function () {
+      var correct = (q.type === 'tf') ? (sel === 1) === !!q.answerBool : sel === q.answerIndex;
+      opts.forEach(function (o) {
+        var i = parseInt(o.dataset.i, 10);
+        var isRight = (q.type === 'tf') ? ((i === 1) === !!q.answerBool) : i === q.answerIndex;
+        if (isRight) o.classList.add('good');
+        else if (i === sel) o.classList.add('bad');
+        else o.classList.add('dim');
+      });
+      var rightText = (q.type === 'tf') ? (q.answerBool ? '对' : '错') : q.options[q.answerIndex];
+      settle(correct, rightText);
+    };
+  }
+
+  /* ---- 配对 ---- */
+  function renderMatch(q) {
+    var lefts = shuffle(q.pairs.map(function (p, i) { return { t: p.left, i: i }; }));
+    var rights = shuffle(q.pairs.map(function (p, i) { return { t: p.right, i: i }; }));
+    q._lefts = lefts; q._rights = rights;
+    var html = '<div class="q-prompt">' + esc(q.prompt) + '</div><div class="match-grid"><div class="match-col">';
+    lefts.forEach(function (x, idx) { html += '<button class="opt m-left" data-i="' + x.i + '">' + esc(x.t) + '</button>'; });
+    html += '</div><div class="match-col">';
+    rights.forEach(function (x, idx) { html += '<button class="opt m-right" data-i="' + x.i + '">' + esc(x.t) + '</button>'; });
+    html += '</div></div>';
+    return html;
+  }
+  function bindMatch(q) {
+    var selL = null, selR = null, matched = 0, mistakes = 0;
+    var $check = document.getElementById('check');
+    $check.style.display = 'none';
+    function tryMatch() {
+      if (selL == null || selR == null) return;
+      var L = $app.querySelector('.m-left[data-i="' + selL + '"]');
+      var R = $app.querySelector('.m-right[data-i="' + selR + '"]');
+      if (selL === selR) {
+        L.classList.remove('sel'); R.classList.remove('sel');
+        L.classList.add('matched'); R.classList.add('matched');
+        matched++;
+        beep([760 + matched * 60], 0.08);
+        if (matched === q.pairs.length) {
+          setTimeout(function () {
+            $check.style.display = '';
+            settle(mistakes === 0, null, mistakes > 0 ? '有 ' + mistakes + ' 次配错，看看解析' : null);
+          }, 350);
+        }
+      } else {
+        mistakes++;
+        L.classList.add('shake'); R.classList.add('shake');
+        sfx.bad();
+        setTimeout(function () {
+          L.classList.remove('shake', 'sel'); R.classList.remove('shake', 'sel');
+        }, 380);
+      }
+      selL = null; selR = null;
+    }
+    $app.querySelectorAll('.m-left').forEach(function (o) {
+      o.addEventListener('click', function () {
+        if (o.classList.contains('matched')) return;
+        $app.querySelectorAll('.m-left').forEach(function (x) { x.classList.remove('sel'); });
+        o.classList.add('sel'); selL = parseInt(o.dataset.i, 10); tryMatch();
+      });
+    });
+    $app.querySelectorAll('.m-right').forEach(function (o) {
+      o.addEventListener('click', function () {
+        if (o.classList.contains('matched')) return;
+        $app.querySelectorAll('.m-right').forEach(function (x) { x.classList.remove('sel'); });
+        o.classList.add('sel'); selR = parseInt(o.dataset.i, 10); tryMatch();
+      });
+    });
+  }
+
+  /* ---- 排序 ---- */
+  function renderOrder(q) {
+    var bank = shuffle(q.items.map(function (t, i) { return { t: t, i: i }; }));
+    q._bank = bank;
+    var html = '<div class="q-prompt">' + esc(q.prompt) + '</div>' +
+      '<div class="order-hint">按顺序点选，点错了可以点它撤回</div>' +
+      '<div class="order-slots" id="slots"></div><div class="order-bank" id="bank">';
+    bank.forEach(function (x) {
+      html += '<button class="chip" data-i="' + x.i + '">' + esc(x.t) + '</button>';
+    });
+    html += '</div>';
+    return html;
+  }
+  function bindOrder(q) {
+    var placed = [];
+    var $check = document.getElementById('check');
+    var $slots = document.getElementById('slots');
+    var $bank = document.getElementById('bank');
+    function redraw() {
+      $slots.innerHTML = '';
+      placed.forEach(function (i, pos) {
+        var b = document.createElement('button');
+        b.className = 'chip in-slot';
+        b.innerHTML = '<span class="chip-num">' + (pos + 1) + '</span>' + esc(q.items[i]);
+        b.onclick = function () {
+          placed.splice(pos, 1);
+          $bank.querySelector('.chip[data-i="' + i + '"]').style.display = '';
+          redraw();
+        };
+        $slots.appendChild(b);
+      });
+      $check.disabled = placed.length !== q.items.length;
+    }
+    $bank.querySelectorAll('.chip').forEach(function (c) {
+      c.addEventListener('click', function () {
+        placed.push(parseInt(c.dataset.i, 10));
+        c.style.display = 'none';
+        redraw();
+      });
+    });
+    redraw();
+    $check.onclick = function () {
+      var correct = placed.every(function (v, i) { return v === i; });
+      settle(correct, correct ? null : q.items.join(' → '));
+    };
+  }
+
+  /* ---- 判定 & 反馈 ---- */
+  function settle(correct, rightText, subNote) {
+    var s = session, item = s.queue[s.idx], q = item.q;
+    state.stats.answered++;
+    if (correct) state.stats.correct++;
+
+    var gained = 0;
+    if (correct) {
+      if (s.kind === 'lesson') gained = item.retry ? CFG.xpRetry : CFG.xpFirst;
+      else if (s.kind === 'daily') gained = CFG.xpDaily;
+      else gained = CFG.xpReview;
+      s.xp += gained;
+      if (!item.retry) s.firstCorrect++;
+      if (s.kind === 'review') removeFromWrong(item.ref);
+      sfx.good();
+    } else {
+      sfx.bad();
+      if (!item.retry) {
+        if (s.hearts !== Infinity) s.hearts--;
+        addToWrong(item.ref);
+        s.queue.push({ q: q, ref: item.ref, retry: true });
+      }
+    }
+    save();
+
+    var praise = ['答对了！', '漂亮！', '就是这样！', '稳！', '有点东西啊！'];
+    var comfort = ['没事，记住它', '差一点点', '这个坑很多人踩', '错过一次就不会再错'];
+    var fb = document.createElement('div');
+    fb.className = 'feedback ' + (correct ? 'ok' : 'bad');
+    fb.innerHTML = '<div class="fb-title">' + (correct ? '✅ ' + praise[Math.floor(Math.random() * praise.length)] : '❌ ' + comfort[Math.floor(Math.random() * comfort.length)]) + '</div>' +
+      (!correct && rightText ? '<div class="fb-answer">正确答案：' + esc(rightText) + '</div>' : '') +
+      (subNote ? '<div class="fb-answer">' + esc(subNote) + '</div>' : '') +
+      '<div class="fb-expl">🦄 ' + esc(q.explanation) + '</div>' +
+      (correct && gained ? '<div class="fb-xp">+' + gained + ' XP</div>' : '') +
+      '<button class="btn ' + (correct ? 'btn-up' : 'btn-primary') + '">继续</button>';
+    document.body.appendChild(fb);
+    void fb.offsetHeight; /* 强制 reflow，确保过渡动画从屏幕外开始且不依赖 rAF */
+    fb.classList.add('show');
+    var cb = document.querySelector('.check-bar');
+    if (cb) cb.style.visibility = 'hidden';
+    var hEl = document.querySelector('.hearts');
+    if (hEl && s.hearts !== Infinity) hEl.textContent = '❤️ ' + s.hearts;
+
+    fb.querySelector('button').onclick = function () {
+      fb.remove();
+      if (s.hearts !== Infinity && s.hearts <= 0) { renderFail(); return; }
+      s.idx++;
+      renderSession();
+    };
+  }
+
+  function addToWrong(ref) {
+    state.everWrong = true;
+    for (var i = 0; i < state.wrong.length; i++) {
+      var w = state.wrong[i];
+      if (w.id === ref.id && w.q === ref.q) { w.n++; save(); return; }
+    }
+    state.wrong.push({ id: ref.id, q: ref.q, n: 1 });
+    save();
+  }
+  function removeFromWrong(ref) {
+    state.wrong = state.wrong.filter(function (w) {
+      return !(w.id === ref.id && w.q === ref.q);
+    });
+    save();
+  }
+
+  /* ---- 结算 ---- */
+  function finishSession() {
+    var s = session;
+    if (s.kind === 'lesson') {
+      var acc = s.firstCorrect / s.total;
+      var stars = acc >= CFG.star3 ? 3 : acc >= CFG.star2 ? 2 : 1;
+      var bonus = s.lesson.boss ? CFG.xpBossBonus : CFG.xpLessonBonus;
+      s.xp += bonus;
+      state.xp += s.xp;
+      var prev = state.lessons[s.lesson.id];
+      var firstClear = !prev;
+      if (!prev || prev.stars < stars) state.lessons[s.lesson.id] = { stars: stars };
+      if (s.lesson.boss && stars === 3 && state.badges.indexOf('boss100') < 0) state.badges.push('boss100');
+      markActiveToday();
+      save();
+      var earned = grantBadges();
+      confetti(); sfx.win();
+      var accPct = Math.round(acc * 100);
+      var mascotSay = stars === 3 ? '全对通关，Bobby 给你跪了' : stars === 2 ? '不错不错，错的都进错题本了' : '通关了！错题本里见';
+      $app.innerHTML = '<div class="result-page fade-in"><span class="result-mascot">🦄</span>' +
+        '<div class="result-title">' + (s.lesson.boss ? 'Boss 战胜利！' : '通关！') + '</div>' +
+        '<div class="result-sub">' + esc(s.lesson.title) + ' · ' + mascotSay + '</div>' +
+        '<div class="result-stars">' + '⭐'.repeat(stars) + '<span style="filter:grayscale(1);opacity:.3">' + '⭐'.repeat(3 - stars) + '</span></div>' +
+        '<div class="result-stats">' +
+        '<div class="rs-box"><div class="rs-num xp">+' + s.xp + '</div><div class="rs-label">获得 XP</div></div>' +
+        '<div class="rs-box"><div class="rs-num acc">' + accPct + '%</div><div class="rs-label">首答正确率</div></div>' +
+        '<div class="rs-box"><div class="rs-num" style="color:#FF9600">🔥' + state.streak + '</div><div class="rs-label">连胜天数</div></div>' +
+        '</div><div class="result-actions"><button class="btn btn-primary" id="cont">继续</button></div></div>';
+      var lid = s.lesson.id;
+      document.getElementById('cont').onclick = function () {
+        var after = function () { session = null; go('home'); };
+        showBadgePopups(earned, firstClear ? function () { showCardPop(lid, after); } : after);
+      };
+    } else if (s.kind === 'daily') {
+      state.xp += s.xp;
+      state.daily = { date: todayStr(), done: true, score: s.firstCorrect };
+      state.dailyTotal++;
+      markActiveToday();
+      save();
+      var earned2 = grantBadges();
+      confetti(); sfx.win();
+      $app.innerHTML = '<div class="result-page fade-in"><span class="result-mascot">⚡</span>' +
+        '<div class="result-title">每日挑战完成！</div>' +
+        '<div class="result-sub">答对 ' + s.firstCorrect + ' / ' + s.total + ' · 连胜保住了</div>' +
+        '<div class="result-stats">' +
+        '<div class="rs-box"><div class="rs-num xp">+' + s.xp + '</div><div class="rs-label">获得 XP</div></div>' +
+        '<div class="rs-box"><div class="rs-num" style="color:#FF9600">🔥' + state.streak + '</div><div class="rs-label">连胜天数</div></div>' +
+        '</div><div class="result-actions"><button class="btn btn-primary" id="cont">继续</button></div></div>';
+      document.getElementById('cont').onclick = function () {
+        showBadgePopups(earned2, function () { session = null; go('daily'); });
+      };
+    } else {
+      state.xp += s.xp;
+      save();
+      var earned3 = grantBadges();
+      sfx.win();
+      $app.innerHTML = '<div class="result-page fade-in"><span class="result-mascot">📕</span>' +
+        '<div class="result-title">复习完成！</div>' +
+        '<div class="result-sub">答对 ' + s.firstCorrect + ' / ' + s.total + ' · 答对的已移出错题本</div>' +
+        '<div class="result-stats">' +
+        '<div class="rs-box"><div class="rs-num xp">+' + s.xp + '</div><div class="rs-label">获得 XP</div></div>' +
+        '<div class="rs-box"><div class="rs-num acc">' + state.wrong.length + '</div><div class="rs-label">剩余错题</div></div>' +
+        '</div><div class="result-actions"><button class="btn btn-primary" id="cont">继续</button></div></div>';
+      document.getElementById('cont').onclick = function () {
+        showBadgePopups(earned3, function () { session = null; go('review'); });
+      };
+    }
+  }
+
+  function renderFail() {
+    var s = session;
+    $app.innerHTML = '<div class="result-page fade-in"><span class="result-mascot" style="animation:none">😵‍💫</span>' +
+      '<div class="result-title">心碎了一地…</div>' +
+      '<div class="result-sub">别慌，巴菲特也不是一天练成的。<br>错的题都记进错题本了，再来一次就熟了。</div>' +
+      '<div class="result-actions">' +
+      '<button class="btn btn-primary" id="retry">再挑战一次</button>' +
+      '<button class="btn btn-ghost" id="back">回地图</button></div></div>';
+    var lid = s.lesson.id;
+    document.getElementById('retry').onclick = function () { startLesson(lid); };
+    document.getElementById('back').onclick = quitSession;
+  }
+
+  /* ================= 每日挑战 ================= */
+  function unlockedQuestionPool() {
+    var flat = allLessons(), pool = [];
+    flat.forEach(function (x, i) {
+      if (lessonDone(x.lesson.id)) {
+        x.lesson.questions.forEach(function (q, qi) {
+          pool.push({ q: q, ref: { id: x.lesson.id, q: qi } });
+        });
+      }
+    });
+    if (!pool.length) {
+      var first = flat[0];
+      first.lesson.questions.forEach(function (q, qi) {
+        pool.push({ q: q, ref: { id: first.lesson.id, q: qi } });
+      });
+    }
+    return pool;
+  }
+
+  function renderDaily() {
+    refreshStreak();
+    var doneToday = state.daily.date === todayStr() && state.daily.done;
+    var html = topbar() + '<div class="page fade-in">' +
+      '<div class="page-title">⚡ 每日挑战</div>' +
+      '<div class="page-sub">每天 5 道混合题，从你学过的关卡里随机抽。完成即点亮今日连胜 🔥</div>';
+    if (doneToday) {
+      html += '<div class="card hero-card"><div class="hero-emoji">✅</div>' +
+        '<div class="hero-title">今天已完成</div>' +
+        '<div class="hero-sub">答对 ' + state.daily.score + ' / ' + CFG.dailyCount + ' · 明天再来，连胜等你续</div>' +
+        '<button class="btn btn-ghost" id="go-map">去学新关卡</button></div>';
+    } else {
+      html += '<div class="card hero-card"><div class="hero-emoji">⚡</div>' +
+        '<div class="hero-title">今日挑战待完成</div>' +
+        '<div class="hero-sub">' + (streakLitToday() ? '今日连胜已点亮，挑战纯赚 XP' : '完成挑战即可点亮今日 🔥') + '</div>' +
+        '<button class="btn btn-primary" id="start-daily">开始挑战</button></div>';
+    }
+    html += '</div>';
+    $app.innerHTML = html;
+    var sd = document.getElementById('start-daily');
+    if (sd) sd.onclick = function () {
+      var pool = shuffle(unlockedQuestionPool()).slice(0, CFG.dailyCount);
+      startQuiz('daily', pool);
+    };
+    var gm = document.getElementById('go-map');
+    if (gm) gm.onclick = function () { go('home'); };
+  }
+
+  /* ================= 错题本 ================= */
+  function renderReview() {
+    var html = topbar() + '<div class="page fade-in"><div class="page-title">📕 错题本</div>';
+    if (!state.wrong.length) {
+      html += '<div class="empty"><div class="e-emoji">🎉</div><div class="e-text">错题本空空如也<br>' + (state.everWrong ? '全部清干净了，清道夫就是你' : '目前还没有错题，去闯关吧') + '</div></div></div>';
+      $app.innerHTML = html;
+      return;
+    }
+    html += '<div class="page-sub">答错的题都在这，复习答对就移出。趁热打铁，别让它们过夜。</div>' +
+      '<button class="btn btn-primary" id="start-review" style="margin-bottom:6px">开始复习（' + Math.min(state.wrong.length, CFG.reviewCount) + ' 题）</button>';
+    var byUnit = {};
+    state.wrong.forEach(function (w) {
+      var e = lessonById(w.id);
+      if (!e) return;
+      (byUnit[e.ui] = byUnit[e.ui] || []).push(w);
+    });
+    Object.keys(byUnit).map(Number).sort(function (a, b) { return a - b; }).forEach(function (ui) {
+      var u = DATA.units[ui];
+      if (!u) return;
+      html += '<div class="wrong-group"><div class="wrong-unit-title">' + u.emoji + ' ' + esc(u.title) + '</div>';
+      byUnit[ui].forEach(function (w) {
+        var q = questionByRef(w);
+        if (!q) return;
+        html += '<div class="card wrong-item"><span class="w-ico">❌</span><span class="w-text">' + esc(q.prompt) + '</span><span class="w-count">错 ' + w.n + ' 次</span></div>';
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+    $app.innerHTML = html;
+    document.getElementById('start-review').onclick = function () {
+      var items = shuffle(state.wrong).slice(0, CFG.reviewCount).map(function (w) {
+        return { q: questionByRef(w), ref: { id: w.id, q: w.q } };
+      }).filter(function (x) { return x.q; });
+      startQuiz('review', items);
+    };
+  }
+
+  /* ================= 我的 ================= */
+  function renderProfile() {
+    refreshStreak();
+    var t = currentTitle(), nt = nextTitle();
+    var acc = state.stats.answered ? Math.round(state.stats.correct / state.stats.answered * 100) : 0;
+    var doneLessons = Object.keys(state.lessons).length;
+    var totalLessons = allLessons().length;
+    var html = topbar() + '<div class="page fade-in">' +
+      '<div class="card profile-head"><div class="avatar">' + t.emoji + '</div><div>' +
+      '<div class="p-name">美股练习生</div>' +
+      '<div class="p-title">' + t.emoji + ' ' + esc(t.name) + '</div>' +
+      (nt ? '<div class="p-next">还差 ' + (nt.xp - state.xp) + ' XP 晋升「' + esc(nt.name) + '」</div>' : '<div class="p-next">已达最高称号 👑</div>') +
+      '</div></div>' +
+      '<div class="stats-grid">' +
+      '<div class="stat-box"><div class="s-num" style="color:#FF9600">🔥' + state.streak + '</div><div class="s-label">连胜天数</div></div>' +
+      '<div class="stat-box"><div class="s-num" style="color:var(--brand)">💎' + state.xp + '</div><div class="s-label">总 XP</div></div>' +
+      '<div class="stat-box"><div class="s-num">' + doneLessons + '/' + totalLessons + '</div><div class="s-label">已通关卡</div></div>' +
+      '<div class="stat-box"><div class="s-num" style="color:var(--up)">' + acc + '%</div><div class="s-label">总正确率</div></div>' +
+      '</div>';
+
+    /* 股票世界杯选出的本命股票 */
+    var fav = null;
+    try { fav = JSON.parse(localStorage.getItem('bullcamp_fav_stock') || 'null'); } catch (e) {}
+    if (fav && fav.t) {
+      html += '<div class="card fav-stock"><span class="fav-emoji">' + esc(fav.e || '⭐') + '</span>' +
+        '<div class="fav-info"><div class="fav-name">本命股票 · ' + esc(fav.n) + '</div>' +
+        '<div class="fav-tip">股票世界杯连赢三轮的冠军 🏆</div></div>' +
+        '<span class="cup-ticker">' + esc(fav.t) + '</span></div>';
+    }
+
+    html += '<div class="card" style="padding:15px 17px"><div style="font-size:14px;font-weight:800">📅 最近 14 天</div><div class="cal-strip">';
+    for (var i = 13; i >= 0; i--) {
+      var ds = todayStr(-i);
+      var lit = !!state.history[ds];
+      html += '<div class="cal-day"><div class="cal-dot' + (lit ? ' lit' : '') + '">' + (lit ? '🔥' : '') + '</div><div class="cal-label">' + ds.slice(8) + '</div></div>';
+    }
+    html += '</div></div>';
+
+    var LK = window.LabKit;
+    if (LK) {
+      var dexTotal = 0, dexHtml = '';
+      allLessons().forEach(function (x) {
+        var card = LK.cardFor(x.lesson.id);
+        if (!card) return;
+        dexTotal++;
+        var owned = state.cards.indexOf(x.lesson.id) >= 0;
+        dexHtml += '<div class="dex-cell rar-' + card.rarity + (owned ? '' : ' off') + '"><div class="dex-in">' +
+          '<div class="dex-emoji">' + (owned ? card.emoji : '❔') + '</div>' +
+          '<div class="dex-name">' + (owned ? esc(card.name) : '？？？') + '</div>' +
+          '<div class="dex-rar">' + card.rarity + '</div></div></div>';
+      });
+      html += '<div class="section-title">🎴 知识卡牌图鉴（' + state.cards.length + '/' + dexTotal + '）</div><div class="dex-grid">' + dexHtml + '</div>';
+    }
+
+    html += '<div class="section-title">🏅 徽章墙（' + state.badges.length + '/' + BADGES.length + '）</div><div class="badges-grid">';
+    BADGES.forEach(function (b) {
+      var got = state.badges.indexOf(b.id) >= 0;
+      html += '<div class="badge-cell' + (got ? '' : ' off') + '"><div class="b-emoji">' + b.emoji + '</div><div class="b-name">' + esc(b.name) + '</div></div>';
+    });
+    html += '</div>';
+
+    html += '<div class="section-title">⚙️ 设置</div>' +
+      '<div class="card toggle-row"><span>音效</span><div class="switch' + (state.sound ? ' on' : '') + '" id="snd"></div></div>' +
+      '<button class="danger-btn" id="reset">清空进度重新开始</button></div>';
+    $app.innerHTML = html;
+    document.getElementById('snd').onclick = function () {
+      state.sound = !state.sound; save(); renderProfile();
+    };
+    document.getElementById('reset').onclick = function () {
+      if (window.confirm('确定清空所有进度、XP 和连胜吗？此操作不可恢复。')) {
+        localStorage.removeItem(KEY);
+        state = defaults();
+        go('home');
+      }
+    };
+  }
+
+  /* ================= 启动 ================= */
+  refreshStreak();
+  go('home');
+})();
+
+</script>
+</body>
+</html>
