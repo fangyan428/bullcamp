@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#166A9F">
+<meta name="description" content="BullCamp 投资探索营：46 个融合知识、实操与 Agent 审核的离线学习任务。">
+<title>BullCamp · 投资探索营</title>
+<style>
+:root{--paper:#f6f9fc;--ink:#16324a;--muted:#557084;--blue:#166a9f;--teal:#138575;--yellow:#f7cd63;--red:#b54738;--line:#d5e2e9;--soft:#e9f3f7;font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}button:disabled{cursor:not-allowed;opacity:.5}a{color:var(--blue);text-underline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:4px}p{line-height:1.85;margin:0 0 16px}h1,h2,h3{line-height:1.4;margin:0 0 14px}h1{font-size:clamp(27px,3vw,40px);letter-spacing:-.035em}h2{font-size:23px}h3{font-size:18px}small,.small{font-size:13px}svg{max-width:100%}.muted{color:var(--muted)}.mono,code,pre{font-family:ui-monospace,Consolas,monospace}code{font-size:.9em;background:var(--soft);padding:2px 5px;border-radius:3px}pre{overflow:auto;background:#edf3f7;padding:20px;line-height:1.7;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}hr{border:0;border-top:1px solid var(--line);margin:24px 0}.skip{position:fixed;top:-90px;left:20px;background:white;padding:12px;z-index:100}.skip:focus{top:10px}
+.shell{display:grid;grid-template-columns:216px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:32px 23px;border-right:1px solid var(--line);background:white}.brand{display:flex;gap:9px;align-items:center;text-decoration:none;color:var(--ink);font-size:21px;font-weight:800;letter-spacing:-.5px}.brand svg{width:42px;height:42px;flex-shrink:0}.brand small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:1px;margin-top:1px}.nav{display:grid;gap:8px;margin-top:44px}.nav a{display:flex;gap:14px;padding:12px 15px;color:var(--muted);text-decoration:none;border-radius:7px;font-size:15px}.nav a.active{background:var(--soft);color:var(--blue);font-weight:700}.nav a:hover{background:#f3f7fa}.nav-icon{width:20px;text-align:center}.sidebar-bottom{margin-top:auto;padding-top:24px;font-size:12px;line-height:1.8;color:var(--muted)}.sidebar-bottom a{display:block;margin-top:6px}.main{padding:34px 42px 60px;max-width:1490px;width:100%;margin:auto}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);margin-bottom:28px}.local-indicator{display:flex;align-items:center;gap:7px}.local-indicator:before{content:"";width:7px;height:7px;background:var(--teal);border-radius:50%}.page-heading{margin-bottom:28px}.page-heading p{max-width:700px;color:var(--muted)}.eyebrow{color:var(--teal);font-size:13px;font-weight:650;margin-bottom:12px}.home-grid{display:grid;grid-template-columns:minmax(0,1fr) 258px;gap:32px}.journey-hero{background:#e9f3f7;border-radius:12px;min-height:230px;position:relative;overflow:hidden;padding:28px 30px;margin-bottom:32px}.journey-hero h1{max-width:460px;position:relative;z-index:1}.journey-hero p{max-width:400px;position:relative;z-index:1;color:#48677b}.journey-hero .btn{position:relative;z-index:1}.hero-art{position:absolute;right:-15px;bottom:-22px;width:205px;opacity:.95;pointer-events:none}.journey-hero .copy{max-width:78%}.btn{border:0;border-radius:6px;background:var(--blue);color:white;padding:11px 19px;font-size:14px;font-weight:650;min-height:43px;display:inline-flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;line-height:1.5}.btn:hover{filter:brightness(.94)}.btn.secondary{background:white;color:var(--blue);border:1px solid #b9cedb}.btn.quiet{background:transparent;color:var(--muted);border:1px solid var(--line)}.btn.danger{background:var(--red)}.btn.small{padding:7px 11px;min-height:34px;font-size:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head h2{margin:0;font-size:20px}.chapter{border-top:1px solid var(--line);padding:20px 0}.chapter summary{cursor:pointer;list-style:none;display:flex;gap:15px;align-items:center}.chapter summary::-webkit-details-marker{display:none}.chapter-num{display:flex;align-items:center;justify-content:center;background:#e9f0f5;border-radius:9px;width:44px;height:44px;flex-shrink:0;font-size:18px;color:var(--blue)}.chapter summary h3{margin:0 0 3px;font-size:17px}.chapter summary p{font-size:12px;line-height:1.6;margin:0;color:var(--muted)}.chapter-count{margin-left:auto;font-size:12px;white-space:nowrap;color:var(--muted)}.chapter-count:after{content:" +";font-size:19px;margin-left:7px}.chapter[open] .chapter-count:after{content:" −"}.lesson-list{list-style:none;margin:20px 0 0 21px;padding:0 0 0 34px;border-left:2px solid var(--line)}.lesson-row{position:relative;padding:0 0 10px}.lesson-dot{position:absolute;left:-45px;top:16px;display:grid;place-items:center;background:white;border:2px solid var(--line);width:20px;height:20px;border-radius:50%;font-size:11px}.lesson-row.done .lesson-dot{background:var(--teal);color:white;border-color:var(--teal)}.lesson-row.current .lesson-dot{border:5px solid var(--blue)}.lesson-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);padding:13px 16px;border-radius:7px;border:1px solid transparent}.lesson-row.current .lesson-link{border-color:#b9d6e8;background:white}.lesson-link:hover{background:white;border-color:var(--line)}.lesson-link .lesson-title{font-size:14px;font-weight:600}.lesson-link small{display:block;font-size:11px;color:var(--muted);margin-top:4px}.lesson-link .status{font-size:12px;margin-left:auto;color:var(--muted);white-space:nowrap}.side-note{padding:24px 0;border-bottom:1px solid var(--line)}.side-note:first-child{padding-top:8px}.side-note h3{font-size:16px}.progress-track{height:7px;background:#dfebf0;border-radius:10px;overflow:hidden;margin:14px 0}.progress-track span{display:block;background:var(--teal);height:100%}.progress-big{font-size:31px;font-weight:750}.progress-big small{font-size:14px;font-weight:400;color:var(--muted)}.ability{display:flex;justify-content:space-between;margin:15px 0;font-size:13px}.side-note p{font-size:13px;color:var(--muted)}.stamp{background:#eef7f2;padding:13px 16px;border-left:3px solid var(--teal);font-size:13px;line-height:1.8}.intro-strip{margin-top:24px;padding:18px;border:1px dashed #b9cad5;font-size:13px;color:var(--muted);line-height:1.8}
+.lesson-header{margin-bottom:25px}.lesson-header h1{font-size:30px;margin:8px 0}.lesson-header p{color:var(--muted);margin:0}.back{font-size:13px;text-decoration:none}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:start}.steps{display:flex;gap:0;border-bottom:1px solid var(--line);margin:0 0 24px;overflow-x:auto}.step{flex:1;min-width:82px;padding:13px 8px;border:0;background:transparent;color:var(--muted);font-size:13px;border-bottom:3px solid transparent;white-space:nowrap}.step.active{color:var(--blue);border-color:var(--blue);font-weight:700}.step-index{display:inline-grid;place-items:center;background:#e7eef3;border-radius:50%;height:20px;width:20px;margin-right:5px;font-size:11px}.step.active .step-index{background:var(--blue);color:white}.work-panel{background:white;border:1px solid var(--line);border-radius:10px;padding:28px;min-width:0}.work-panel p{font-size:15px}.scenario{border-left:3px solid var(--yellow);background:#fffbec;padding:18px 20px;margin:20px 0;line-height:1.85}.scenario .label{display:block;font-size:12px;font-weight:700;color:#856822;margin-bottom:7px}.teaching p{margin-bottom:20px}.example{padding:18px 20px;background:var(--soft);border-radius:6px;margin:20px 0;font-size:14px;line-height:1.85}.example b{display:block;margin-bottom:7px}.note{font-size:12px!important;line-height:1.8!important;color:var(--muted);margin:15px 0!important}.source-pane{position:sticky;top:22px;border:1px solid var(--line);border-radius:8px;background:#eef4f8;padding:20px}.source-pane>summary{font-size:15px;font-weight:700;cursor:pointer}.data-label{font-size:11px;margin:10px 0 16px;color:var(--muted)}.fact{padding:14px 0;border-top:1px solid #cfdee8;font-size:12px;line-height:1.8}.fact b{display:block;margin-bottom:6px;font-size:12px;color:var(--blue)}.source-link{display:block;font-size:11px;line-height:1.7;margin:10px 0;overflow-wrap:anywhere}.source-pane h4{margin:18px 0 8px;font-size:13px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.field{display:block;font-size:12px;font-weight:600;color:var(--muted)}input,select,textarea{border:1px solid #bdcfdc;border-radius:5px;background:white;color:var(--ink);width:100%;padding:10px 12px;margin-top:7px;min-height:43px}textarea{min-height:98px;resize:vertical;line-height:1.7;font-size:14px}.code-input{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:66px}.config-input{min-height:270px}.checkbox{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.7;margin:14px 0}.checkbox input{width:17px;height:17px;min-height:17px;margin-top:3px;flex-shrink:0}.output{border-top:1px solid var(--line);margin-top:24px;padding-top:22px}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:18px}.stat{border-left:2px solid #c3dfdf;padding-left:12px}.stat span{font-size:11px;color:var(--muted);display:block}.stat strong{font-family:ui-monospace,Consolas,monospace;font-size:22px;display:block;margin-top:5px}.chart{background:#f7fafc;border-radius:6px;padding:13px;margin:20px 0}.chart svg{width:100%;height:auto;display:block}.chart-legend{display:flex;gap:20px;font-size:11px;flex-wrap:wrap}.chart-legend span:before{content:"";width:12px;height:3px;background:var(--blue);display:inline-block;vertical-align:middle;margin-right:6px}.chart-legend span:nth-child(2):before{background:var(--teal)}.table-wrap{max-width:100%;overflow:auto;margin-top:14px}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.7}th,td{padding:9px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}th{font-weight:600;color:var(--muted);background:#f4f8fb}details.table summary{cursor:pointer;font-size:12px;color:var(--blue)}.quiz{margin-top:26px;border-top:1px solid var(--line);padding-top:23px}.quiz h3{font-size:16px;line-height:1.7}.quiz-options{display:grid;gap:9px}.option{border:1px solid var(--line);border-radius:6px;text-align:left;background:white;padding:12px 14px;line-height:1.7;font-size:14px}.option:hover{border-color:#6b9fbf;background:#f5fafc}.option.selected{border-color:var(--blue);background:#edf5fa}.option.correct{border-color:var(--teal);background:#edf7f3}.option.incorrect{border-color:var(--red);background:#fff3ef}.option-key{display:inline-block;color:var(--muted);font-size:12px;width:23px;vertical-align:top}.feedback{padding:13px 16px;margin-top:12px;border-radius:5px;font-size:13px;line-height:1.8;background:#edf7f3;color:#1d5c4d}.feedback.error{background:#fff1ed;color:#91382c}.feedback.neutral{background:#edf4f9;color:var(--ink)}.agent-report{border:1px solid #bdcfdc;border-radius:7px;margin:20px 0;overflow:hidden}.agent-label{padding:10px 16px;background:#edf3f8;font-size:11px;color:var(--muted)}.agent-report blockquote{margin:0;padding:22px;font-size:16px;line-height:1.9}.step-actions{border-top:1px solid var(--line);margin-top:28px;padding-top:20px;display:flex;gap:10px;justify-content:space-between}.evidence-button{display:block;text-align:left;width:100%;padding:16px;border:1px solid var(--line);background:#f8fbfd;border-radius:6px;margin:10px 0;line-height:1.8;font-size:13px}.evidence-button b{display:block;color:var(--blue);margin-bottom:5px}.evidence-button.reviewed{border-color:var(--teal);background:#edf7f3}.run-log{margin:12px 0;font-size:12px;line-height:1.8;color:var(--muted)}.run-log li{margin:10px 0;overflow-wrap:anywhere}.gate-note{font-size:12px;color:var(--muted);margin-top:10px}.badge{display:inline-block;background:#e5f1ea;color:#206752;border-radius:4px;padding:4px 7px;font-size:11px;vertical-align:middle}.lesson-complete{padding:24px;background:#edf7f2;border-radius:8px;margin-bottom:20px}.lesson-complete h2{color:#236852}.search{max-width:650px;margin:0 0 25px}.manual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.manual-item{border-bottom:1px solid var(--line);padding:18px 0}.manual-item h3{font-size:16px}.manual-item p{font-size:13px}.manual-item a{font-size:12px}.glossary{display:grid;grid-template-columns:130px 1fr;gap:0;margin:20px 0}.glossary dt,.glossary dd{padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.8;margin:0}.glossary dt{font-weight:700;padding-right:16px}.archive-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}.plain-card{background:white;border:1px solid var(--line);border-radius:8px;padding:25px;margin-bottom:22px}.plain-card p{font-size:14px}.file-button{cursor:pointer}.file-button input{display:none}.review-row{border-top:1px solid var(--line);padding:19px 0}.review-row h3{font-size:16px}.review-row p{font-size:13px}.practice-project{margin:28px 0;padding-top:24px;border-top:1px solid var(--line)}.practice-project h3{font-size:20px}.practice-project li{font-size:14px;line-height:1.9;margin-bottom:10px}.practice-project .actions{margin-top:20px}.empty{padding:40px 24px;text-align:center;background:white;border:1px dashed var(--line);border-radius:8px}.empty p{color:var(--muted);font-size:14px}.receipt{display:grid;gap:14px;margin:22px 0}.receipt>div{border-left:2px solid var(--teal);padding-left:15px;line-height:1.8;font-size:13px}.receipt span{display:block;color:var(--muted);font-size:11px}.storage-warning{padding:12px;background:#fff1ed;color:var(--red);font-size:12px;margin-bottom:20px}.footer{color:var(--muted);font-size:11px;padding-top:40px;line-height:1.8}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:13px 22px;border-radius:7px;box-shadow:0 6px 25px #16324a22;font-size:13px;z-index:50;max-width:90vw;display:none}#toast.visible{display:block}
+@media(min-width:1450px){.main{padding-left:60px;padding-right:60px}.journey-hero{padding:35px}.hero-art{width:235px}}
+@media(max-width:1150px){.shell{grid-template-columns:180px minmax(0,1fr)}.sidebar{padding:25px 14px}.main{padding:28px}.home-grid{grid-template-columns:minmax(0,1fr) 210px;gap:22px}.workspace{grid-template-columns:minmax(0,1fr) 220px;gap:20px}.work-panel{padding:22px}.source-pane{padding:16px}.hero-art{opacity:.4}.journey-hero .copy{max-width:95%}}
+@media(max-width:900px){.home-grid{grid-template-columns:1fr}.home-aside{display:grid;grid-template-columns:1fr 1fr;gap:24px}.home-aside .side-note:last-child{display:none}.workspace{grid-template-columns:1fr}.source-pane{position:static;grid-row:1}.source-pane .fact{display:inline-block;width:48%;vertical-align:top;margin-right:2%;padding-right:12px}.source-pane .source-link{display:inline-block;margin-right:15px}.manual-grid{grid-template-columns:1fr}.archive-grid{grid-template-columns:1fr}.lesson-header h1{font-size:27px}}
+@media(max-width:650px){.shell{display:block}.sidebar{position:static;height:auto;padding:15px 18px 0;border:0;border-bottom:1px solid var(--line)}.brand{font-size:19px}.brand small{font-size:10px}.brand svg{height:35px;width:35px}.nav{display:flex;gap:3px;margin-top:14px;justify-content:space-between}.nav a{display:block;flex:1;text-align:center;font-size:11px;padding:10px 4px;border-radius:5px 5px 0 0;white-space:nowrap}.nav-icon{display:none}.sidebar-bottom{display:none}.main{padding:20px 18px 45px}.topline{font-size:11px;margin-bottom:20px}.journey-hero{padding:23px;min-height:225px;margin-bottom:25px}.journey-hero h1{font-size:29px;max-width:240px}.journey-hero p{font-size:13px;max-width:255px}.hero-art{width:140px;right:-12px;opacity:.45}.journey-hero .copy{max-width:100%}.chapter-num{width:36px;height:36px;font-size:16px}.chapter summary{gap:12px}.chapter summary h3{font-size:15px}.chapter summary p{font-size:11px}.chapter-count{font-size:10px}.chapter-count:after{margin-left:2px}.lesson-list{margin-left:17px;padding-left:23px}.lesson-dot{left:-34px}.lesson-link{padding:12px 10px;gap:6px}.lesson-link .lesson-title{font-size:13px}.lesson-link small{font-size:10px}.lesson-link .status{font-size:10px}.home-aside{gap:20px}.side-note h3{font-size:14px}.side-note p{font-size:12px}.home-aside .side-note{padding-top:10px}.source-pane .fact{display:block;width:100%;margin:0}.source-pane{padding:15px}.steps{margin-bottom:18px}.step{min-width:64px;font-size:11px;padding:12px 3px}.step-index{width:17px;height:17px;font-size:10px;margin-right:3px}.work-panel{padding:20px 16px}.work-panel h2{font-size:21px}.work-panel p{font-size:14px}.lesson-header h1{font-size:25px}.lesson-header p{font-size:13px}.scenario,.example{padding:15px}.form-grid{gap:12px}.field{font-size:11px}input,select{padding:9px;font-size:13px}.stat strong{font-size:20px}.option{font-size:13px}.agent-report blockquote{padding:18px;font-size:15px}.glossary{grid-template-columns:100px 1fr}.plain-card{padding:20px}.manual-item h3{font-size:15px}.page-heading h1{font-size:29px}.page-heading p{font-size:14px}.step-actions{flex-wrap:wrap}.chart{padding:8px}.stats{gap:15px}.btn{font-size:13px;padding:10px 15px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.workspace>section{min-width:0}.example,.receipt,.work-panel p,.stat strong{overflow-wrap:anywhere}
+@media print{.sidebar,.topline,.steps,.actions,.step-actions,.source-pane,.btn,#toast{display:none!important}.shell,.main,.workspace,.home-grid{display:block}.main{padding:0}.work-panel{border:0}.chapter{break-inside:avoid}body{background:white}}
+
+</style>
+</head>
+<body><a class="skip" href="#main">跳到内容</a><div id="app"></div><div id="toast" role="status" aria-live="polite"></div><noscript>探索营需要 JavaScript 来运行本地计算与保存学习进度。主线无需 API。</noscript>
+<script>
+/* BullCamp deterministic teaching models. All price paths are synthetic. */
+(function (root) {
+  'use strict';
+  const paths = {
+    recovery: [100, 85, 70, 75, 90, 110, 105, 95, 115, 120, 112, 125],
+    rising: [100, 105, 110, 117, 121, 125, 130, 136, 140, 145, 151, 160],
+    falling: [100, 95, 90, 82, 75, 78, 70, 65, 68, 61, 57, 50],
+    sideways: [100, 110, 98, 108, 96, 106, 95, 105, 94, 104, 93, 100]
+  };
+  const pct = n => (n * 100).toFixed(2) + '%';
+  const money = n => '$' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 });
+  const stat = (label, value) => ({ label, value });
+  function dca(p) {
+    const prices = paths[p.path] || paths.recovery;
+    function schedule(plan) {
+      let shares = 0, total = 0, fees = 0, cash = 0;
+      const rows = [], values = [];
+      prices.forEach((price, i) => {
+        const added = p.funding === 'lump' ? (i === 0 ? 12 * p.monthly : 0) : p.monthly;
+        cash += added; total += added;
+        // Waiting signal only sees the previous two observations, never execution price.
+        const ready = plan !== 'wait' || (i >= 2 && prices[i-1] < prices[i-2]);
+        const budget = ready ? (plan === 'fixed' ? Math.min(cash,p.monthly) : cash) : 0;
+        const fee = budget * p.fee / 100;
+        shares += (budget - fee) / price; cash -= budget; fees += fee;
+        const value = shares * price + cash;
+        rows.push([i + 1, money(price), money(total), shares.toFixed(3), money(cash), money(value)]);
+        values.push(value);
+      });
+      const value = values.at(-1);
+      return { rows, values, value, total, fees, cash, profit:value-total };
+    }
+    const result = schedule(p.plan || 'fixed'), baseline = schedule('fixed');
+    return { stats: [stat('可用资金总额', money(result.total)), stat('所选计划期末资产', money(result.value)), stat('投资损益', money(result.profit)), stat('每期定额对照', money(baseline.value))], headers: ['期数', '价格', '到账本金', '份额', '现金', '总资产'], rows:result.rows, series: [{ name: '所选计划', values:result.values }, { name: '同资金定额对照', values:baseline.values }], note: '原创 12 期路径，允许碎股、现金收益为零、无分红与税。两条计划共享资金到达条件。等待规则：看到前一期比再前一期下跌后，在本期按给定价格投入可用现金；不是知道本期价格后才决定成交。累计费用 '+money(result.fees)+'。损益/本金不等于年化收益。', raw:result };
+  }
+  function backtest(prices, p) {
+    let cash = 10000, shares = 0, fees = 0, trades = 0, peak = 10000, maxDrawdown = 0;
+    const values = [10000], rows = [];
+    // At t, use only closes strictly before t; trade at t's given execution price.
+    for (let t = 1; t < prices.length; t++) {
+      const lookback = Math.max(1, Math.round(p.lookback));
+      const history = prices.slice(Math.max(0, t - lookback), t);
+      const mean = history.reduce((a, b) => a + b, 0) / history.length;
+      const signal = p.rule === 'hold' || (history.length >= lookback && prices[t - 1] > mean);
+      const before = cash + shares * prices[t];
+      const target = signal ? p.weight / 100 : 0;
+      const desired = before * target / prices[t];
+      const delta = desired - shares;
+      if (Math.abs(delta) > 0.0001) {
+        const feeRate = p.cost / 100;
+        const quantity = delta > 0 ? Math.min(delta, cash / (prices[t] * (1 + feeRate))) : delta;
+        const cost = Math.abs(quantity) * prices[t] * feeRate;
+        cash -= quantity * prices[t] + cost; shares += quantity; fees += cost; trades++;
+      }
+      const value = cash + shares * prices[t];
+      peak = Math.max(peak, value); maxDrawdown = Math.max(maxDrawdown, 1 - value / peak);
+      values.push(value);
+      rows.push([t + 1, money(prices[t]), signal ? '目标持仓' : '现金', money(cash), money(value)]);
+    }
+    return { values, rows, fees, trades, value: values.at(-1), maxDrawdown };
+  }
+  function run(type, p) {
+    const out = { stats: [], rows: [], note: '教学简化模型，全部金额和概率均为给定条件。' };
+    switch (type) {
+      case 'cash': {
+        const profit = p.ending - p.start - p.deposit - p.fee;
+        out.stats = [stat('净期末资产', money(p.ending - p.fee)), stat('累计本金', money(p.start + p.deposit)), stat('投资损益', money(profit))];
+        out.note = '期末资产为扣除本项费用前的金额；本期没有取款。追加本金不计作投资收益。'; out.raw = { profit }; break;
+      }
+      case 'compound': {
+        const values = [p.principal]; let value = p.principal;
+        for (let i = 0; i < p.years; i++) { value *= 1 + (p.rate - p.fee) / 100; values.push(value); }
+        out.stats = [stat('期末资产', money(value)), stat('累计变化', money(value - p.principal))]; out.series = [{ name: '假设路径', values }];
+        out.note = '给定固定年收益率，年末按净收益率复利；费率直接相减是教学简化，并非实际每日扣费算法，也不是收益预测。'; out.raw = { value }; break;
+      }
+      case 'risk': {
+        const expected = p.prob / 100 * p.up + (1 - p.prob / 100) * p.down;
+        out.stats = [stat('给定概率下的期望收益', pct(expected / 100)), stat('不利情境资产', money(p.capital * (1 + p.down / 100))), stat('有利情境资产', money(p.capital * (1 + p.up / 100)))];
+        out.note = '只有两个教学情境，概率由题目给定。期望不是一次投资必然实现的结果，也未包含所有现实风险。'; out.raw = { expected }; break;
+      }
+      case 'cashflow': {
+        const profit = p.sales - p.expenses - p.depreciation, operating = p.sales - p.expenses - p.receivable, free = operating - p.capex;
+        out.stats = [stat('简化利润', money(profit)), stat('经营现金流', money(operating)), stat('扣资本开支后现金', money(free))];
+        out.headers = ['事项', '金额']; out.rows = [['确认收入', money(p.sales)], ['现金经营支出', money(p.expenses)], ['非现金折旧', money(p.depreciation)], ['应收账款增加', money(p.receivable)], ['资本开支', money(p.capex)]];
+        out.note = '忽略税、利息和其他营运资本变化；没有将折旧再次作为现金支出。不是完整公司自由现金流模型。'; out.raw = { profit, operating, free }; break;
+      }
+      case 'dcf': {
+        if (p.discount <= p.terminal) return { ...out, error: '折现率必须大于永续增长率；请修正假设后再计算。' };
+        let value = 0, cash = p.cash, rows = [];
+        for (let t = 1; t <= 5; t++) { cash *= 1 + p.growth / 100; const pv = cash / Math.pow(1 + p.discount / 100, t); value += pv; rows.push([t, money(cash), money(pv)]); }
+        const tv = cash * (1 + p.terminal / 100) / ((p.discount - p.terminal) / 100);
+        const pvTerminal = tv / Math.pow(1 + p.discount / 100, 5); value += pvTerminal;
+        out.stats = [stat('模型估值', money(value)), stat('终值现值占比', pct(pvTerminal / value))]; out.headers = ['年', '股权现金流', '现值']; out.rows = rows;
+        out.note = '现金流为给定的股权自由现金流，折现率为股权要求回报；预测 5 年，之后永续增长。增长隐含再投资已反映在输入现金流中。'; out.raw = { value, pvTerminal }; break;
+      }
+      case 'multiple': {
+        const old = p.eps * p.pe, nextEPS = p.eps * (1 + p.growth / 100), next = nextEPS * p.nextPE;
+        out.stats = [stat('初始价格', money(old)), stat('下一期 EPS', money(nextEPS)), stat('情境价格', money(next)), stat('价格收益', pct(next / old - 1))];
+        out.note = 'EPS 与未来倍数均为情境输入；忽略分红、税与费用。乘法能分解价格，不能预测未来 EPS 或 PE。'; out.raw = { old, next, nextEPS }; break;
+      }
+      case 'dca': return dca(p);
+      case 'allocation': {
+        const cash = 100 - p.stock - p.bond;
+        if (cash < 0) return { ...out, error: '股票与债券权重合计超过 100%，请为现金留下非负权重。' };
+        const change = (p.stock * p.stockReturn + p.bond * p.bondReturn) / 10000;
+        out.stats = [stat('现金权重', pct(cash / 100)), stat('组合情境收益', pct(change)), stat('期末资产', money(p.capital * (1 + change)))];
+        out.rows = [['股票', p.stock + '%', p.stockReturn + '%'], ['债券', p.bond + '%', p.bondReturn + '%'], ['现金', cash + '%', '0%']]; out.headers = ['资产', '权重', '给定收益'];
+        out.note = '单期固定权重，现金收益设为零，忽略费用。这里只计算给定情境，不根据资产类别预测回报。'; out.raw = { change, cash }; break;
+      }
+      case 'order': {
+        const executable = p.kind === 'market' || p.limit >= p.ask;
+        const affordable = Math.max(0, Math.floor((p.cash - p.fee) / p.ask));
+        const quantity = executable ? Math.max(0, Math.min(p.quantity, p.depth, affordable)) : 0;
+        const cost = quantity ? quantity * p.ask + p.fee : 0;
+        out.stats = [stat('成交股数', quantity), stat('未成交股数', p.quantity - quantity), stat('成交后现金', money(p.cash - cost))];
+        out.note = '买单教学撮合：仅有一档卖价与给定深度，不模拟队列、跳价和真实券商规则；费用仅成交时收一次。'; out.raw = { quantity, cost }; break;
+      }
+      case 'rebalance': {
+        const total = p.stock + p.other, target = total * p.target / 100, trade = target - p.stock;
+        if (total <= 0) return { ...out, error:'总资产须大于零。' };
+        out.stats = [stat('调整前股票占比', pct(p.stock / total)), stat('目标股票市值', money(target)), stat(trade >= 0 ? '需转入股票' : '需转出股票', money(Math.abs(trade)))];
+        out.note = '其余资产作为可调资金池，忽略费用与份额限制。再平衡的任务是恢复目标风险暴露，不保证提高收益。'; out.raw = { trade, total }; break;
+      }
+      case 'cost': {
+        const fees = p.turnover * p.cost / 100;
+        const net = p.gross - fees;
+        out.stats = [stat('成本拖累（百分点）', fees.toFixed(2)), stat('简化净收益', pct(net / 100)), stat('相对基准（百分点）', (net - p.benchmark).toFixed(2))];
+        out.note = '换手为年交易金额/平均资产的百分数，单边成本为每笔交易金额的百分数；直接扣减是近似，不含税、时点复利与风险调整。'; out.raw = { net, fees }; break;
+      }
+      case 'strategy': {
+        const prices = paths[p.path] || paths.sideways;
+        const result = backtest(prices, p);
+        const baseline = backtest(prices, { ...p, rule: 'hold', weight: 100 });
+        out.stats = [stat('策略期末资产', money(result.value)), stat('同成本持有对照', money(baseline.value)), stat('累计交易费用', money(result.fees)), stat('最大回撤', pct(result.maxDrawdown))];
+        out.headers = ['期', '执行价', '信号', '现金', '资产']; out.rows = result.rows;
+        out.series = [{ name: '策略', values: result.values }, { name: '持有对照', values: baseline.values }];
+        out.note = '12 期原创路径；t 期只用 t 之前价格发信号，按 t 期给定价格成交。允许碎股、无分红/税/滑点。持有对照也在第 2 期开始。教学路径不能证明现实有效。'; out.raw = result; break;
+      }
+      case 'arbitrage': {
+        const expected = p.prob / 100 * p.offer + (1 - p.prob / 100) * p.fail - p.cost;
+        out.stats = [stat('成功毛价差', money(p.offer - p.price)), stat('给定概率下期望损益/股', money(expected - p.price)), stat('失败损失/股（含成本）', money(p.fail - p.price - p.cost))];
+        out.note = '概率与失败价格均是教学假设，未计等待时间价值、延期、借券与融资；并购价差并非无风险套利。'; out.raw = { expected }; break;
+      }
+      case 'leverage': {
+        const assets = (p.equity + p.loan) * (1 + p.change / 100), equity = assets - p.loan, ratio = assets > 0 ? equity / assets : 0;
+        out.stats = [stat('变化后资产', money(assets)), stat('变化后净值', money(equity)), stat('权益比例', pct(ratio)), stat('示例维持线', ratio < p.maintenance / 100 ? '低于维持线' : '尚在线上')];
+        out.note = '固定负债、不计利息；维持比例由情境给定。真实券商可能提高要求或直接处置头寸，不能假定一定先通知补款。'; out.raw = { assets, equity, ratio }; break;
+      }
+      case 'dilution': {
+        const before = p.profit / p.shares, after = p.profit * (1 + p.growth / 100) / (p.shares + p.issue);
+        out.stats = [stat('初始 EPS', money(before)), stat('增发后 EPS', money(after)), stat('EPS 变化', pct(after / before - 1))];
+        out.note = '以相同期间口径作简化比较；实际 EPS 使用加权平均股数，并区分基本与稀释口径。'; out.raw = { before, after }; break;
+      }
+      default: out.error = '未找到这个模型。';
+    }
+    return out;
+  }
+  const api = { run, dca, backtest, paths, pct, money };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  root.BullModels = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function (root) {
+  'use strict';
+  const KEY = 'bullcamp_academy_v1';
+  const fresh = () => ({ version: 1, lessons: {}, last: null, created: new Date().toISOString() });
+  const record = () => ({ step: 0, answers: {}, params: {}, runs: [], evidence: [], notes: {}, reflection: false, complete: false });
+  function get(state, id) { return state.lessons[id] || (state.lessons[id] = record()); }
+  function answer(r, key, chosen, q) {
+    const prev = r.answers[key];
+    const correct = chosen === q.answer;
+    r.answers[key] = { chosen, correct, firstCorrect: prev ? prev.firstCorrect : correct, attempts: (prev?.attempts || 0) + 1 };
+    return correct;
+  }
+  function skills(r) {
+    return { understand: [0, 1].every(i => r.answers['transfer' + i]?.correct), operate: !!r.labDone && !!r.answers.lab?.correct, agent: !!r.answers.agent?.correct && !!r.notes.prompt?.trim() };
+  }
+  function eligible(r) { return Object.values(skills(r)).every(Boolean) && r.reflection && ['evidence', 'limit', 'next'].every(k => r.notes[k]?.trim()); }
+  function complete(r) { if (!eligible(r)) return false; r.complete = true; r.completedAt = new Date().toISOString(); return true; }
+  function arithmetic(text, vars) {
+    if (text.length > 500) throw new Error('表达式太长。');
+    const tokens = text.match(/[A-Za-z_][A-Za-z_0-9]*|(?:\d+(?:\.\d*)?|\.\d+)|[()+*/-]|\S/g) || [];
+    let pos = 0;
+    function atom() {
+      const token = tokens[pos++];
+      if (token === '-') return -atom();
+      if (token === '+') return atom();
+      if (token === '(') { const v = expression(); if (tokens[pos++] !== ')') throw new Error('括号不匹配。'); return v; }
+      if (/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(token || '')) return Number(token);
+      if (Object.hasOwn(vars, token)) return vars[token];
+      throw new Error('只支持 cash、qty、price、fee_rate、数字与四则运算。');
+    }
+    function term() { let v = atom(); while (['*', '/'].includes(tokens[pos])) { const op = tokens[pos++], x = atom(); v = op === '*' ? v * x : v / x; } return v; }
+    function expression() { let v = term(); while (['+', '-'].includes(tokens[pos])) { const op = tokens[pos++], x = term(); v = op === '+' ? v + x : v - x; } return v; }
+    const value = expression();
+    if (pos !== tokens.length || !Number.isFinite(value)) throw new Error('表达式未完成，或结果不是有限数字。');
+    return value;
+  }
+  function checkCode(buy, sell) {
+    const cases = [{ cash: 1000, qty: 2, price: 100, fee_rate: 0.01 }, { cash: 500, qty: 3, price: 40, fee_rate: 0 }, { cash: 800, qty: 0, price: 60, fee_rate: 0.02 }, { cash: 2000, qty: 5, price: 73, fee_rate: 0.015 }];
+    return cases.flatMap((v, i) => ['buy', 'sell'].map(side => {
+      const expected = v.cash + (side === 'buy' ? -1 : 1) * v.qty * v.price - v.qty * v.price * v.fee_rate;
+      try { const actual = arithmetic(side === 'buy' ? buy : sell, v); return { label: `情境 ${i + 1} · ${side === 'buy' ? '买入' : '卖出'}`, vars: v, expected, actual, pass: Math.abs(actual - expected) < 1e-8 }; }
+      catch (e) { return { label: `情境 ${i + 1} · ${side}`, vars: v, expected, error: e.message, pass: false }; }
+    }));
+  }
+  function checkConfig(text) {
+    let c; try { c = JSON.parse(text); } catch (_) { return ['JSON 无法解析，请检查逗号、引号与括号。']; }
+    if (!c || typeof c !== 'object' || Array.isArray(c)) return ['计划必须是一个 JSON 对象。'];
+    const errors = [];
+    if (!Number.isFinite(c.max_position_pct) || c.max_position_pct <= 0 || c.max_position_pct > 0.2) errors.push('max_position_pct 必须大于 0 且不超过 0.20。');
+    if (c.allow_borrowing !== false) errors.push('allow_borrowing 必须设为 false。');
+    if (!['monthly', 'quarterly'].includes(c.rebalance)) errors.push('本角色只接受 monthly（月度）或 quarterly（季度）再平衡。');
+    if (!c.weights || typeof c.weights !== 'object' || Array.isArray(c.weights) || !Object.keys(c.weights).length) errors.push('weights 需要至少一个持仓。');
+    else {
+      let sum = 0;
+      for (const [symbol, weight] of Object.entries(c.weights)) {
+        if (!Number.isFinite(weight) || weight < 0 || weight > c.max_position_pct) errors.push(`${symbol} 的权重须非负，且不超过单股上限。`);
+        sum += weight;
+      }
+      if (!Number.isFinite(sum) || sum > 1 + 1e-10) errors.push('持仓权重合计不得超过 1，余下为现金。');
+    }
+    return errors;
+  }
+  function importState(text, lessons) {
+    if (text.length > 3000000) throw new Error('存档大于 3 MB，无法导入。');
+    const input = JSON.parse(text);
+    if (input.version !== 1 || !input.lessons || typeof input.lessons !== 'object') throw new Error('这不是当前版本的探索营存档。');
+    const out = fresh();
+    for (const l of lessons) {
+      const src = input.lessons[l.id]; if (!src || typeof src !== 'object') continue;
+      const r = record();
+      r.step = Number.isInteger(src.step) ? Math.max(0, Math.min(4, src.step)) : 0;
+      for (const k of ['prediction','prompt','evidence','limit','next','buy','sell','config']) if (typeof src.notes?.[k] === 'string') r.notes[k] = src.notes[k].slice(0, 10000);
+      r.evidence = Array.isArray(src.evidence) ? src.evidence.filter(i => Number.isInteger(i) && i >= 0 && i < l.facts.length) : [];
+      if (src.params && typeof src.params === 'object') for (const [k, v] of Object.entries(src.params)) if (/^[a-zA-Z]+$/.test(k) && (typeof v === 'number' && Number.isFinite(v) || typeof v === 'string' && v.length < 50)) r.params[k] = v;
+      r.runs = Array.isArray(src.runs) ? src.runs.slice(-8).filter(x => typeof x === 'string').map(x => x.slice(0, 3000)) : [];
+      r.labDone = src.labDone === true;
+      if (src.holdout && typeof src.holdout === 'object' && src.holdout.params && typeof src.holdout.params === 'object') {
+        const p = src.holdout.params;
+        if (['hold','trend'].includes(p.rule) && Number.isInteger(p.lookback) && p.lookback >= 2 && p.lookback <= 8 && Number.isFinite(p.weight) && p.weight >= 0 && p.weight <= 100 && Number.isFinite(p.cost) && p.cost >= 0 && p.cost <= 10) r.holdout = { params:{rule:p.rule,lookback:p.lookback,weight:p.weight,cost:p.cost}, date:String(src.holdout.date || '').slice(0,50) };
+      }
+      r.reflection = src.reflection === true;
+      const questions = { lab: l.lab.check, agent: l.agent.check, transfer0: l.transfer[0], transfer1: l.transfer[1] };
+      for (const [k, q] of Object.entries(questions)) {
+        const a = src.answers?.[k];
+        if (a && Number.isInteger(a.chosen) && a.chosen >= 0 && a.chosen < q.options.length) r.answers[k] = { chosen: a.chosen, correct: a.chosen === q.answer, firstCorrect: a.firstCorrect === true && Number.isFinite(a.attempts) && a.attempts >= 1, attempts: Math.max(1, Math.min(999, Number(a.attempts) || 1)) };
+      }
+      if (src.complete && eligible(r)) { r.complete = true; r.completedAt = typeof src.completedAt === 'string' ? src.completedAt.slice(0, 50) : ''; }
+      out.lessons[l.id] = r;
+    }
+    out.last = lessons.some(l => l.id === input.last) ? input.last : null;
+    return out;
+  }
+  const api = { KEY, fresh, record, get, answer, skills, eligible, complete, arithmetic, checkCode, checkConfig, importState };
+  root.BullLearning = api;
+  if (typeof module !== 'undefined') module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function(root) {
+  const n = (key, label, value, min, max, step = 1) => ({ key, label, value, min, max, step });
+  const select = (key, label, value, options) => ({ key, label, value, options });
+  const path = () => select('path', '原创价格路径', 'recovery', { recovery: '先跌后修复', rising: '持续上涨', falling: '持续下跌', sideways: '往复震荡' });
+  const controls = {
+    cash: [n('start','期初本金 $',1000,0,1000000),n('deposit','期间追加 $',200,0,1000000),n('ending','扣费前期末资产 $',1260,0,3000000),n('fee','待扣费用 $',10,0,10000)],
+    compound: [n('principal','本金 $',1000,1,1000000),n('rate','假设年收益 %',7,-90,100,0.1),n('fee','简化年费率 %',1,0,10,0.1),n('years','年数',10,1,50)],
+    risk: [n('prob','有利情境概率 %',60,0,100),n('up','有利情境收益 %',20,0,500),n('down','不利情境收益 %',-25,-100,0),n('capital','本金 $',1000,1,1000000)],
+    cashflow: [n('sales','已确认收入 $',200,0,10000),n('expenses','现金经营支出 $',120,0,10000),n('depreciation','折旧 $',20,0,10000),n('receivable','应收账款增加 $',50,-10000,10000),n('capex','资本开支 $',40,0,10000)],
+    dcf: [n('cash','第 0 年股权现金流 $',10,0.1,10000,0.1),n('growth','前 5 年增长 %',5,-90,100,0.5),n('discount','股权要求回报 %',10,0.1,60,0.1),n('terminal','之后永续增长 %',2,-10,10,0.5)],
+    multiple: [n('eps','初始每股收益 $',5,0.1,1000,0.1),n('pe','初始市盈率',30,1,200),n('growth','下一期盈利增长 %',20,-99,300),n('nextPE','下一期市盈率',20,1,200)],
+    dca: [path(),select('funding','资金到达条件','salary',{salary:'逐期到账',lump:'首期全部到账'}),select('plan','所选投入规则','fixed',{fixed:'每期定额',all:'到账即投',wait:'下跌后投入'}),n('monthly','每份资金额 $',100,1,100000),n('fee','每次投入费用 %',0.1,0,10,0.1)],
+    allocation: [n('stock','股票权重 %',60,0,100),n('bond','债券权重 %',30,0,100),n('stockReturn','股票情境收益 %',-20,-100,200),n('bondReturn','债券情境收益 %',5,-100,100),n('capital','本金 $',10000,1,1000000)],
+    order: [select('kind','买单类型','limit',{limit:'限价单',market:'市价单'}),n('limit','买入限价 $',100,0.1,10000,0.1),n('ask','卖方报价 $',101,0.1,10000,0.1),n('cash','可用现金 $',1000,0,1000000),n('fee','成交一次固定费用 $',1,0,100,0.1),n('quantity','委托股数',10,1,10000),n('depth','该档可供成交股数',5,0,10000)],
+    rebalance: [n('stock','当前股票市值 $',700,1,1000000),n('other','其他可调资产 $',300,0,1000000),n('target','目标股票比例 %',60,0,100)],
+    cost: [n('turnover','年交易金额 / 平均资产 %',600,0,10000),n('cost','单边交易成本 %',0.5,0,10,0.05),n('gross','策略毛收益 %',12,-100,300,0.5),n('benchmark','基准净收益 %',10,-100,300,0.5)],
+    strategy: [path(),select('rule','交易规则','trend',{trend:'价格高于历史均价',hold:'保持目标仓位'}),n('lookback','历史窗口期数',3,2,8),n('weight','目标持仓 %',80,0,100),n('cost','单边交易成本 %',0.2,0,10,0.1)],
+    arbitrage: [n('price','当前股价 $',90,1,1000),n('offer','成功收购价 $',100,1,1000),n('fail','失败情境价格 $',60,0,1000),n('prob','假设成功概率 %',80,0,100),n('cost','预计成本 / 股 $',1,0,100,0.1)],
+    leverage: [n('equity','初始自有资金 $',100,1,1000000),n('loan','初始借款 $',100,0,1000000),n('change','资产价格变化 %',-20,-100,200),n('maintenance','情境维持权益比例 %',30,0,100)],
+    dilution: [n('profit','初始总利润 $',100,0.1,100000,0.1),n('shares','初始股数',100,1,100000),n('growth','总利润增长 %',20,-99,500),n('issue','增发股数',40,0,100000)]
+  };
+  const defaults = type => Object.fromEntries((controls[type] || []).map(c => [c.key, c.value]));
+  const validate = (type, values) => (controls[type] || []).flatMap(c => c.options ? (Object.hasOwn(c.options, values[c.key]) ? [] : [`${c.label}：请选择给定选项。`]) : (!Number.isFinite(values[c.key]) || values[c.key] < c.min || values[c.key] > c.max || (c.step === 1 && !Number.isInteger(values[c.key])) ? [`${c.label}：请输入 ${c.min}–${c.max}${c.step === 1 ? ' 的整数' : ' 之间的数字'}。`] : []));
+  root.BullControls = { controls, defaults, validate };
+  if (typeof module !== 'undefined') module.exports = root.BullControls;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function (root) {
+  'use strict';
+  const q = (prompt, options, answer, explanation) => ({ prompt, options, answer, explanation });
+  const model = (type, instruction, check, values = {}) => ({ type, instruction, check, values });
+  const evidence = (instruction, check) => ({ type: 'evidence', instruction, check });
+  const agent = (report, check) => ({ report, check });
+  const chapters = [
+    ['f', '基础补给站', '把认识的概念，连接成能解释、会操作的能力。', '开始之前', '◈'],
+    ['c1', '第一份指数计划', '从产品资料到每月行动，建立自己的比较标准。', '制定计划', '↗'],
+    ['c2', '照看你的账户', '每一笔钱、每一笔订单，都有清楚的去向。', '管理账户', '▦'],
+    ['c3', '走进一家公司', '从生意和财报中，找到支持判断的证据。', '研究企业', '⌕'],
+    ['c4', '给未来一个价格', '把故事写成假设，看见估值怎样改变。', '理解估值', '◇'],
+    ['c5', '两种投资视角', '让价值与成长分析同一份材料。', '比较方法', '⇄'],
+    ['c6', '新消息，新判断', '沿着信息的时间线，更新你的研究。', '处理信息', '◷'],
+    ['c7', '把想法变成规则', '让一个交易想法具体到可以执行和检查。', '定义策略', '⌘'],
+    ['c8', '收益曲线之后', '打开实验记录，检验漂亮结果的依据。', '验证策略', '≋'],
+    ['c9', '价差与资金压力', '理论、成交与账户之间，还有哪些距离？', '理解边界', '△'],
+    ['c10', '你的独立研究', '带着自己的方法，完成最后一段旅程。', '毕业任务', '⚑']
+  ].map(([id, title, description, label, icon]) => ({ id, title, description, label, icon }));
+  const sources = {
+    book: ['Investment Philosophies · 第二版目录', 'https://pages.stern.nyu.edu/~adamodar/New_Home_Page/invphil2edbook.htm'],
+    course: ['Damodaran · 投资理念公开课', 'https://pages.stern.nyu.edu/~adamodar/New_Home_Page/webcastinvphil.htm'],
+    dca: ['Investor.gov · Dollar Cost Averaging', 'https://www.investor.gov/introduction-investing/investing-basics/glossary/dollar-cost-averaging'],
+    comparison: ['FINRA · 定投的优势与代价', 'https://www.finra.org/investors/insights/dollar-cost-averaging'],
+    reports: ['SEC · 财务报表入门', 'https://www.sec.gov/about/reports-publications/investorpubsbegfinstmtguide'],
+    orders: ['Investor.gov · 订单类型', 'https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-14'],
+    diversify: ['Investor.gov · 资产配置与分散', 'https://www.investor.gov/introduction-investing/getting-started/asset-allocation'],
+    margin: ['FINRA · 保证金账户', 'https://www.finra.org/investors/insights/margin-calls'],
+    qqq: ['Invesco · QQQ 产品说明', 'https://www.invesco.com/qqq-etf/en/about.html'],
+    aihf: ['AI Hedge Fund · 开源项目', 'https://github.com/virattt/ai-hedge-fund'],
+    ta: ['TradingAgents · 开源项目', 'https://github.com/TauricResearch/TradingAgents'],
+    qlib: ['Qlib · 量化研究框架', 'https://github.com/microsoft/qlib'],
+    rd: ['RD-Agent · 自动研究', 'https://github.com/microsoft/RD-Agent']
+  };
+  const lessons = [];
+  function add(id, title, goal, story, teach, example, facts, lab, assistant, transfer, takeaway, refs = ['course'], practice = '') {
+    const chapter = id.split('-')[0];
+    lessons.push({ id, chapter, title, goal, story, teach, example, facts, lab, agent: assistant, transfer, takeaway, sources: refs, practice, minutes: chapter === 'f' ? 10 : 15 });
+  }
+  add('f-1', '钱变多了，是赚到的吗？', '把投入本金、费用和投资损益分开。', '小林的账户从 $1,000 变成了 $1,400。他说自己赚了 40%。你来核对账本。',
+    ['账户余额会同时受到投资涨跌和外部存取款影响。先列出初始资产、追加投入、取款与期末资产，再算投资损益。', '本关期末资产还没有扣给定费用，所以：损益 = 期末资产 − 费用 − 初始资产 − 追加投入。多次投入的年化收益还需要各笔资金的日期。'],
+    '初始 $1,000，追加 $300，期末 $1,400，待扣费用 $10：损益为 $90，而不是 $400。',
+    [['账户记录', '初始 $1,000；本期追加 $300；期末 $1,400（未扣本项费用）。'], ['费用记录', '本期另扣 $10；没有取款。']],
+    model('cash', '先核对默认账本，再把追加投入改为 $350，观察投资损益如何变化。', q('追加投入越大、期末资产不变，算出的投资损益会怎样？', ['减少', '增加', '不变'], 0, '同样的期末资产中，来自本金的部分更多，投资赚到的部分就更少。')),
+    agent('“期末增加 $400，所以这期投资盈利 $400。”', q('这份教学 Agent 记录遗漏了什么？', ['股价代码', '追加本金与费用', '下一期预测'], 1, '先核对现金流，再评价投资结果。')),
+    [q('新账户初始 $2,000，追加 $500，期末 $2,650（已扣全部费用），损益多少？', ['$650', '$150', '$500'], 1, '2650 − 2000 − 500 = 150。'), q('初始 $800，没有追加，期末 $760（已扣费），投资损益？', ['−$40', '$40', '无法计算'], 0, '760 − 800 = −40；这个简单情境可以直接计算损益。')],
+    '先分开本金与收益，再讨论表现。', ['course']);
+  add('f-2', '好结果与好决策', '理解给定概率下的期望，并区分一次结果。', '两位学员选择了不同计划。一个赚了，另一个亏了，你能直接判断谁的方法更好吗？',
+    ['风险包含可能发生哪些不利结果、损失多大，以及这笔钱何时必须使用。波动只是其中一个观察角度。', '期望是按概率加权的平均结果。概率通常无法精确知道；游戏给出的概率是条件，不是预测。一次结果不能单独证明方法可靠。'],
+    '50% 概率赚 20%，50% 概率亏 10%，给定条件下期望为 5%。实际一次只能落在具体结果中。',
+    [['计划条件', '两种结果：上涨 20% 或下跌 10%，各 50%。'], ['角色约束', '半年后要支付一笔必要支出，不能承受很大损失。']],
+    model('risk', '改变下跌幅度和概率，观察期望与不利结果；两者都要检查。', q('期望为正，能否保证半年后够付必要支出？', ['能，平均赚钱就够', '能，多运行几次就确定', '不能，还要看不利结果与支出约束'], 2, '给定期望没有消除单次损失，资金期限也没有消失。')),
+    agent('“我得到正期望，但角色的必要支出可能受到下行情境影响，需要比较更低风险的方案。”', q('这份分析哪点值得保留？', ['同时检查结果分布与资金用途', '保证了不会亏损', '用期望代替所有风险'], 0, '有效分析会把数字与角色约束连接起来。')),
+    [q('25% 概率赚 40%，75% 概率亏 10%，给定期望为多少？', ['15%', '2.5%', '30%'], 1, '0.25×40% + 0.75×(−10%) = 2.5%。'), q('同一合理过程连续两次亏损，下一步更合适的是？', ['立即认定完全无效', '保证第三次会赢', '检查假设、样本与资金承受能力'], 2, '不能只凭两次结果定论，也不能把亏损当作未来必胜的理由。')],
+    '先看当时的证据和约束，再看后来结果。');
+  add('f-3', '利润为什么没有变成现金', '连接收入、利润、应收账款与现金。', '青禾咖啡签了企业团购大单。利润增加了，负责人却说现金不够付房租。',
+    ['收入确认和收款可以发生在不同时间。赊销形成应收账款；利润高，不代表钱已经到账。', '折旧是把过去资产投入分摊为费用，不等于本期又付一次现金。资本开支则可能本期付出现金，却不会立即全部计入利润。'],
+    '收入 100，现金费用 60，折旧 10，新增应收 30：利润为 30，简化经营现金流为 10。若再投入设备 15，剩余现金流为 −5。',
+    [['经营记录', '收入 100；现金费用 60；折旧 10；应收增加 30。'], ['设备记录', '本期购买设备付出 15；忽略税与利息。']],
+    model('cashflow', '减少新增应收账款，再增加资本开支，分别观察利润和现金的变化。', q('其他不变，应收账款增加更多会直接减少哪项？', ['简化经营现金流', '已确认收入一定减少', '折旧一定增加'], 0, '收入可能已经确认，但更多款项还未收回。')),
+    agent('“利润为正，所以可以把全部利润都分给股东，不用核查资金。”', q('应补查哪项证据？', ['公司标志颜色', '收款、资本支出与偿债需求', '只看关注人数'], 1, '分配能力受现金与其他支出约束。')),
+    [q('收入 200，现金费用 120，折旧 20，新增应收 50。简化经营现金流？', ['60', '30', '80'], 1, '200−120−50 = 30；利润为 60，两个口径不同。'), q('本期折旧增加，其他条件相同，现金是否因此再次流出？', ['一定', '不一定，折旧本身是非现金费用', '只要利润下降就一定'], 1, '需要查看真实现金支出，不能把折旧再扣一次。')],
+    '利润与现金回答不同的问题。', ['reports']);
+  add('f-4', '未来的钱今天值多少', '用时间与风险理解折现，不急着背公式。', '你可以今天拿到一笔钱，也可以等几年后收到。两个报价怎样比较？',
+    ['未来现金要折算到今天：时间更远或要求回报更高，相同金额的现值通常更低。要求回报体现比较机会和风险判断。', '估值是条件推理：输入现金流、增长和折现率，模型给出这些条件下的价值。它不能把未知的未来变成已知。'],
+    '一年后得到 $110，要求回报 10%，现值是 110÷1.10=$100。换成要求回报 20%，现值约 $91.67。',
+    [['模型口径', '本实验输入为股权现金流，预测 5 年，再设永续增长。'], ['待研究', '现金流能否兑现？增长所需投入是否已计入？']],
+    model('dcf', '固定现金流，分别提高折现率和增长率，比较结果与终值占比。', q('其他相同，提高折现率通常使本模型估值怎样变化？', ['提高', '不变', '降低'], 2, '未来现金用更高回报要求折回今天，现值降低。')),
+    agent('“计算结果有两位小数，因此真实价值也精确到分。”', q('你怎样修正？', ['保留小数但说明它依赖不确定假设', '再增加十位小数', '删除所有假设只留价格'], 0, '计算精度不等于输入与预测的准确度。')),
+    [q('一年后 $120，要求回报 20%，现值多少？', ['$144', '$100', '$120'], 1, '120÷1.20=100。'), q('永续增长 6%、折现率 5%，本模型应怎样处理？', ['照样输出买入', '认为价值为零', '检查并修正不成立的假设'], 2, '该永续增长公式要求折现率大于增长率。')],
+    '估值是带条件的计算，条件必须能解释。');
+  add('f-5', '怎样公平地比较', '对齐资金、期限、成本和风险，再看收益。', '一份报告说“等待回调”胜过每月投入，但两条曲线的资金条件不同。',
+    ['比较策略要使用相同的资金可用时间、观察期限与费用处理。未来才收到的工资不能在第一天全部买入。', '还要说明基准与风险暴露。资产范围不同、投入不同的曲线，不能只看终点高低。'],
+    'A 每月获得 $100；B 第一天就获得 $1,200。它们的结果差异同时包含资金到达时间，不能单独归因于买入方法。',
+    [['方案 A', '每月工资到账后投入 $100，连续 12 期。'], ['方案 B', '第 1 期已拥有 $1,200，并全部投入。'], ['报告主张', 'B 期末资产更大，因此每月投入没有价值。']],
+    evidence('逐条核对两个方案的前提，选择最先需要修正的比较条件。', q('最先需要对齐什么？', ['页面配色', '资金可用时间与金额', '给方案换名字'], 1, '先保证两个策略面对同样的资源，再比较决策规则。')),
+    agent('“应分成已有整笔现金、逐月收到工资两种情境，分别检验。”', q('这个建议是否解决关键问题？', ['是，明确区分资源条件', '否，所有资金必须相同日到账', '否，只应选择好看的曲线'], 0, '分别讨论两种情境能避免把不同问题混在一起。')),
+    [q('策略赚 8%，匹配基准赚 12%，能否只说“赚了，所以优于基准”？', ['能', '不能，相对基准少 4 个百分点', '不能，因为一定要亏钱'], 1, '赚钱与超过基准是两个不同判断。'), q('比较两种月投方案时，等待中的现金应该怎样处理？', ['从账户中删掉', '算作利润', '纳入账户并说明现金收益假设'], 2, '现金也属于策略资产，遗漏它会改变比较。')],
+    '先检查比赛规则是否相同。', ['comparison', 'course']);
+  add('f-6', '给结论找一个出处', '分清资料、推断、假设与计算工具。', 'Agent 给你一份三行报告。你要决定哪些可采用、哪些应继续核查。',
+    ['研究任务应说明问题、资料范围与截止时间、约束和输出形式。数据来源、时间和口径要跟随数字一起保存。', 'LLM 可以组织分析与调用工具，但文字流畅不是证据。数字交给可检查的计算；关键事实回到来源核对。'],
+    '“报告收入 100”可以核对原文；“未来收入增长 30%”通常是预测，需要假设和依据。两者不能放在同一列假装都已发生。',
+    [['资料 A · 教学财报', '2025 年收入 100，2026 年 3 月公开。'], ['Agent 推断', '明年增长 30%，未提供依据。'], ['时间要求', '研究截止时间为 2026 年 4 月。']],
+    evidence('给三条资料标清已知与未知，再选择一个可执行的补充任务。', q('哪条委托最具体？', ['帮我发财', '请更专业', '核对收入原文，列出增长假设与反证，并标明时间'], 2, '具体的范围、输出与检查标准才能形成可审核任务。')),
+    agent('“公司今年收入 100，明年肯定 130，所以我保证判断正确。”', q('报告中最需要修正的是？', ['已知与预测混用，且把预测说成确定', '收入数字不是整数', '语言不够热情'], 0, '核对事实后，还要单独检查推断是否有依据。')),
+    [q('两位 Agent 同意一个结论，能否代替数据核查？', ['能，多数总是对', '不能，可能共用同一错误数据', '能，只要报告长'], 1, '角色数量不保证信息独立。'), q('运行历史研究，最应保存哪组记录？', ['结果截图即可', '最终一句买入', '来源、可得时间、输入、配置和版本'], 2, '这些记录帮助重查时点与复现流程。')],
+    '事实能溯源，假设能质疑，计算能复查。', ['course', 'ta'], 'research');
+
+  add('c1-1', '你准备买的是什么', '读产品事实资料，建立比较表。', '小林想“买纳指”。你收到两张虚构基金资料，需要先弄清跟踪对象。',
+    ['指数规定样本和权重，基金是投资工具。相似名称可能对应不同指数、费用与机制。', '比较表至少包括跟踪对象、持仓集中度、费率、交易货币与产品结构。纳斯达克交易所、综合指数、Nasdaq-100 也要分清。'],
+    '基金 A、B 都跟踪教学指数 N100，A 费率 0.20%，B 费率 0.10%；这只告诉我们费率差异，还需看交易成本与跟踪表现。',
+    [['虚构基金 A', '普通指数基金；跟踪 N100；年度费率 0.20%；前十持仓 48%。'], ['虚构基金 B', '普通指数基金；跟踪 N100；年度费率 0.10%；前十持仓 48%。'], ['资料说明', '这些是原创数据，不是当前真实基金报价。']],
+    evidence('选出比较表中不能由现有资料直接得出的结论。', q('哪项仍需进一步核对？', ['B 给定费率较低', '两者跟踪目标相同', 'B 所有情况下实际收益都更高'], 2, '实际结果还受跟踪、交易和其他成本影响。')),
+    agent('“名字里都有纳指，因此所有相关基金的机制完全相同。”', q('给 Agent 增加哪条要求？', ['核对跟踪指数、产品结构和最新说明书', '只保留名字', '按热度排序即可'], 0, '名称不是产品条款，应该逐字段核对。')),
+    [q('两只基金成分高度重叠，买两只就一定显著分散了吗？', ['一定', '不一定，要检查共同暴露', '只看基金个数'], 1, '名义数量不等于独立风险。'), q('真实基金费率应该从哪里核对？', ['当前官方产品资料并记日期', '任意旧截图', 'Agent 的记忆即可'], 0, '可变条款应回到当前官方材料。')],
+    '先读持有什么，再读怎样持有。', ['qqq', 'diversify'], 'research');
+  add('c1-2', '让投入节奏匹配资金', '区分逐月新收入与已有整笔资金。', '小林每月有 $100 可投入。你要比较固定投入与等待低价的计划。',
+    ['定投是按固定间隔投入固定金额的安排，不是对标的涨跌的保证。资金什么时候可用，决定有哪些可执行方案。', '固定金额在低价时买到更多份额、高价时买到更少；最终盈亏还取决于后来价格、费用和投入路径。'],
+    '两期各投 $100，价格分别 $10、$20，可买 10+5=15 份，总成本 $200，平均每份成本约 $13.33。',
+    [['角色计划', '每期新得到 $100；不能预支未来收入。'], ['实验路径', '12 期原创价格，可切换上涨、下跌、震荡与修复。']],
+    model('dca', '切换上涨和下跌路径，记录同样投入下的不同结果。', q('固定投入之后是否一定盈利？', ['一定，因为平均成本下降', '不一定，标的仍可能持续下跌', '一定，只要次数足够'], 1, '投入节奏不能消除标的与期限风险。')),
+    agent('“直接第一期投入未来十二期工资，就能公平比较定投。”', q('应怎样纠正？', ['去掉现金限制', '把借款当免费', '保持各方案相同的资金到账时间'], 2, '资源条件必须一致。')),
+    [q('各投 $120，价格 $12 与 $24，总份额？', ['15 份', '20 份', '10 份'], 0, '120÷12 + 120÷24 = 15。'), q('有一笔钱现在即可投入，分批投入的一个代价是什么？', ['等待中的现金可能错过上涨', '能保证更高收益', '能删除价格风险'], 0, '等待减少部分市场暴露，也可能放弃上涨收益。')],
+    '投入节奏先匹配现金流，再比较结果。', ['dca', 'comparison']);
+  add('c1-3', '计划要变成成交', '处理限价、余额和部分成交。', '你的计划是本期买入基金，但提交订单不等于已经持有。',
+    ['限价买单约束最高买价，但不保证成交。成交还取决于可用报价、数量、资金和具体交易规则。', '每次操作后核对订单状态、成交股数、费用、现金与剩余委托。周期计划遇到休市或余额不足，需要明确定义处理方式。'],
+    '限价 $99，当前卖价 $100，买单暂不成交。把限价提高到 $100 仍可能因深度或资金只能部分成交。',
+    [['订单', '计划买 8 股；现金 $600；一档卖价 $100，深度 5 股。'], ['简化条款', '成交时固定费用 $1；本关不模拟真实队列。']],
+    model('order', '让订单分别经历未成交与部分成交，再核对剩余现金。', q('本期提交了 8 股订单，只成交 5 股，持仓新增多少？', ['8 股', '3 股', '5 股'], 2, '持仓按已成交数量变化，不按提交数量。'), { cash: 600, quantity: 8, depth: 5 }),
+    agent('“订单已发送，我已把全部委托数量算进持仓。”', q('需要检查哪个环节？', ['成交回报与实际持仓', '公司简介', '长期增长率'], 0, '发送、接受、成交是不同状态。')),
+    [q('有 $501，买价 $100，费用 $1，足够买几股整数股？', ['6', '5', '4'], 1, '(501−1)÷100=5。'), q('限价未成交，下一步合适的是？', ['核对行情与计划，决定保留、修改或撤单', '认定资金已经投资', '无限提高价格直到成交'], 0, '操作应回到价格和资金约束。')],
+    '把计划、委托、成交和持仓分开记录。', ['orders']);
+  add('c1-4', '遇到变化，怎样调整', '根据目标与现金需求复核计划。', '三期以后市场下跌，小林同时得知半年后可能需要一笔现金。',
+    ['价格下跌与资金用途改变是两种不同信息。前者需要检查原假设，后者可能改变适合承担的风险。', '提前写复核条件：资金用途、收入变化、产品机制变化、风险约束。规则不应简单写成“永不改变”或“跌了就停”。'],
+    '若投入计划依赖每月余钱，而余钱减少，投入金额应重新审视；这与根据一天涨跌猜市场是不同问题。',
+    [['新信息 A', '本月价格下降 12%，产品目标未变。'], ['新信息 B', '半年后可能有必要支出，现有备用现金不足。'], ['原计划', '使用长期闲置资金，不影响必要支出。']],
+    evidence('检查哪条新信息直接影响原计划约束。', q('最先应该重算什么？', ['备用现金和半年内资金需求', '下周精确最低价', '过去哪天买最划算'], 0, 'B 改变了资金用途，需要首先确认。')),
+    agent('“先区分价格波动和角色现金需求，重新估算可以长期投入的金额。”', q('这个建议的依据是什么？', ['预测明天上涨', '资金约束发生变化', '所有下跌都要卖出'], 1, '它连接了新证据与原计划条件。')),
+    [q('必要支出增加，调整投入是否必然是恐慌择时？', ['是', '不是，要看调整依据', '只要卖出就是'], 1, '基于资金需求的调整与猜短期涨跌不同。'), q('一份计划应包含哪项？', ['保证收益数字', '只写买入名称', '复核条件与信息不足时的处理'], 2, '计划需要说明什么变化会触发重新判断。')],
+    '纪律包含按条件复核，而非机械不变。', ['dca', 'diversify']);
+
+  add('c2-1', '持仓多，不一定分散', '检查共同风险与组合情境。', '你有科技主题基金和几只大型科技股，持仓数量不少，但都受类似因素影响。',
+    ['分散要看风险来源，而不只看证券个数。不同名称的基金可能持有相同公司。', '组合收益来自权重和各资产的变化。共同下跌情境能帮助发现集中暴露，但资产未来相关性也会变化。'],
+    '60% 资产跌 20%，40% 资产涨 5%，单期组合变化为 −10%。',
+    [['教学资产', '股票、债券与现金三类；收益由情境给定。'], ['目标', '检查分散后的不利结果，不能只看平均收益。']],
+    model('allocation', '尝试不同股票权重，在给定下行情境中比较损失。', q('多买几只同一行业股票一定消除共同风险吗？', ['能，名称不同就独立', '不能，需要检查共同暴露', '只能用股价判断'], 1, '数量与风险来源不是一回事。')),
+    agent('“持有十只产品，已经自动实现充分分散。”', q('你会要求它补充什么？', ['产品简称', '持仓重叠与风险暴露', '排行榜'], 1, '应检查底层资产、权重与共同驱动。')),
+    [q('50% 资产跌 10%，50% 资产涨 4%，组合变化？', ['−3%', '−6%', '+7%'], 0, '0.5×−10%+0.5×4%=−3%。'), q('债券在某情境也下跌，是否说明分散永远无用？', ['是', '不是，相关性和风险要看具体情境', '债券不可能下跌'], 1, '分散不保证每一期都盈利。')],
+    '数清风险来源，比数持仓名称更重要。', ['diversify']);
+  add('c2-2', '核对现金与账本', '把订单、现金和持仓对上。', '教学 Agent 生成了一份账户摘要，你发现它在订单成交前就扣完了全部金额。',
+    ['现金余额、可用于交易的金额、已结算资金和未成交委托是不同状态。券商规则还可能影响可用金额。', '本关只核对成交扣款：现金减少 = 实际成交金额 + 本项费用。未成交部分不能当作新增持仓。'],
+    '成交 3 股，每股 $100，费用 $1，原现金 $500：现金剩 $199，新增 3 股。',
+    [['核对清单', '现金、成交股数、成交价、费用、剩余委托逐项匹配。'], ['账户边界', '实际资金结算和交易权限以对应账户条款为准。']],
+    model('order', '改变现金与市场深度，核对可以成交的最大整数股数。', q('这个教学模型能否代替券商真实可用资金规则？', ['能，任何账户都一样', '只能核对给定假设下的成交账本', '能预测下一笔成交价'], 1, '模型未覆盖真实结算、权限和全部执行规则。'), { cash: 500, quantity: 3, depth: 10 }),
+    agent('“已成交 3 股，每股 $100，费用 $1，因此从现金扣 $301。”', q('在本关条件下该计算怎样评价？', ['正确，可与成交回报核对', '错误，费用不应扣', '正确所以不必查来源'], 0, '数字可算对，仍应对照原始成交记录。')),
+    [q('卖出收入 $600，交易费用 $2，现金净增加？', ['$602', '$600', '$598'], 2, '600−2=598，资金可用时点仍需按账户规则。'), q('未成交委托应在学习账本中如何标记？', ['已持仓', '单列订单状态', '直接删除不管'], 1, '单列可以继续核对撤单、部分成交与余额。')],
+    '账本以发生的交易为准。', ['orders']);
+  add('c2-3', '把组合拉回目标', '计算再平衡数量并理解目的。', '股票上涨后，你的组合股票比例从目标 60% 变成 70%。',
+    ['再平衡按预定目标或容忍区间调整权重，目的是管理风险暴露。是否交易还要考虑费用、税和新增资金。', '先算当前总资产，再算目标金额，与现有金额求差。新投入资金也可以用于调整，未必必须卖出。'],
+    '总资产 $10,000，股票 $7,000，目标 60%：目标 $6,000，需从股票转出 $1,000，忽略费用。',
+    [['当前组合', '股票 $7,000；其余资产 $3,000。'], ['目标', '股票 60%，其余 40%；本实验忽略税费。']],
+    model('rebalance', '修改目标比例，再尝试改变其余资产，观察要调整的金额。', q('再平衡最直接的目的是什么？', ['保证下次上涨', '恢复目标风险暴露', '总是卖掉表现最差资产'], 1, '它按目标权重管理组合，不承诺提高未来回报。')),
+    agent('“股票涨了就该全部卖掉，这才叫再平衡。”', q('需要纠正哪个概念？', ['调整应对应目标权重和约束', '股票不能卖', '再平衡只能买'], 0, '目标决定调整幅度，不是一次涨跌决定全部退出。')),
+    [q('总资产 $8,000，股票 $5,000，目标 50%，应转出多少股票金额？', ['$4,000', '$1,000', '$500'], 1, '目标 4000，与现有 5000 差 1000。'), q('已有新现金到账，可以怎样减少交易？', ['先比较用新增资金补低配资产的效果', '忽略新现金', '必须先卖所有股票'], 0, '新增资金可能帮助恢复权重，但要重新计算。')],
+    '先算目标差额，再决定如何执行。', ['diversify'], 'config');
+  add('c2-4', '账户增长与投资表现', '分开净损益、资金时点和基准比较。', '两个人都说账户翻倍了，其中一人这一年又存入了一大笔钱。',
+    ['净损益先去掉外部投入。需要比较策略时，还要处理资金时点；时间加权与资金加权指标回答的问题不同。', '时间加权试图隔离外部资金流的影响，资金加权考虑资金何时投入。这里先掌握口径，不把简单损益率冒充任何一种完整年化指标。'],
+    '初始 1000、追加 900、期末 2000，损益为 100；不能据此声称投资赚 100%。',
+    [['账户 A', '初始 $1,000，年中追加 $900，期末 $2,000。'], ['评价缺口', '要算资金加权年化，需要具体日期；要算时间加权，需要各现金流时点的估值。']],
+    model('cash', '把追加资金从 $300 改为 $900，同时修改期末资产，核对净损益。', q('缺少资金流日期时，应怎样报告？', ['编造一个年化数字', '只说账户涨幅', '给出可算的损益，并说明年化资料不足'], 2, '说明能够计算什么以及缺什么。'), { deposit: 900, ending: 2000, fee: 0 }),
+    agent('“我只知道年初年末余额，所以无法可靠地处理年中大额现金流对年化的影响。”', q('这个回答应怎样处理？', ['要求它随便猜', '补充日期与中间估值记录', '换个更自信的模型'], 1, '补齐输入比追求一个看似精确的输出更重要。')),
+    [q('初始 3000，追加 1000，期末 4200（已扣费），损益？', ['1200', '200', '1000'], 1, '4200−3000−1000=200。'), q('比较策略和基准时，哪个要求合理？', ['相同区间、匹配风险，并说明成本和资金流', '只比较最高点', '忽略失败区间'], 0, '比较条件决定结果是否有意义。')],
+    '余额是状态，收益指标需要明确口径。');
+
+  add('c3-1', '先问生意，再问代码', '把研究对象变成具体问题。', '你喜欢青禾咖啡，想让 Agent 告诉你值不值得研究。先把“喜欢”变成待核实的假设。',
+    ['研究商业模式先问客户是谁、为何付钱、主要成本和竞争来自哪里。熟悉产品可以提供线索，不能替代经营证据。', '交给 Agent 的任务要具体到输出与来源：提取门店数、同店销售、利润率和现金数据，再列出缺失项。'],
+    '“我看到排队”是一条局部观察；“所有门店都能持续盈利”需要更多证据。',
+    [['实地观察 · 虚构', '你家附近的一家门店周末排队。'], ['公司资料 · 虚构', '门店从 80 增至 100，同店销售下降 3%，总收入增长 18%。']],
+    evidence('选择能区分扩店增长与原有门店表现的研究问题。', q('最有帮助的下一步是什么？', ['只拍门店照片', '核对同店销售、单店利润和新店投入', '看谁给出最高目标价'], 1, '总收入增长可能来自门店数量，也可能掩盖单店弱化。')),
+    agent('“附近很受欢迎，所以公司所有门店都盈利。”', q('该推断哪里跳步了？', ['从单点观察推到全部经营结果', '用了公司名字', '观察本身不能记录'], 0, '保留观察，但扩大结论需要对应范围的数据。')),
+    [q('云帆软件收入增长，最该补查哪项？', ['客户留存、付费变化和获客成本', '办公室颜色', '只看下载次数'], 0, '收入来源与维持它的成本决定经营质量。'), q('好的 Agent 委托应允许什么？', ['缺数据也要补齐结论', '明确标注缺失信息', '只展示利好'], 1, '缺口也是研究结果。')],
+    '把印象变成问题，把问题连接到证据。', ['course', 'reports'], 'research');
+  add('c3-2', '在报表中找到答案', '匹配期间、单位与报表项目。', '青禾利润表的单位是千美元，Agent 却按美元抄进了比较表。',
+    ['取数必须一起保存项目名、数值、单位、期间和来源。年度、季度、累计数据不能随意混在一起。', '利润表描述一段期间，资产负债表描述某个时点，现金流量表解释一段期间的现金变化。'],
+    '“收入 2,000，单位千美元”是 $2,000,000。它不能与另一个公司的“季度收入 $2,000”直接比较。',
+    [['材料 A · 虚构报表', '截至 2025 年末的全年收入 2,000，单位千美元。'], ['材料 B · 虚构报表', '2025 年第四季度收入 600，单位千美元。'], ['材料 C', '2025 年末现金余额 300，单位千美元。']],
+    evidence('为年度收入选择正确的标准化数值。', q('材料 A 的全年收入是多少美元？', ['$2,000', '$2,000,000', '$200,000'], 1, '千美元需要乘 1000，并保留年度口径。')),
+    agent('“全年收入 2000，季度收入 600，因此我直接相加作为全年收入 2600。”', q('为什么不能这样合并？', ['季度已经包含在全年内，会重复计算', '任何数据都不能加', '必须先乘股价'], 0, '先确认期间是否包含，避免重复。')),
+    [q('一项数值是“截至 6 月末现金余额”，它主要是什么口径？', ['半年收入', '时点存量', '全年利润'], 1, '现金余额是某时点的存量。'), q('Agent 提取了正确数字，但未记录来源页和单位，怎样改进？', ['增加这些字段并核验', '直接算增长率', '只换图表'], 0, '数值需要上下文才能可靠使用。')],
+    '取一个数字，也要取走它的口径。', ['reports'], 'research');
+  add('c3-3', '增长的钱从哪里来', '检查债务、增发与每股结果。', '云帆软件利润增长 20%，同时增发了不少股票。每位股东得到的改善一样吗？',
+    ['企业总利润与每股利润不同。增发改变分母，再融资、资本开支和债务还会影响未来现金需求。', '比较 EPS 要检查股数口径。实际报告通常使用期间加权平均股数，本模型只用简化前后股数。'],
+    '利润从 100 增到 120，股数从 100 增到 150：EPS 从 1 降到 0.8。',
+    [['虚构公司', '原利润 100、原股数 100；利润增长 20%，新增股数 50。'], ['进一步研究', '融资用于什么？投入能否带来足够回报？']],
+    model('dilution', '调整新增股数，找到总利润增长但 EPS 下降的情境。', q('为什么总利润增长未必让 EPS 同步增长？', ['股数也可能增加', 'EPS 与利润无关', '股价决定所有利润'], 0, '必须同时看分子与分母。')),
+    agent('“总利润增长 20%，因此每股利润一定增长 20%。”', q('应补充哪个输入？', ['股数及其口径', '天气', '模型温度'], 0, '每股数据不能遗漏股数变化。')),
+    [q('利润 200、股数 100，之后利润 220、股数 110，新 EPS？', ['2.2', '2', '1.8'], 1, '220÷110=2，EPS 没有增长。'), q('增发是否总是坏事？', ['是，所有增发毁灭价值', '不是，还需评价用途、价格与回报', '不是，所以不用查'], 1, '融资机制需要结合用途和经济结果分析。')],
+    '总量增长之后，再检查每股结果。', ['reports', 'course']);
+  add('c3-4', '一份带缺口的研究摘要', '把事实、疑点和下一步组织成记录。', '青禾的利润增长很快，但现金流偏弱；你要写一份不过度下结论的摘要。',
+    ['异常是研究线索，不自动等于造假或失败。应收增长可能来自扩张、回款变慢或其他原因，需要证据区分。', '研究摘要包括已知事实、可能解释、支持/反驳证据、资料缺口和下一步。Agent 可整理，结论强度由证据决定。'],
+    '“应收增加导致本期现金弱”可由数字支持；“客户都不会付款”则需要账龄与回收证据。',
+    [['材料 1', '收入 200，现金费用 120，新增应收 50，资本开支 40。'], ['材料 2', '新增应收主要来自企业客户；未提供账龄。']],
+    model('cashflow', '计算经营现金与资本开支后的现金，再列出最关键的资料缺口。', q('现在能支持哪个结论？', ['所有应收必然损失', '收入是假的', '现金受到应收与资本投入影响，需查回款'], 2, '先解释已知关系，再查未确定的回收情况。'), { sales: 200, expenses: 120, receivable: 50, capex: 40, depreciation: 20 }),
+    agent('“我已把现金缺口列出，但缺少账龄，无法确认坏账程度。”', q('下一条任务应是什么？', ['找账龄、信用条件和后续回款材料', '删除所有疑点', '必须立即给买卖结论'], 0, '补充能够区分解释的证据。')),
+    [q('一份可靠摘要可以包含“暂不能判断”吗？', ['不可以', '可以，但说明缺什么以及怎样查', '可以，不需要任何理由'], 1, '明确的信息缺口比无依据的确定结论更有用。'), q('Agent 报告与原文冲突，应优先怎样处理？', ['按报告的文采选', '回原始资料核对期间与口径', '多数投票'], 1, '来源核查才能定位错误。')],
+    '研究成果也包括清楚标出的未知。', ['reports', 'aihf'], 'research');
+
+  add('c4-1', '搭一台看得懂的估值器', '连接现金流、增长和要求回报。', '你要给青禾未来产生的股权现金流定一个情境价值。',
+    ['估值器把现金流与时间连接起来。现金流口径必须与折现率一致：股权现金流对应股权要求回报。', '增长需要投入。若上调增长，却假定无需额外投资，要解释为什么；模型不会替你补上经营逻辑。'],
+    '同样未来现金流，提高要求回报会降低现值；给定要求回报，提高可分配现金通常增加价值。',
+    [['模型输入', '当前股权现金流 100，未来五年增长率给定。'], ['注意', '现金流是再投资后的量，不是直接拿收入来折现。']],
+    model('dcf', '分别改变现金流与折现率，观察方向；再检查输入口径。', q('这台估值器最需要哪种一致性？', ['收入与股价颜色一致', '现金流与折现率口径一致', '所有公司使用同一个增长率'], 1, '现金流对应谁，折现率就应反映谁的要求回报。')),
+    agent('“用公司营业收入直接当成股东可拿走的现金，再用同一折现率计算。”', q('需要补充什么？', ['成本、投资、债务等连接收入与股权现金的项目', '更多小数位', '只改函数名字'], 0, '收入不是可分配现金。')),
+    [q('增长需要大量再投资，模型应该怎样处理？', ['只加收入，不加投入', '把投入反映在现金流假设中', '把投入自动记为利润'], 1, '增长与现金流必须相互一致。'), q('模型输出低于市价，能否自动认定市场错误？', ['能', '不能，也要检查自己的输入和模型边界', '模型从不出错'], 1, '比较差异只是研究起点。')],
+    '理解每个输入，才拥有自己的模型。');
+  add('c4-2', '三个未来，一段区间', '用情境和敏感性表达不确定性。', '对云帆的增长有不同意见，你准备比较悲观、基准和乐观情境。',
+    ['情境应是一组相互一致的经营假设，不是任意调出三个目标价。乐观增长也可能伴随更高投资需求。', '敏感性分析一次改变一个变量，观察哪些输入主导结论；它不会给出这些输入出现的真实概率。'],
+    '若估值主要来自终值，最终增长和折现率的小变动可能造成明显变化，应重点解释这些假设。',
+    [['基准情境', '股权现金流 100，五年增长 8%，要求回报 10%，终值增长 2%。'], ['研究任务', '检查终值占比，再改变要求回报。']],
+    model('dcf', '记录两组不同假设，解释哪一项让结果变化最大。', q('终值占比很高时，应该怎样报告？', ['隐藏终值让结果更简单', '只报告最高估值', '说明结果依赖远期假设并检查敏感性'], 2, '暴露依赖条件有助于判断估值可信度。')),
+    agent('“我把增长率调高直到估值等于想买的价格，证明值得买。”', q('这属于哪类问题？', ['用想要的结论反向挑假设', '有效的独立证据', '保证了现金流兑现'], 0, '参数应有业务依据，而不只是满足结论。')),
+    [q('只改变折现率观察结果，主要在做什么？', ['敏感性分析', '证明真实概率', '预测精确日期'], 0, '它显示输入变化对输出的影响。'), q('三种情境之间应该保持什么？', ['所有参数完全一样', '经营与现金流假设相互一致', '乐观情境永远零投入'], 1, '连贯的假设比单纯高低数字更有用。')],
+    '区间背后要有不同但连贯的故事。');
+  add('c4-3', '同样的倍数，不同的生意', '控制口径和经营差异再比较。', '青禾与另一家公司都有 20 倍 PE，你是否已经知道它们同样便宜？',
+    ['相对估值要检查盈利是否可持续、历史或预测口径是否一致，以及增长、风险和资本投入是否可比。', 'PB、PS、PE 各有分母和限制。亏损时 PE 的含义受限，PS 也不能省略盈利能力。'],
+    '两家公司当前 EPS 同为 2，但一家利润来自一次性收益，另一家来自持续经营，相同 PE 并不说明相同价值。',
+    [['公司 A', 'EPS 2，其中一次性收益 1；股价 40。'], ['公司 B', 'EPS 2，来自持续业务；股价 40。']],
+    evidence('找出需要统一的盈利口径。', q('下一步最有价值的操作？', ['只比较股价', '核对正常化盈利和业务前景', '宣布两者完全等价'], 1, '倍数只是压缩信息，分母和前景仍要研究。')),
+    agent('“A 的 PE 是 20，因此恰好 20 年后你必定收回本金。”', q('这个表述遗漏了什么？', ['盈利变化、再投资与现金分配等条件', '股票代码长度', '更多历史价格颜色'], 0, '企业利润不是每年必然支付给股东的现金。')),
+    [q('用 PS 比较公司，还应检查什么？', ['利润率与未来现金形成能力', '只看销售额', '销售增长必定增值'], 0, '相同收入可能带来不同的经济收益。'), q('历史 PE 与预测 PE 能否不加说明直接对比？', ['可以', '应先统一期间与预测假设', '只需统一字体'], 1, '分母口径不同会改变比较。')],
+    '倍数背后有一整套经营假设。');
+  add('c4-4', '盈利增长，股价却下跌', '分开经营变化与市场定价。', '公司 EPS 增长 20%，你原以为股价也会涨 20%。',
+    ['股价可写成 EPS×PE。两项同时变化，盈利增长不直接确定股票收益。', '未来倍数包含市场预期和风险判断。用已给倍数解释情境不等于预测了未来倍数。'],
+    'EPS 2、PE 30，价格 60；EPS 变为 2.4、PE 降到 20，价格 48，价格收益 −20%。',
+    [['初始条件', 'EPS 2，PE 30，价格 60。'], ['后续情境', 'EPS 增长 20%，市场给予 PE 20，忽略分红与费用。']],
+    model('multiple', '让 EPS 增长但价格下降，再寻找使价格持平的倍数附近。', q('本例价格下降的解释是什么？', ['盈利没有增长', '倍数下降抵消了盈利增长', '乘法不适用'], 1, '经营改善和市场定价可以朝不同方向变化。')),
+    agent('“利润上涨足以保证股价上涨，无需考虑买入价格。”', q('你会要求检查什么？', ['未来 EPS 与倍数假设，以及初始价格', '只加一句长期持有', '换成更乐观措辞'], 0, '收益同时取决于经营与支付/兑现的价格。')),
+    [q('EPS 从 3 变为 3.3，PE 从 20 变为 18，新价格？', ['66', '59.4', '54'], 1, '3.3×18=59.4；原价60，价格收益−1%。'), q('EPS 不变、PE 上升，能否说明经营必然改善？', ['能', '不能，市场定价可能先变化', 'EPS 没有意义'], 1, '要分别核查经营事实和市场预期。')],
+    '好经营与好投资之间，还隔着价格。');
+
+  add('c5-1', '从便宜名单到研究名单', '把筛选当作研究入口。', 'Agent 按低 PE 筛出三家公司，准备全部买入。你要接管筛选后的判断。',
+    ['价值筛选寻找价格相对某个指标较低的对象。低倍数可能来自低估，也可能反映风险或盈利高点。', '筛选结果应该进入研究名单，继续检查可持续盈利、资产负债、治理和价值兑现条件。'],
+    '周期制造企业在行业景气高点利润激增，PE 看似很低；下一阶段利润回落可能让这个“便宜”消失。',
+    [['磐石制造 · 虚构', '本年利润翻倍，PE 6；行业价格处于高位。'], ['青禾咖啡 · 虚构', '利润稳定，PE 18；现金流待核查。']],
+    evidence('选出筛选后最应补充的一类研究。', q('对磐石优先查什么？', ['利润跨周期表现与债务', '只看 PE 排名', '只看名字是否熟悉'], 0, '判断盈利是否处于暂时高点，才能理解低倍数。')),
+    agent('“最低 PE 自动等于最佳投资。”', q('怎样修改策略任务？', ['加入盈利质量、周期与债务检查，输出候选及缺口', '提高买入金额', '隐藏风险列'], 0, '筛选与投资结论之间需要证据链。')),
+    [q('低 PB 是否直接证明能按账面价值变现？', ['是', '否，要研究资产质量与变现条件', '账面价值永远是现金'], 1, '会计账面值不等于可实现价格。'), q('筛选名单最合理的用途？', ['自动买入全部', '缩小研究范围', '替代所有财报'], 1, '筛选提高研究效率，但不完成全部判断。')],
+    '筛选找到候选，研究决定论点。', ['course', 'aihf'], 'config');
+  add('c5-2', '安全边际与价值陷阱', '检查估值折扣背后的错误可能。', '某公司市场价明显低于你的估值，你想把差额称为安全边际。',
+    ['安全边际取决于估值及其不确定性。如果模型高估可持续现金流，再大的表面折扣也可能不足。', '需要考虑基本面继续恶化、等待期间的资金需求与价值兑现条件。低价不会自动触发重估。'],
+    '如果估值 100 依赖现金流不下降，而实际可能长期下降到一半，那么价格 70 未必提供你想象的缓冲。',
+    [['原假设', '现金流 100，可持续增长。'], ['新证据', '客户流失、债务到期；是否持续恶化尚未知。']],
+    model('dcf', '降低现金流并提高要求回报，观察原“折扣”是否仍存在。', q('面对现金流恶化，首先该做什么？', ['用旧估值反复强调便宜', '重新检查估值假设与资金约束', '认为价格越低越安全'], 1, '安全边际必须建立在可辩护的估值上。'), { growth: 3, discount: 12 }),
+    agent('“低于我的目标价 30%，所以永久损失风险为零。”', q('问题在哪里？', ['目标价也依赖不确定的估值假设', '折扣不能计算', '价格不能比较'], 0, '模型错误与业务恶化风险仍然存在。')),
+    [q('什么证据最可能推翻原投资论点？', ['模型核心客户持续流失且无法替代', '一天股价波动', '研究报告篇幅变短'], 0, '反证应针对核心经营假设。'), q('没有兑现期限的低估判断还需考虑什么？', ['等待的机会成本与资金需求', '只看今日涨跌', '可以忽略所有时间'], 0, '时间也是实施条件。')],
+    '给价格留余地，也给自己的判断留余地。');
+  add('c5-3', '增长需要付出什么', '把增长故事连接到投入和每股价值。', '云帆用户翻倍，Agent 把“用户增长”直接当成“股东价值翻倍”。',
+    ['增长要拆成客户、付费、价格、利润率与维持增长的投入。用户多并不自动带来更多可分配现金。', '融资和稀释会改变每股结果。成长与价值分析都需要考虑价格中已包含多少期望。'],
+    '总利润增长 30%，股数也增长 30%，简化 EPS 不变；还需要研究增长的资金代价。',
+    [['云帆资料 · 虚构', '用户增长 80%，付费客户增长 20%，研发与获客投入显著增加。'], ['缺口', '客户留存与单位经济数据尚未提供。']],
+    model('dilution', '提高增长率，同时增加股数，比较企业增长与每股增长。', q('哪条研究最能连接增长和价值？', ['检查留存、利润率、投入与融资', '只列用户数量', '把总市场都算成收入'], 0, '把增长转成可持续现金需要多项条件。'), { growth: 30, issue: 30 }),
+    agent('“潜在市场巨大，所以公司一定能获得全部市场。”', q('你会补上哪个假设？', ['可获得份额、竞争、利润率与投入', '只要总市场数字更大', '不要任何约束'], 0, '市场空间与公司可实现收益之间有很多步骤。')),
+    [q('高增长是否可能破坏价值？', ['不可能', '可能，当新增投入回报不足以补偿成本', '只有亏损公司才可能'], 1, '增长的经济质量决定效果。'), q('“好公司”直接等于“任何价格都值得买”吗？', ['是', '否，还需比较支付价格与隐含预期', '只看知名度'], 1, '质量和价格要一起研究。')],
+    '增长是起点，投入与价格决定含义。');
+  add('c5-4', '让两种方法互相质疑', '比较方法的假设，而非名人标签。', '价值 Agent 与成长 Agent 对云帆意见不同。你要把分歧落到同一张假设表上。',
+    ['不同方法可能关注不同的信息与时间尺度。先确认它们使用的是不是同一版本材料，再比较核心假设。', '开源项目里的名人风格 Agent 是开发者编写的角色提示，不代表本人意见或能力。最终判断不能靠头衔或角色投票。'],
+    '价值视角担心价格已透支增长；成长视角认为留存能支撑长期扩张。真正分歧是未来现金和支付价格，不是称号。',
+    [['价值观点', '假设付费增长降至 8%，强调现金流与价格。'], ['成长观点', '假设付费增长维持 20%，强调留存与产品扩张。'], ['共同缺口', '两者都没有新一期客户留存数据。']],
+    evidence('找到能够最直接检验分歧的资料。', q('应该优先补查什么？', ['角色头像', '客户留存与扩张证据', '谁的语言更自信'], 1, '证据要对应造成估值分歧的假设。')),
+    agent('“三个角色支持买入，所以不用核对共同假设。”', q('为什么这个结论不够？', ['角色可能共用同一数据与错误假设', '只能一个角色分析', '多数结论必须相反'], 0, '一致性不等于独立证据。')),
+    [q('比较两个模型，第一步通常应该？', ['统一资料版本和口径', '选择最高估值', '数报告字数'], 0, '先确保比较的是同一个问题。'), q('何时可以暂缓结论？', ['核心分歧缺少足够证据时，并说明后续核查', '任何时候无需理由', '永远不能'], 0, '暂缓应有可说明的信息缺口。')],
+    '比较假设与证据，而不是比较头衔。', ['course', 'aihf', 'ta'], 'research');
+
+  // The remaining chapters continue below; metadata is finalized after all entries.
+  root.BullCourseDraft = { chapters, sources, lessons, add, q, model, evidence, agent };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function (root) {
+  'use strict';
+  const { chapters, sources, lessons, add, q, model, evidence, agent } = root.BullCourseDraft;
+  add('c6-1', '信息也有一条时间线', '区分报告期间与公开时间。', '你在重放 2025 年的研究，工具却返回了 2026 年才公开的完整年报。',
+    ['一份报告描述过去，不代表过去当时就能读到它。历史研究需要按公开时间判断资料是否可得。', '保存观察截止日、披露时间与采集时间。今天搜索到的页面可能已经更新，日期筛选也不自动消除模型记忆中的未来知识。'],
+    '2025 年年报在 2026 年 3 月公开，不能拿来支持 2025 年 12 月做出的交易决定。',
+    [['研究截止', '2025-12-31。'], ['材料 A', '2025 年三季报，2025-11-05 公开。'], ['材料 B', '2025 年年报，2026-03-10 公开。']],
+    evidence('按当时可见的信息选择资料。', q('研究截止日可以使用哪项材料？', ['A，三季报', 'B，完整年报', '两项都能，因为报告期间是 2025'], 0, '公开时间决定当时能否获取，而不是标题里的年度。')),
+    agent('“为了提高准确率，我使用了后来确认的数据来解释当时的决定。”', q('这个处理会造成什么？', ['更公平的实时比较', '未来信息泄漏', '自动消除模型误差'], 1, '事后解释与当时可执行的研究必须分开。')),
+    [q('1 月 10 日公开的数据能用于 1 月 5 日的决策吗？', ['不能', '能，只要描述去年', '能，只要是官方'], 0, '官方来源也必须符合时点。'), q('今天网页里的数值与历史快照不同，应如何处理？', ['直接覆盖历史记录', '记录版本与差异并选择符合截止日的数据', '删除来源'], 1, '保留版本有助于理解修订和前视问题。')],
+    '历史研究只使用当时能够知道的内容。', ['course', 'ta'], 'research');
+  add('c6-2', '增长了，却没有超预期', '区分经营结果、预期与价格反应。', '云帆公布盈利增长 10%，股价却下跌。Agent 说市场逻辑失灵了。',
+    ['价格会反映投资者原先的期待。实际增长如果低于期待，价格可能下降；也可能受指引、风险和其他消息影响。', '不能只用一个数字解释全部价格变化。提出解释后，检查预期来源、时点和其他信息。'],
+    '市场在公布前预期 EPS 1.20，实际 1.10；即使去年只有 1.00，仍可能低于原先预期。',
+    [['去年 EPS', '1.00。'], ['公布前预期', '1.20，来自给定教学预期快照。'], ['实际公布', '1.10；同时发布新年度指引。']],
+    evidence('分别计算同比变化与预期差异。', q('哪种说法正确？', ['同比增长，也高于预期', '同比增长，但低于给定预期', '同比下降'], 1, '1.10 比 1.00 高，但比 1.20 低。')),
+    agent('“盈利同比增长，所以股价当天只能上涨。”', q('需要加入哪组分析？', ['预期、指引、风险与同时发生的信息', '只看去年盈利', '只增加预测精度'], 0, '价格反应是相对于当时信息和预期的变化。')),
+    [q('预期收入 110，实际 115，去年 100：实际如何？', ['高于预期，且同比增长', '低于预期', '同比下降'], 0, '分别比较两个基数。'), q('能否把当天全部涨幅必然归因于一个公告？', ['能', '不能，需要检查其他因素与基准', '公告没有任何作用'], 1, '相关变化不自动说明唯一因果。')],
+    '同比分母与预期基准是两件事。');
+  add('c6-3', '事件之后，究竟发生了什么', '使用基准和事件窗口解释表现。', '青禾公告后涨 4%，同期匹配行业组合涨 3%。这支持多强的结论？',
+    ['简化事件分析先比较事件窗口内的表现与合适基准。差值是描述性线索，不自动证明事件造成超额收益。', '多个样本、事件定义、风险调整和其他同期消息都影响结论。单个案例不够证明长期可交易规律。'],
+    '事件窗口股票 +4%、基准 +3%，简单差值为 +1 个百分点；不是已证明的长期 alpha。',
+    [['事件样本', '本例仅一家公司、一段窗口。'], ['表现', '股票 +4%，匹配基准 +3%；尚未处理其他消息。']],
+    evidence('将数值结果与证据强度分开。', q('当前最合适的报告是什么？', ['证明公告策略稳赚', '简单相对差值 1 个百分点，因果和可交易性待检验', '全部 4% 都是事件造成'], 1, '先准确描述，再设计更多验证。')),
+    agent('“我只挑出十次上涨公告，得到事件策略总是成功。”', q('应怎样改进样本？', ['补入按事前定义选出的全部相关事件，包括失败者', '只挑涨得更多的', '删掉样本规则'], 0, '样本选择必须避免事后筛胜者。')),
+    [q('股票 −2%，匹配基准 −5%，简单相对表现？', ['−7 个百分点', '+3 个百分点', '−3 个百分点'], 1, '−2%−(−5%)=+3 个百分点，但绝对结果仍是亏损。'), q('事件研究最需要先写清什么？', ['事件定义、窗口与基准', '想得到的收益', '最终购买数量'], 0, '规则应在查看结果前明确。')],
+    '先描述差异，再检验解释。');
+  add('c6-4', '更新判断，也保留旧记录', '把新证据对应到原假设。', '新的客户留存数据比预想好，但融资成本也提高了。你要更新云帆研究。',
+    ['更新应说明哪条证据改变了哪个假设，而不是用新故事覆盖旧故事。原记录保留才能复盘。', '工具可以汇总信息；资料缺失或冲突时，先标记待核查。没有新证据也可以维持判断。'],
+    '留存上升可能支持收入持续性，但更高资金成本可能提高要求回报；两者需同时进入情境。',
+    [['原假设', '现金流增长 8%，要求回报 10%。'], ['新证据', '客户留存改善；资金成本提高。']],
+    model('dcf', '同时考虑增长和要求回报的变化，保存一组新的情境。', q('更新记录应包含什么？', ['只留新目标价', '删掉旧资料', '新证据、改变的假设、结果与未解决问题'], 2, '这样才能检查判断为何改变。')),
+    agent('“工具没有取到新数据，我把缺失值填为零继续分析。”', q('应怎样处理？', ['区分缺失与真实零值，报告失败并补查', '零值一定安全', '只隐藏错误日志'], 0, '缺失不是经济意义上的零。')),
+    [q('新资料不能支持原论点，最合理的是？', ['忽略以保持纪律', '重新检查并记录如何更新', '删除原论点'], 1, '纪律包括按证据修正。'), q('两份数据冲突时，先检查什么？', ['来源、期间、单位与修订版本', '谁写得长', '谁更支持自己'], 0, '先定位口径和版本差异。')],
+    '让更新有原因，让复盘有记录。', ['course', 'aihf'], 'research');
+
+  add('c7-1', '一条线能告诉你什么', '区分价格描述、信号与预测。', '你看见一条向上的均线，准备写一个趋势策略。',
+    ['均线是过去价格的摘要。它描述历史，不保证未来继续；不同窗口会改变滞后与敏感度。', '要形成策略，必须定义使用哪段数据、什么时候生成信号、何时成交、持多少和何时退出。'],
+    '“价格高于前三期均价”可以成为一个明确条件；“图看起来强”仍不够可重复。',
+    [['教学策略', '用执行期之前的价格计算均线。'], ['实验限制', '12 期合成路径，只用于理解规则。']],
+    model('strategy', '对比上涨与震荡路径，改变观察窗口，看看规则是否始终占优。', q('本实验表现好，能说明什么？', ['所有市场都有效', '在给定路径和假设下的结果，需要进一步检验', '均线能精确预测价格'], 1, '小型教学路径只能解释机制。')),
+    agent('“这条均线向上，明天上涨是确定的。”', q('需要纠正什么？', ['把历史描述当成确定预测', '使用了数字', '均线不能计算'], 0, '可计算的描述不自动提供确定预测。')),
+    [q('想复现一个技术策略，哪项最必要？', ['明确指标窗口和决策/成交时点', '漂亮截图', '作者称号'], 0, '规则必须具体。'), q('观察窗口越短是否必然更好？', ['是', '否，敏感度、噪声和换手都会改变', '窗口没有作用'], 1, '参数有取舍，不能只看一次结果。')],
+    '指标是输入，完整规则才可检验。');
+  add('c7-2', '规则必须能被执行', '明确进入、退出、仓位与缺失数据处理。', '你让编程 Agent 实现“趋势好就买”。它生成了三种彼此不同的代码。',
+    ['自然语言中的模糊词会产生实现歧义。先写明确条件，再检查代码是否按条件操作。', '定义信号窗口、目标权重、退出条件、成交价格假设和缺失数据处理。编程助手可以写代码，但验收例子由你提出。'],
+    '约定：上一期收盘高于此前 3 期均价时，下一期目标股票 60%；否则现金。数据不足时不生成新信号。',
+    [['模糊需求', '趋势好就买，风险大就卖。'], ['可执行需求', '窗口、时点、目标权重、退出条件、缺失处理均需明确。']],
+    model('strategy', '把目标权重改为 60%，比较同一规则的结果与风险暴露。', q('编程前最有用的准备是什么？', ['定义条件并给出几个预期输入输出例子', '要求更多代码', '只说提高收益'], 0, '可检查的行为契约帮助发现实现偏差。'), { weight: 60 }),
+    agent('“我理解了你的策略，但自行把仓位从 60% 改成 100% 以提高收益。”', q('应该怎样处理？', ['直接接受更高风险', '按约定核查并恢复或明确讨论变更', '只看新结果是否赚钱'], 1, '任务约束不能被静默更换。')),
+    [q('没有足够历史窗口时，一个事先可定义的规则是？', ['从未来补数据', '跳过信号并记录原因', '随便填高价'], 1, '缺失处理必须可重复。'), q('退出规则应该什么时候写？', ['看到亏损后临时发明', '策略检验之前', '只在赚钱时'], 1, '完整规则应先于结果。')],
+    '先定义预期行为，再让工具实现。', ['course', 'aihf'], 'config');
+  add('c7-3', '同一信号，不同仓位', '让仓位和成本成为规则的一部分。', '两个账户都用同一趋势信号，一个全仓，一个只用 40%。它们不会有相同体验。',
+    ['信号决定方向或偏好，仓位决定承担多少暴露。相同信号也能产生不同收益与风险。', '调仓还会产生费用。缩小仓位和减少换手可能影响结果，必须同时记录，而不是只对比毛收益。'],
+    '资产下跌 10%，无杠杆且其余现金不变时，40% 权重带来的单期组合影响约为 −4%。',
+    [['账户约束', '不用借款，目标权重不超过 80%。'], ['观察', '比较信号相同但权重不同的结果。']],
+    model('strategy', '把权重从 40% 改为 80%，再提高交易成本，比较净结果。', q('提高仓位会改变什么？', ['只提高利润，不改变损失', '收益和损失暴露都可能放大', '信号突然变准确'], 1, '仓位是暴露，不是准确率。'), { weight: 40 }),
+    agent('“单股上限写在提示词里，因此无需检查最终仓位。”', q('更可靠的控制方式是什么？', ['检查最终结构化权重并在程序中验证约束', '让提示词更长', '多写一次禁止'], 0, '文字要求还需要结果检查和确定规则。')),
+    [q('股票跌 15%，占组合 20%，其余不变，组合影响约多少？', ['−3%', '−15%', '−20%'], 0, '0.2×−15%=−3%。'), q('验证仓位限制应检查什么？', ['执行后的权重与订单', '只看提示词', '只看报告标题'], 0, '需要检查规则是否实际生效。')],
+    '信号、仓位与执行共同构成策略。', ['course', 'aihf'], 'config');
+  add('c7-4', '看起来贵，何时才会跌', '理解择时需要进出两次决策。', '你认为市场估值偏高，打算退出再低价买回，但还没定义回场条件。',
+    ['估值判断的时间尺度与短期择时信号可能不同。认为贵，不等于知道何时下跌。', '择时需要离场与回场规则，并核算等待期间的现金和机会成本。对照必须从相同资金条件开始。'],
+    '离场后市场继续涨，若没有回场规则，原本的短期等待可能变成长时间空仓。',
+    [['策略草案', '高于某估值时退出，但没有重返条件。'], ['需要补齐', '阈值、信息时点、回场、仓位与费用。']],
+    model('strategy', '观察上涨路径中等待信号的结果，再用震荡路径检验规则。', q('完整择时计划还缺哪项关键内容？', ['回场条件与等待成本', '一个更响亮名字', '必胜承诺'], 0, '退出只是半个决策。'), { path: 'rising' }),
+    agent('“我成功避开一次下跌，所以以后择时必定胜过持有。”', q('还需要怎样验证？', ['检查全部预先定义区间及成本、错过上涨的情况', '只保留成功案例', '删掉持有对照'], 0, '不能只挑成功离场的片段。')),
+    [q('市场估值高能直接给出下跌日期吗？', ['不能', '能，下一天', '能，月底'], 0, '估值与时点是不同推断。'), q('空仓期间现金应如何出现在回测里？', ['忽略', '按明确收益假设计入账户', '计为策略利润'], 1, '现金是资产的一部分。')],
+    '择时要同时解释离开、等待和回来。');
+
+  add('c8-1', '先建一个值得比较的对照', '定义评价问题与匹配基准。', '策略报告赚了 12%，你需要判断这份结果到底回答了什么。',
+    ['先写评价问题：是否超过匹配基准，是否以更低风险达成目标，还是只是实现了特定暴露。', '基准要匹配资产范围和可实施条件，并统一区间、资金、分红与成本处理。相对超额不自动等于风险调整后的能力。'],
+    '策略 12%、基准 15%，简单相对表现为 −3 个百分点；若风险不同，还需要进一步解释。',
+    [['报告', '毛收益 12%；年交易金额为平均资产 400%。'], ['比较设置', '单边成本 0.2%；匹配基准 10%。']],
+    model('cost', '加入成本后比较净结果与基准，再改变换手率。', q('最应避免的比较是什么？', ['统一期限和成本', '只把策略最好的区间对比基准最差区间', '说明风险差异'], 1, '不同区间会人为制造优势。')),
+    agent('“策略和基准都赚钱，不需要再比较成本和风险。”', q('应补充什么？', ['匹配条件下的净表现与风险暴露', '只加盈利徽章', '只展示毛收益'], 0, '正收益并不完成评价。')),
+    [q('策略净收益 9%，基准 11%，简单相对差值？', ['+2 个百分点', '−2 个百分点', '20%'], 1, '9%−11%=−2 个百分点。'), q('比较不同资产策略，为什么不能随便共用一个指数？', ['基准应匹配目标与风险暴露', '指数不能用', '只能用现金'], 0, '基准要能回答想问的问题。')],
+    '先写清楚要比较什么。', ['course', 'qlib'], 'quant');
+  add('c8-2', '把未来关在门外', '识别幸存者偏差与测试污染。', '一份回测用了今天仍上市的公司名单，再挑出了历史上最赚钱的一组参数。',
+    ['只保留存活公司会遗漏退市与失败者。使用今天的名单回测过去，可能改变当时可投资的范围。', '训练、验证和最终测试分工不同。反复查看测试结果并改参数，会让它变成调参样本；自动 Agent 大量试验也有同样问题。'],
+    '100 次试验后挑最高收益，再用同一段历史宣称有效，忽略了选择过程。应记录试验并保留真正未见的数据。',
+    [['日志 A', '股票池：今天存活的 50 家公司，回测过去十年。'], ['日志 B', '根据最终测试表现修改参数 30 次。'], ['日志 C', '只展示最佳一次结果。']],
+    evidence('定位最明确的实验问题。', q('哪条修正最完整？', ['保留当时股票池、记录所有试验、分离验证与最终测试', '增加参数直到收益更高', '删掉失败公司'], 0, '数据范围和研究流程都需要修正。')),
+    agent('“自动试了更多策略，所以最佳结果无需再验证。”', q('为什么应谨慎评价？', ['试验越多，偶然挑中好结果的机会也越多', '自动研究不能运行', '试验次数没有作用'], 0, '必须处理选择偏差，而非把搜索次数当证据。')),
+    [q('使用收盘价形成信号后，直接无条件按同一收盘价先成交有什么问题？', ['可能隐含不可实现的时点优势', '没有任何条件', '只影响界面'], 0, '需要明确何时信号可知、订单可提交和成交假设。'), q('多次查看测试集后又改参数，这段数据还算最终未见测试吗？', ['算', '不再是，需要新的独立检验', '只要换名字就算'], 1, '信息已经影响了选择。')],
+    '不仅数据要合时点，研究过程也要留记录。', ['course', 'qlib'], 'quant');
+  add('c8-3', '给模拟成交补上费用', '修改一段逻辑，并用例子验证。', '一个简化交易函数只扣成交金额。你要加入单边费用，检查买卖两侧现金。',
+    ['费用按成交金额计算时，买入现金减少金额和费用，卖出现金增加净额。方向写反会夸大结果。', '先列出预期例子，再改代码。相同输入可以复查错误；多组数量与费率检查能避免只对一个例子碰巧正确。'],
+    '现金 1000，买 2 股、每股 100、费率 1%：现金变为 798。卖出同样两股，现金增加 198。',
+    [['变量', 'cash=交易前现金；qty=股数；price=成交价；fee_rate=小数费率。'], ['修改目标', '买：cash−金额−费用；卖：cash+金额−费用。练习仅处理现金，不模拟完整券商。']],
+    { type: 'code', instruction: '修改两个 return 表达式，在内置小样本上运行验证。仅支持变量与四则运算，不执行任意代码。', check: q('为什么买卖两侧都要单独验证？', ['现金方向不同，但两侧费用都应扣除', '卖出费用应加为利润', '测试一次就足够'], 0, '方向和费用符号是这次改动的关键边界。') },
+    agent('“为买入加了费用；卖出时我把费用也加进了到账金额。”', q('你要修正哪项？', ['卖出到账应减费用', '买入不应收费', '只改函数名'], 0, '收入减成本才是净到账。')),
+    [q('卖 3 股、每股 50、费率 2%，净到账？', ['153', '147', '150'], 1, '150−150×2%=147。'), q('要验证费用改动，哪个测试更有意义？', ['只确认文件存在', '验证零费用、买卖方向和多组金额的现金变化', '只截收益图'], 1, '测试应覆盖行为，不只是实现形式。')],
+    '先预测行为，再让代码证明它做到了。', ['aihf', 'course'], 'code');
+  add('c8-4', '保留一次没有改善的实验', '比较配置修改并记录结论边界。', '你把观察窗口改长，训练区间更漂亮，另一个路径却变差了。',
+    ['改参数前写下原因和预期影响，一次只改变少数因素。记录所有结果，防止只保留最好的一次。', '真实 Qlib 把数据、模型、策略与评价组织起来；本关是独立的教学模型，不代表运行了 Qlib 或证明真实市场有效。'],
+    '窗口变长可能减少部分噪声，也可能错过转折。一个没有改善的结果可以推翻原假设，是有效研究产物。',
+    [['实验约定', '先记录参数，再切换新路径；查看后再调就视为新的研究。'], ['可复现记录', '规则、窗口、仓位、成本、路径、结果和解释。']],
+    model('strategy', '比较两组参数，把变化和未改善的地方写进复盘。', q('新参数在未见样本没改善，应该怎样做？', ['删除结果', '记录结果并检查原假设与样本限制', '继续试直到好看再说早就预测到'], 1, '保存否定证据有助于减少事后叙事。'), { lookback: 4 }),
+    agent('“只需把图表颜色改绿，就能提交为成功实验。”', q('合格实验的成果应该是什么？', ['可复现配置、数据条件、结果与解释', '漂亮截图', '最高回报数字'], 0, '研究成果的质量来自可检查的过程。')),
+    [q('Qlib 默认示例是另一市场，迁到美股需要什么？', ['只把显示名称换成美股', '适配数据、股票池、基准、规则和费用并验证', '不用管数据'], 1, '框架能运行不等于目标市场条件已适配。'), q('结果相同是否能完全证明代码正确？', ['不能，还应检查关键行为和边界', '能', '只要两条曲线重合就能'], 0, '输出一致可能来自共同错误或测试覆盖不足。')],
+    '把没有改善的结果也留下。', ['qlib', 'rd', 'course'], 'quant');
+
+  add('c9-1', '两种报价之间', '理解套利前提与可实现成本。', '同一项可交付资产出现两个报价，你怀疑存在套利。',
+    ['纯套利的逻辑依赖相同现金流、可同时锁定的交易与履约条件。看起来相似的资产不一定是同一资产。', '费用、交割、借券、资金与不同步成交可能消耗价差。先验证条件，再计算可实现收益。'],
+    '可同时买入 100、卖出 101，双侧总费用 1.2，则给定条件下净价差为 −0.2。',
+    [['报价 A', '可以买入 100。'], ['报价 B', '可卖出 101，但尚未确认可借券与交付。'], ['成本估计', '买卖与交付总费用 1.2。']],
+    evidence('先核对现金流等价、成交与成本。', q('即使能同时成交，本例给定净价差是多少？', ['+1', '−0.2', '+2.2'], 1, '101−100−1.2=−0.2；还需验证交付条件。')),
+    agent('“两个价格不相同，就是稳赚，数量越大越好。”', q('应补充哪些条件？', ['等价性、同时成交、成本、借券和资金', '只看价格差', '只用更多杠杆'], 0, '套利前提不能由报价差自动满足。')),
+    [q('两只业务相似股票价格不同，是否构成纯套利？', ['不一定，现金流并非相同', '一定', '名称相似就可以'], 0, '相对价值判断与现金流等价不同。'), q('价差小于确定成本时应该怎样解释？', ['毛价差不等于可实现净收益', '成本可以忽略', '交易越多必然弥补'], 0, '成本直接影响空间。')],
+    '先确认同样的东西能怎样交付。');
+  add('c9-2', '判断对了，也可能撑不住', '理解负债、净值与资金压力。', '你认为价差会收敛，但等待过程中标的先下跌，账户净值承压。',
+    ['固定负债下，资产价格变化会放大净值变化。借款利息、追加要求和处置也影响能否维持头寸。', '教学维持比例由情境给定，真实券商要求可能变化，也可能不先通知就处置；不能把补款通知当作必然缓冲。'],
+    '自有 100、借款 100，资产 200；下跌 20% 后资产 160、净值 60，自有资金损失 40%。',
+    [['简化账户', '自有 100、借款 100；利息忽略。'], ['维持条件', '本实验用给定比例，不是现行统一券商规则。']],
+    model('leverage', '改变资产跌幅与维持比例，观察净值和权益比例。', q('最终可能判断正确，就一定能等到价差回归吗？', ['不一定，资金与账户约束可能先触发', '一定，只需坚持', '只看目标价即可'], 0, '时间和资金条件是实施的一部分。')),
+    agent('“触发风险线后，你总会先接到通知并有足够时间补钱。”', q('这句话应该怎样修正？', ['明确不能依赖必然预先通知，按适用条款核查', '加上一定二字', '把风险线删掉'], 0, '真实处置条件可能与教学简化不同。')),
+    [q('自有 200、借 100，资产下跌 10%，净值变成多少？', ['270', '170', '190'], 1, '资产300×0.9=270，减负债100，净值170。'), q('本关维持比例代表什么？', ['所有券商当前固定规则', '明确给定的教学参数', '保证不会处置的线'], 1, '真实规则需要单独核查。')],
+    '研究价格，也研究自己能承受的路径。', ['margin', 'course']);
+  add('c9-3', '并购价差的另一面', '将成败与等待写成情境。', '收购报价 110，当前交易价 100。你看到 10 的差价，却还不知道交易能否完成。',
+    ['并购价差常包含失败、延期与条件变化的风险。成功报价不等于确定到手金额。', '概率和失败价格都要说明依据与不确定性。期望计算可以检查条件，但不能替你证明输入。'],
+    '成功概率 80%、成功110、失败70、当前100，忽略成本，期望终值102，期望损益2；失败时则损失30。',
+    [['合约情境', '成功取得110；失败后给定价格70。'], ['概率假设', '教学参数80%，不是市场预测。']],
+    model('arbitrage', '改变成功概率与失败价格，检查期望和最不利结果。', q('并购报价高于现价为什么不等于免费利润？', ['交易可能失败或延期，并存在实施成本', '因为不能做乘法', '成功概率永远为零'], 0, '需要把不同情境与资金条件纳入分析。')),
+    agent('“80% 概率成功，我会把它直接写成必然收到 110。”', q('遗漏了哪项？', ['失败情境及其损失', '报价来源不重要', '100 的现价应删去'], 0, '概率权重不可以替代情境本身。')),
+    [q('成功120、失败80、各50%，现价105，忽略费用，期望损益？', ['+5', '−5', '+15'], 1, '0.5×120+0.5×80−105=−5。'), q('延期一年但最终成功，是否一定与立即成功相同？', ['不同，还涉及时间、资金和其他条件', '完全相同', '延期必定提高收益'], 0, '等待本身有经济成本与风险。')],
+    '价差可能是在补偿条件尚未满足。');
+  add('c9-4', '压力情境下的决定', '把模型风险和实施约束一起检查。', '价差继续扩大、借款条件收紧，Agent 仍在重复“价值终将回归”。',
+    ['压力测试问的是：如果核心条件变坏，账户会怎样？它不要求知道这个情境必然发生。', '可以选择缩小、退出、继续研究或维持，但要对应资金约束和论点，而不是固定动作。'],
+    '原计划只允许净值损失不超过某范围，新压力情境超出范围时，应重新审视规模和可行性。',
+    [['事件 1', '价差扩大，账面亏损增加。'], ['事件 2', '借券或融资条件可能变化。'], ['原约束', '不能影响半年内必要支出；不允许超出资金风险预算。']],
+    model('leverage', '同时提高负债与不利跌幅，找出原约束可能无法承受的情境。', q('合格的下一步是什么？', ['按原约束检查规模、资金与新证据，再决定行动', '盲目加倍直到回本', '忽略账户只讨论理论'], 0, '实施计划应与可承受条件相连。'), { loan: 200, change: -25 }),
+    agent('“模型理论成立，执行、借券和资金都不需要检查。”', q('应该加入哪类审查？', ['交易与资金的可实现条件', '只改预测价格', '只看下一次输出'], 0, '理论前提与实际实施要一起核查。')),
+    [q('继续持有可以是合理选择吗？', ['可以，但需证据与约束仍支持', '任何时候都对', '任何时候都错'], 0, '评价理由与条件，不设固定买卖答案。'), q('压力测试的用途？', ['保证事件不会发生', '观察不利条件下的后果与约束', '精确预测日期'], 1, '它检验脆弱性，不是预言。')],
+    '决策必须同时通过论点与资金约束。', ['margin', 'course']);
+
+  add('c10-1', '选择你能执行的方法', '把方法与研究资源、期限和性格匹配。', '你替一个每周只有两小时、资金期限较长的角色设计学习后的投资工作方式。',
+    ['方法需要匹配研究时间、信息优势、资金期限、风险承受与执行条件。复杂度越高不代表越适合。', '指数化也是需要理解产品、成本与计划的完整选择。主动研究应能说明额外工作试图解决什么问题。'],
+    '每周只能研究两小时，却选择需要逐分钟跟踪的规则，可能在执行层面就不匹配。',
+    [['角色', '每周研究时间两小时；能接受过程波动，但半年必要支出单独保留。'], ['备选', '规则明确的指数计划；需要高频响应的事件策略；长期公司研究。']],
+    evidence('选择一条需要首先被排查的匹配问题。', q('最明显的冲突是什么？', ['高频响应需要的时间超过角色资源', '角色不能学任何投资', '所有复杂方法都违法'], 0, '资源条件直接影响可执行性。')),
+    agent('“我能自动分析，所以你的目标、时间和风险偏好都不用提供。”', q('你应补充什么？', ['目标、期限、资金用途、约束与可用资源', '只告诉它赚最多', '什么也不提供'], 0, '工具无法替代这些个人或角色条件。')),
+    [q('主动研究的合理起点是什么？', ['能解释优势来源并愿意验证', '复杂就是优势', '名人都这么做'], 0, '方法需要机制与证据。'), q('某方法历史有效，但自己无法执行，怎么办？', ['忽略执行问题', '将实施条件纳入选择或调整方法', '保证 Agent 自动解决'], 1, '适合性包括实施资源。')],
+    '选择能理解、能执行、能复核的方法。');
+  add('c10-2', '写下你的决策契约', '把目标、约束与反证变成结构化计划。', '毕业案例的角色要把研究结论写成可检查的方案，而不是一句买入。',
+    ['计划至少包含目标、资金来源与期限、研究方法、基准、仓位约束、复核条件与反证。', '配置是计划的可执行表达。只修改参数而不知道它控制什么，容易把目标与实现分开。'],
+    '单股上限 10% 要在最终权重检查中生效；季度复核与每周换仓也不是同一个设置。',
+    [['角色资金', '模拟资金10,000；不能借款；单项风险暴露需说明。'], ['计划要求', '写清基准、仓位、复核频率和信息不足时的处理。']],
+    { type: 'config', instruction: '修改 JSON 计划配置，满足不借款、单股不超过 20%、权重合计不超过 100% 的角色约束。', check: q('配置验证通过是否说明投资方法一定有效？', ['不是，只证明给定结构与约束通过', '是', '只要能解析就会盈利'], 0, '行为约束与投资有效性是不同检查。') },
+    agent('“我只检查配置能解析，忽略权重合计超过 100%。”', q('还要验证什么？', ['语义约束，如权重合计与单股上限', '只检查文件名', '只检查字符数'], 0, '语法正确不代表满足计划。')),
+    [q('明确的反证条件应该针对什么？', ['核心论点依赖的假设', '任意一天价格变化', '任何负面新闻都一样'], 0, '反证需要能改变推理链。'), q('计划与代码行为冲突时，应该？', ['定位差异并修正或明确更新约定', '只看结果好不好', '删掉计划'], 0, '计划和实现必须可对应。')],
+    '让约束既写得清楚，也能被检查。', ['course', 'aihf'], 'config');
+  add('c10-3', '毕业研究：证据改变了什么', '在陌生材料上完成一次可追溯判断。', '你第一次研究虚构公司远川设备：利润增长、订单下降、应收上升，材料并不一致地指向一个方向。',
+    ['综合研究先核对事实与口径，再列假设。多个信号冲突时，提出能区分解释的下一步调查。', '可以暂不采取交易行动，但要留下足够具体的研究成果。模型与 Agent 只负责辅助你构建可检查的链条。'],
+    '利润增长可能来自价格、成本或一次性项目；订单下降提示未来风险。应按各信息对应的期间与机制分析。',
+    [['远川 · 虚构材料', '收入220，现金经营费用130，折旧20，新增应收60，资本开支45。'], ['新订单', '同比下降15%；缺少订单交付与取消的细分。'], ['研究截止', '所有教学材料假定同一截止日可见。']],
+    model('cashflow', '核对利润和现金差异，选择一个最能影响判断的后续问题。', q('当前最有依据的研究结论是哪项？', ['利润好，所以所有风险已排除', '现金偏弱且未来订单需核查，不能只凭利润增长', '任何订单下降都意味着立刻破产'], 1, '把事实、可能机制和缺口连接起来。'), { sales: 220, expenses: 130, depreciation: 20, receivable: 60, capex: 45 }),
+    agent('“我用营收220代替现金流完成估值，并忽略订单变化。”', q('你需要纠正什么？', ['现金流口径与前景假设', '只改变报告语气', '只减少小数'], 0, '输入口径错误会传导到全部估值。')),
+    [q('这家企业本关简化利润与经营现金流分别是多少？', ['70 与 30', '90 与 70', '220 与 220'], 0, '利润220−130−20=70；经营现金220−130−60=30。'), q('下一次公开信息如何进入记录？', ['覆盖旧结果，不说明原因', '保存旧假设并标明新证据改变哪一步', '只存最后一句话'], 1, '可追溯更新是复盘的基础。')],
+    '能解释自己的证据链，才算拥有结论。', ['reports', 'course'], 'research');
+  add('c10-4', '带着方法离开新手村', '完成独立复盘并检查掌握边界。', '旅程结束前，你要把一次策略实验、一项修改和自己的方法写成可复查档案。',
+    ['复盘同时检查过程与结果：当时知道什么、假设是什么、执行是否一致、成本是什么、哪些来自运气。', '主线使用教学数据也能完成完整学习。真实 Agent 运行是独立实践记录，只有实际完成才记录，不替代或阻塞核心掌握。'],
+    '一个亏损实验可能揭示规则失效；一个盈利实验也可能存在泄漏。完成研究不要求证明自己总是正确。',
+    [['毕业档案', '包括计划、案例判断、参数、代码/配置修改、证据与反证。'], ['下一步', '按需选择真实开源项目补充实践，保留版本、来源和日志。']],
+    model('strategy', '最后选择一组规则与路径，记录结果和限制；与前面的预测核对。', q('合格的毕业结论是什么？', ['我以后会稳定盈利', '我能说明条件、验证操作、审核工具，并指出未知', '所有判断都交给 Agent'], 1, '学习成果是可迁移的能力，不是收益承诺。')),
+    agent('“我建议输出研究记录、说明模拟假设，并把未实际运行的外部实践留为未完成。”', q('这份建议是否合理？', ['合理，准确区分学习与真实执行', '不合理，应该全部标完成', '不合理，只需收益数字'], 0, '完成状态必须对应实际证据。')),
+    [q('面对一个没见过的项目，首先做什么？', ['读入口、数据流、配置和评价，再运行最小可核查案例', '立刻扩大资金', '只看星数'], 0, '先理解系统的输入、行为和边界。'), q('模型和个人判断分歧时，最合适的是？', ['永远相信模型', '永远相信直觉', '定位事实与假设分歧，用证据和约束判断'], 2, '掌控来自可说明的核查过程。')],
+    '自己理解，工具协助，结果可核查。', ['course', 'aihf', 'qlib'], 'research');
+
+  // Case-specific inputs must match the displayed evidence, not generic model examples.
+  const caseInputs = {
+    'f-1': {deposit:300,ending:1400},
+    'f-2': {prob:50,down:-10},
+    'f-3': {sales:100,expenses:60,depreciation:10,receivable:30,capex:15},
+    'c1-3': {ask:100},
+    'c2-2': {ask:100},
+    'c2-3': {stock:7000,other:3000},
+    'c3-3': {issue:50},
+    'c4-1': {cash:100},
+    'c4-2': {cash:100,growth:8},
+    'c4-4': {eps:2},
+    'c5-2': {cash:100},
+    'c6-4': {growth:8},
+    'c8-1': {turnover:400,cost:0.2},
+    'c9-3': {price:100,offer:110,fail:70,cost:0}
+  };
+  lessons.forEach((lesson, i) => {
+    if (caseInputs[lesson.id]) lesson.lab.values = {...lesson.lab.values,...caseInputs[lesson.id]};
+    lesson.prerequisites = i ? [lessons[i - 1].id] : [];
+    lesson.number = i + 1;
+    lesson.dataLabel = '原创教学案例 · 非实时行情';
+  });
+  const course = { version: 1, title: 'BullCamp · 投资探索营', chapters, sources, lessons };
+  root.BullCourse = course;
+  delete root.BullCourseDraft;
+  if (typeof module !== 'undefined' && module.exports) module.exports = course;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+window.BullResources = {
+  glossary: [
+    ['本金与损益', '自己投入的钱是本金。账户变大可能来自追加资金，也可能来自投资损益；先对账，再讨论回报。'],
+    ['收益率与百分点', '无外部资金变动的单期收益率 =（期末资产 − 期初资产）/ 期初资产。10% 与 8% 相差 2 个百分点。中途有投入时，不能随意把损益除以本金叫年化收益率。'],
+    ['复利', '上一期留下的资产成为下一期的基数。100 先涨 20% 再跌 20%，变成 96；涨跌不能直接相加。'],
+    ['股票、债券与现金', '股票代表权益，债券代表债权；偿付顺序、现金流和风险不同。现金也可能面临购买力损失。课程中的各类收益均为情境假设。'],
+    ['指数与 ETF', '指数是一套选样与加权规则；ETF 是在交易所交易的基金形式。ETF 可以跟踪指数，也可以采用主动方法；名称不能替代产品资料。'],
+    ['纳斯达克与纳指', '纳斯达克是交易所名称。Nasdaq Composite 与 Nasdaq-100 是不同指数；想买“纳指”仍需先识别具体指数和产品。'],
+    ['定投', '在固定时间间隔投入固定金额。适合用来描述投入纪律；它既不能保证盈利，也不能替代资产选择。'],
+    ['波动、回撤与风险', '波动描述涨跌变化；回撤描述相对历史高点的下降。永久损失、无法及时变现、杠杆被迫退出，也都是风险。'],
+    ['相关性与分散', '共同涨跌的持仓可能来自同一风险。相关性会随时期变化，不能把历史低相关当作固定保证。'],
+    ['收入、利润与现金流', '收入按确认规则计入；利润扣除对应费用；现金流记录现金进出。赊销、折旧、资本开支让它们不相等。'],
+    ['资产、负债与权益', '资产 = 负债 + 权益。借到钱会同时增加现金与负债，不能把借款算成销售收入或利润。'],
+    ['市盈率与 EPS', 'EPS 是每股收益；市盈率 PE = 每股价格 / EPS。要检查期间、一次性项目与股数口径；负盈利时该倍数常失去比较意义。'],
+    ['自由现金流', '经营产生并在必要投入后剩余的现金。企业自由现金流与股权自由现金流面向的资金提供者不同，折现率也要匹配。'],
+    ['折现与终值', '把未来现金按要求回报换成今天的价值。终值概括预测期后的现金；当它占估值很大比例，长期假设尤其敏感。'],
+    ['市场有效性', '价格在多大程度上反映哪些信息，是要明确边界并检验的问题。发现历史规律不等于扣除成本后仍有可实施的优势。'],
+    ['基准与风险调整', '基准是与目标、资产和时期匹配的比较对象。承担更多股票或杠杆风险得到更多收益，不自动说明研究能力更好。'],
+    ['成交与滑点', '信号只表达意图。实际成交价格、数量、时间可能不同；滑点是实际执行相对参考价格的偏离，需说明参考口径。'],
+    ['训练、验证与测试', '训练拟合规则，验证选择方案，测试在方案固定后检验。反复查看测试结果调参会削弱其独立性。'],
+    ['未来信息与幸存者偏差', '使用决策时尚未公开的数字会穿越时间；只保留今天仍存在的股票会遗漏退出者。两者都可能夸大历史表现。'],
+    ['做空与杠杆', '做空通常涉及借券卖出并买回，面临借券与价格风险；杠杆用负债放大资产暴露，资金约束可能早于判断兑现。'],
+    ['Agent 与工具', 'Agent 可按任务调用数据和计算工具，再组织结果。它的输出是待审核的研究材料；数据、代码与人的判断各有职责。'],
+    ['版本、配置与复现', '版本固定代码，配置固定参数，数据快照固定输入；还需记录依赖、日期、输出与失败。LLM 的文字未必逐字可复现。'],
+    ['投资理念与策略', '理念解释为什么可能存在机会；策略把它变成可检验的筛选、仓位与执行规则。选择还取决于期限、资金与能力。'],
+    ['能力边界', '主线覆盖《Investment Philosophies》的主要方法与检验思路，建立入门操作能力；不会用少量模拟题证明真实投资能力或保证收益。']
+  ],
+  projects: [
+    { id:'research', name:'TradingAgents：拆开一份研究结论', tag:'研究证据与任务约束', commit:'2d17df8da1536c121e4d7395ac5a5dcec9e96d6f', repo:'TauricResearch/TradingAgents', file:'tradingagents/default_config.py', steps:[
+      '先读固定版本 README 和 default_config.py。画出“数据 → 分析员 → 讨论 → 决策”的流程，指出每个数字来自哪个工具。',
+      '建立独立 Python 环境，按该版本 README 安装。仅在本机环境变量中配置所选模型与数据服务凭证；此网页不接收密钥。先限制研究为一个标的、一个日期。',
+      '从 TradingAgentsGraph.propagate 的官方示例开始，只改 output_language 或 max_debate_rounds 一项。用相同输入比较证据覆盖、费用和失败情况。限制轮数能缩小任务，但不能保证硬性费用上限；在供应商端另设额度。',
+      '逐条核对一项数字的原文、发布日期、单位；把无法核实的部分列为未知。保留配置、日志、实际模型和数据源。',
+      '阅读 tradingagents/backtest.py，解释为什么不同日期的独立决策评分不等于带现金与持仓的组合回测。'
+    ], boundary:'本项目用于研究流程练习；固定版本的决策回测没有跨期账户账本。课程内的 Agent 记录是编写的教学样本。'},
+    { id:'config', name:'AI Hedge Fund：把约束写进配置', tag:'配置修改、仓位与账本', commit:'154a8b2f46dca0f40764d814e4e747b0ad71f4c4', repo:'virattt/ai-hedge-fund', file:'hedge_fund/fund/example.yaml', steps:[
+      '先完成第十章的 JSON 教学配置，再读真实项目的 hedge_fund/fund/example.yaml。两种配置结构不同，不要直接复制网页 JSON 到上游。',
+      '固定版本使用 Python 3.11 或兼容版本；按固定 README 安装与运行 aihf --help。入口为 hedge_fund.run:main，不能套用旧版 src/main.py 教程。',
+      '复制示例配置到自己的文件，找出 risk.max_position_pct、rebalance、strategies[].weight 和 models[].weight。只改一个仓位上限，说明上限如何传到订单。',
+      '真实运行还依赖所选模型和 Financial Datasets 等数据服务。先以最小研究范围试运行，保留失败日志；运行命令参数以这个固定版本的 --help 为准。',
+      '沿着 run_cycle 追踪研究、目标仓位与 sim broker。核对可用现金、持仓和订单，再读 hedge_fund/backtesting/fund.py 的跨期账本。'
+    ], boundary:'sim broker 按参考价全量成交，未模拟费用、滑点和保证金。带有投资者名字的提示词不等于本人方法的完整实现。'},
+    { id:'code', name:'费用补丁：从教学函数走进真实源码', tag:'读 Python、改逻辑、验证改动', commit:'154a8b2f46dca0f40764d814e4e747b0ad71f4c4', repo:'virattt/ai-hedge-fund', file:'hedge_fund/brokers/sim.py', steps:[
+      '先做第八章内置表达式练习；再下载离线 Python 包，修改 exercise.py 的 buy_cash 与 sell_cash，运行 test_exercise.py。无需数据与模型 API。',
+      '读固定版本 sim.py 的买卖处理。给 Codex 一个行为契约：买卖都扣费，零成交不收费，买单不能超出现金，输出含成交额与费用。',
+      '在自己的上游副本中修改，先验证一买一卖与余额不足，再检查旧行为。不能仅把课程函数粘贴过去就声称完成集成。',
+      '保存 diff、测试输出、代码提交和数据输入。真实接入前，单独核对账本是否在别处再次扣费。'
+    ], boundary:'离线练习是本课程原创代码，不是上游完整运行。通过课程测试只验证这份练习的契约。'},
+    { id:'quant', name:'Qlib：检查实验，而不只看曲线', tag:'数据时点、配置与样本外检验', commit:'be725493eb1a6bbb42bf11b37aa7669f59610ff1', repo:'microsoft/qlib', file:'examples/benchmarks/LightGBM/workflow_config_lightgbm_Alpha158.yaml', steps:[
+      '读固定 README 和 Alpha158/LightGBM 示例。找出 dataset.segments、fit_start_time、fit_end_time、topk、n_drop、exchange_kwargs。用自己的话说明哪些阶段在学习、哪些在评估。',
+      '先在离线 Python 包中比较同一路径的费用与窗口，再阅读真实配置。课程内置回测不等于 Qlib 已运行。',
+      '准备可用且允许使用的数据后，按固定 README 安装并用 qrun 运行自己的配置副本。保存数据版本、预处理器拟合范围、训练/验证/测试日期、基准和成本。',
+      '只改一个参数；验证后锁定，再在未用于选择的时期检查。保留没有改善的结果，列出幸存者偏差、复权和缺失值处理。',
+      '默认示例是中国市场 cn_data、CSI300、SH000300，不能改个标题就当美股。美股还需调整数据、交易日历、币种、成分、成交与费用。'
+    ], boundary:'Qlib 是量化框架，不默认是 LLM Agent。核查版本的官方数据集下载暂时禁用；有合适数据才能执行这部分，课程不承诺自动下载即可跑通。'}
+  ]
+};
+
+</script>
+<script>
+window.BullPractice = {"version": 1, "zip": "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"};
+
+</script>
+<script>
+/* BullCamp academy: local-only learning engine, independent of classic progress. */
+(function () {
+  'use strict';
+  const C = window.BullCourse, L = window.BullLearning, M = window.BullModels, F = window.BullControls, R = window.BullResources;
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`;
+  let state = L.fresh(), storageOK = true, current = null, toastTimer, search = '', output = null, pendingImport = null, exportUrl = null;
+  try { const raw = localStorage.getItem(L.KEY); if (raw) state = L.importState(raw, C.lessons); }
+  catch (_) { storageOK = false; }
+  function save() {
+    try { localStorage.setItem(L.KEY, JSON.stringify(state)); storageOK = true; }
+    catch (_) { storageOK = false; toast('无法写入浏览器存档，请到学习档案导出备份。'); }
+  }
+  function toast(message) { const el = $('#toast'); el.textContent = message; el.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('visible'), 4000); }
+  const rFor = l => L.get(state, l.id);
+  const done = () => C.lessons.filter(l => rFor(l).complete).length;
+  const next = () => C.lessons.find(l => !rFor(l).complete) || C.lessons.at(-1);
+  const bull = `<svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M22 26C8 27 7 14 10 10c2 8 8 8 15 6M58 26c14 1 15-12 12-16-2 8-8 8-15 6" fill="#f7cd63" stroke="#16324a" stroke-width="3"/><path d="M19 26c0-15 42-15 42 0v21c0 22-42 22-42 0Z" fill="#fff" stroke="#16324a" stroke-width="3"/><path d="M27 20q13-16 26 0" fill="#166a9f"/><rect x="21" y="43" width="38" height="22" rx="11" fill="#c8e7df" stroke="#16324a" stroke-width="3"/><circle cx="29" cy="35" r="3" fill="#16324a"/><circle cx="51" cy="35" r="3" fill="#16324a"/><path d="M31 53v3m18-3v3" stroke="#16324a" stroke-width="3" stroke-linecap="round"/></svg>`;
+  const heroArt = `<svg class="hero-art" viewBox="0 0 220 250" aria-hidden="true"><path d="M15 228H205M40 228v-40h35v40m15 0v-80h35v80m15 0V96h35v132" fill="#c7dde7" stroke="#9ebdce" stroke-width="2"/><path d="m30 165 43-45 35 13 55-67" fill="none" stroke="#138575" stroke-width="5" stroke-linecap="round"/><path d="m146 68 22-7-2 23" fill="none" stroke="#138575" stroke-width="5" stroke-linecap="round"/><g transform="translate(80 145) scale(.9)">${bull.replace(/<svg[^>]*>|<\/svg>/g,'')}</g></svg>`;
+  function shell(view, body) {
+    const nav = [['map','◈','学习旅程'],['manual','▤','方法手册'],['review','↺','复习角'],['practice','⌘','补充实践'],['archive','▦','学习档案']];
+    $('#app').innerHTML = `<div class="shell"><aside class="sidebar"><a class="brand" href="#map" aria-label="BullCamp 首页">${bull}<span>BullCamp<small>投资探索营</small></span></a><nav class="nav" aria-label="主导航">${nav.map(([id,icon,title]) => `<a href="#${id}" class="${view === id ? 'active' : ''}" ${view === id ? 'aria-current="page"' : ''}><span class="nav-icon" aria-hidden="true">${icon}</span>${title}</a>`).join('')}</nav><div class="sidebar-bottom">从一个判断开始，<br>把方法留在自己手里。<a href="#manual">课程依据与适用范围</a></div></aside><main class="main" id="main" tabindex="-1"><div class="topline"><span>投资探索营 / ${view === 'lesson' ? '任务工作台' : nav.find(n => n[0] === view)?.[2] || '学习旅程'}</span><span class="local-indicator">本地学习 · ${done()} / 46</span></div>${!storageOK ? '<div class="storage-warning" role="alert">浏览器存档不可用或已有存档损坏。当前仍可学习，请导出备份；原版存档不受影响。</div>' : ''}${body}<footer class="footer">BullCamp 投资探索营 · 核心任务无需 API · 教学案例与行情均为原创模拟<br>基于 BullCamp（MIT）扩展；原版作者 wcy4213。学习进度保存在当前浏览器，可从档案导出。</footer></main></div>`;
+  }
+  function heading(title, text) { return `<header class="page-heading"><h1>${title}</h1><p>${text}</p></header>`; }
+  function abilityCounts() { const c = { understand:0,operate:0,agent:0 }; C.lessons.forEach(l => { const s = L.skills(rFor(l)); for (const k in c) c[k] += +s[k]; }); return c; }
+  function mapView() {
+    const n = next(), count = done(), a = abilityCounts();
+    const resume = C.lessons.find(l => l.id === state.last && !rFor(l).complete) || n;
+    shell('map', `<div class="home-grid"><section><div class="journey-hero"><div class="copy"><div class="eyebrow">${count === 46 ? '主线已完成，研究继续' : '先做一个小决策，再学懂它'}</div><h1>投资这件事，<br>自己拿得住主意。</h1><p>读懂资料，亲手试一试，再审一遍 Agent 的判断。一步一步，建立自己的方法。</p><a class="btn" href="#lesson/${resume.id}">${count ? '继续学习' : '开始基础任务'} <span aria-hidden="true">→</span></a></div>${heroArt}</div><div class="section-head"><h2>你的学习路线</h2><span class="small muted">6 个基础任务 + 10 章</span></div>${C.chapters.map((c,i) => {
+      const ls = C.lessons.filter(l => l.chapter === c.id), cd = ls.filter(l => rFor(l).complete).length;
+      return `<details class="chapter" ${c.id === n.chapter || (count === 0 && i === 0) ? 'open' : ''}><summary><span class="chapter-num">${i === 0 ? c.icon : String(i).padStart(2,'0')}</span><div><h3>${c.title}</h3><p>${c.description}</p></div><span class="chapter-count">${cd}/${ls.length}</span></summary><ol class="lesson-list">${ls.map(l => { const r = rFor(l), cls = r.complete ? 'done' : l.id === n.id ? 'current' : ''; return `<li class="lesson-row ${cls}"><span class="lesson-dot">${r.complete ? '✓' : ''}</span><a class="lesson-link" href="#lesson/${l.id}"><div><span class="lesson-title">${l.title}</span><small>${l.minutes} 分钟左右 · ${l.lab.type === 'evidence' ? '资料判断' : l.lab.type === 'code' ? '代码实验' : l.lab.type === 'config' ? '配置实验' : '交互实验'} · Agent 审核</small></div><span class="status">${r.complete ? '已完成' : l.id === n.id ? '当前任务 →' : '可预习'}</span></a></li>`; }).join('')}</ol></details>`;
+    }).join('')}<div class="intro-strip">建议沿路线前进，也可以自由预习。每关依次完成理解、操作、审核、迁移和复盘；补充真实运行不参与主线完成度。</div></section><aside class="home-aside"><section class="side-note"><h3>一路留下的能力</h3><div class="progress-big">${count}<small> / 46 个任务</small></div><div class="progress-track" role="progressbar" aria-label="任务完成进度" aria-valuenow="${count}" aria-valuemin="0" aria-valuemax="46"><span style="width:${count/46*100}%"></span></div><div class="ability"><span>理解与迁移</span><b>${a.understand}/46</b></div><div class="ability"><span>操作与核验</span><b>${a.operate}/46</b></div><div class="ability"><span>Agent 审核练习</span><b>${a.agent}/46</b></div><p>这是课程练习记录。独立判断还需要在新材料中不断检验。</p></section><section class="side-note"><h3>这一站带走什么</h3><p>${esc(n.goal)}</p><div class="stamp">${esc(n.takeaway)}</div></section><section class="side-note"><h3>一份能回看的研究笔记</h3><p>你的假设、实验与反证会留在档案里。换设备前，记得导出。</p><a href="#archive" class="small">查看学习档案</a></section></aside></div>`);
+  }
+  function question(q, key, r, enabled = true) {
+    const a = r.answers[key];
+    return `<section class="quiz" id="quiz-${key}" aria-labelledby="q-${key}"><h3 id="q-${key}">${esc(q.prompt)}</h3><div class="quiz-options">${q.options.map((o,i) => `<button class="option ${a?.chosen === i ? a.correct ? 'correct' : 'incorrect' : ''}" data-answer="${key}" data-choice="${i}" ${enabled ? '' : 'disabled'}><span class="option-key">${String.fromCharCode(65+i)}</span>${esc(o)}</button>`).join('')}</div>${!enabled ? '<p class="gate-note">完成上面的操作后再检查理解。</p>' : ''}${a ? `<div class="feedback ${a.correct ? '' : 'error'}" role="status"><b>${a.correct ? a.firstCorrect ? '首次检查通过。' : '订正通过。' : '这里还需要再想一步。'}</b> ${esc(q.explanation)}${!a.correct ? '<br>可以回看资料，再选择一次。' : ''}</div>` : ''}</section>`;
+  }
+  function noteField(key, label, r, placeholder, cls = '') { return `<label class="field">${label}<textarea class="${cls}" data-note="${key}" maxlength="10000" placeholder="${esc(placeholder || '')}">${esc(r.notes[key] || '')}</textarea></label>`; }
+  function sourcePane(l) { return `<details class="source-pane" ${innerWidth > 900 ? 'open' : ''}><summary>随手查：本关资料</summary><p class="data-label">${l.dataLabel}</p>${l.facts.map(([label,text]) => `<div class="fact"><b>${esc(label)}</b>${esc(text)}</div>`).join('')}<h4>方法依据 · 联网延伸阅读</h4>${l.sources.map(id => external(C.sources[id][1], C.sources[id][0], 'source-link')).join('')}<p class="note">外部来源解释方法，案例数字由课程编写。无需打开外链即可完成本关。</p></details>`; }
+  function controls(l, r) {
+    const defs = F.controls[l.lab.type], values = { ...F.defaults(l.lab.type), ...l.lab.values, ...r.params };
+    return `<form id="model-form"><div class="form-grid">${defs.map(c => `<label class="field">${c.label}${c.options ? `<select name="${c.key}" data-param="${c.key}">${Object.entries(c.options).map(([v,label]) => `<option value="${v}" ${values[c.key] === v ? 'selected' : ''}>${label}</option>`).join('')}</select>` : `<input name="${c.key}" data-param="${c.key}" type="number" value="${esc(values[c.key])}" min="${c.min}" max="${c.max}" step="${c.step}" required>`}</label>`).join('')}</div><button class="btn" type="submit">运行这组条件</button></form>`;
+  }
+  function table(headers, rows) { return `<div class="table-wrap"><table><thead><tr>${headers.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(v => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }
+  function chart(series) {
+    const all = series.flatMap(s => s.values), max = Math.max(...all), min = Math.min(0,...all), range = max-min || 1;
+    const y = v => 160 - (v-min)/range*140;
+    return `<div class="chart"><svg viewBox="0 0 500 195" role="img" aria-label="给定条件下的模拟资产路径，下方可展开数值"><text x="0" y="14" font-size="10" fill="#557084">${Math.round(max).toLocaleString()}</text><text x="0" y="166" font-size="10" fill="#557084">${Math.round(min)}</text>${[20,90,160].map(v => `<line x1="50" x2="487" y1="${v}" y2="${v}" stroke="#d5e2e9" stroke-dasharray="3 4"/>`).join('')}${series.map((s,i) => `<polyline points="${s.values.map((v,j) => `${50+j/(s.values.length-1)*435},${y(v)}`).join(' ')}" fill="none" stroke="${i ? '#138575' : '#166a9f'}" stroke-width="2.8" ${i ? 'stroke-dasharray="5 4"' : ''}/>`).join('')}<text x="50" y="186" font-size="10" fill="#557084">第 1 期</text><text x="448" y="186" font-size="10" fill="#557084">期末</text></svg><div class="chart-legend">${series.map(s => `<span>${esc(s.name)}</span>`).join('')}</div></div>`;
+  }
+  function renderOutput(o) {
+    if (!o) return '';
+    if (o.error) return `<div class="feedback error" role="alert">${esc(o.error)}</div>`;
+    return `<section class="output" aria-label="实验结果"><div class="eyebrow">内置计算结果</div><div class="stats">${o.stats.map(s => `<div class="stat"><span>${esc(s.label)}</span><strong>${esc(s.value)}</strong></div>`).join('')}</div>${o.series ? chart(o.series) : ''}${o.rows?.length ? `<details class="table"><summary>展开计算明细</summary>${table(o.headers || [],o.rows)}</details>` : ''}<p class="note">${esc(o.note)}</p></section>`;
+  }
+  function labView(l,r) {
+    let experiment = '';
+    if (l.lab.type === 'evidence') {
+      experiment = `<p class="note">点选你已核对的资料。至少核对一条，再判断它能支持什么。</p>${l.facts.map(([label,text],i) => `<button class="evidence-button ${r.evidence.includes(i) ? 'reviewed' : ''}" data-evidence="${i}" aria-pressed="${r.evidence.includes(i)}"><b>${r.evidence.includes(i) ? '✓ 已核对 · ' : ''}${esc(label)}</b>${esc(text)}</button>`).join('')}`;
+    } else if (l.lab.type === 'code') {
+      if (!r.notes.buy) r.notes.buy = 'cash - qty * price';
+      if (!r.notes.sell) r.notes.sell = 'cash + qty * price';
+      experiment = `<div class="example"><b>要修的行为</b>买入：原现金 − 成交额 − 费用。卖出：原现金 + 成交额 − 费用。费用 = qty × price × fee_rate。<br>输入 cash=1000、qty=2、price=100、fee_rate=0.01 时，应分别得到 798 和 1198。</div>${noteField('buy','buy_cash 的 return 表达式',r,'','code-input')}${noteField('sell','sell_cash 的 return 表达式',r,'','code-input')}<p class="note">变量：cash 原现金、qty 成交数量、price 成交价、fee_rate 单边费率（小数）。只在限定算术解析器内运行，不执行任意 Python。</p><button class="btn" data-action="code">运行 8 项核验</button><div id="special-output">${output?.code ? renderCode(output.code) : ''}</div>`;
+    } else if (l.lab.type === 'config') {
+      if (!r.notes.config) r.notes.config = JSON.stringify({ max_position_pct:0.35, weights:{ A:0.3, B:0.25 }, allow_borrowing:true, rebalance:'weekly' },null,2);
+      experiment = `<div class="example"><b>角色约束</b>单股权重上限为 20%；不借款；月度或季度再平衡。weights 中的每项不得超过 max_position_pct，合计不超过 1，剩余作为现金。权重使用小数，例如 0.15 = 15%。<br>这是课程专用格式，真实上游配置需另行阅读。</div>${noteField('config','你的计划配置（JSON）',r,'','code-input config-input')}<button class="btn" data-action="config">验证配置约束</button><div id="special-output">${output?.config ? renderConfig(output.config) : ''}</div>`;
+    } else experiment = controls(l,r) + `<div id="model-output">${renderOutput(output?.model)}</div>` + (['c8-4','c10-4'].includes(l.id) ? holdoutView(r) : '');
+    return `<h2>亲手验证一次</h2><p>${esc(l.lab.instruction)}</p>${noteField('prediction','先写一个预期（可选，但建议）',r,'我改变……，预计……；因为……')}<hr>${experiment}${r.runs.length ? `<details><summary class="small muted">本关实验记录（最近 ${r.runs.length} 次）</summary><ol class="run-log">${r.runs.map(x => `<li>${esc(x)}</li>`).join('')}</ol></details>` : ''}${question(l.lab.check,'lab',r,!!r.labDone)}`;
+  }
+  function renderCode(results) { return `<div class="feedback ${results.every(x => x.pass) ? '' : 'error'}" role="status">${results.filter(x => x.pass).length} / 8 项通过。${results.every(x => x.pass) ? '费用方向、零费用与零成交均符合契约。' : '请比较实际值与期望值，修改表达式后再运行。'}</div>${table(['情境','输入 cash / qty / price / fee_rate','实际','期望'],results.map(x => [x.label,Object.values(x.vars).join(' / '),x.error || x.actual.toFixed(3),x.expected.toFixed(3)]))}`; }
+  function holdoutView(r) {
+    if (!r.holdout) return `<div class="example"><b>先锁定规则，再揭示另一段行情</b>上方路径可用于探索。选择规则、窗口、仓位和成本后，先运行一次，再锁定这些条件。另一段原创路径只在揭示时显示；结果不按盈亏评分。</div><button class="btn secondary" data-action="holdout" ${r.labDone ? '' : 'disabled'}>锁定当前条件并揭示样本</button>`;
+    const prices = [100,108,113,109,103,98,101,93,90,94,96,91];
+    const a = M.backtest(prices,r.holdout.params), b = M.backtest(prices,{...r.holdout.params,rule:'hold',weight:100});
+    return `<div class="example"><b>已揭示的检验记录 · 固定条件</b>${esc(JSON.stringify(r.holdout.params))}<br>策略期末 ${M.money(a.value)}；同成本持有 ${M.money(b.value)}。<br>行情：${prices.join(' → ')}<br>这组条件的首次记录已保留。现在已经见过数据；继续修改属于探索，不能再把同一段称作独立检验。浏览器源码可查看，因此这只是教学过程，不是保密评测。</div>`;
+  }
+  function renderConfig(errors) { return `<div class="feedback ${errors.length ? 'error' : ''}" role="status">${errors.length ? errors.map(esc).join('<br>') : '给定配置约束全部通过。这只检查行为约束，不证明策略有效。'}</div>`; }
+  function lessonView(l) {
+    current = l; const r = rFor(l), titles = ['理解','操作','审核','迁移','复盘'];
+    state.last = l.id; save();
+    let body;
+    if (r.step === 0) body = `<div class="eyebrow">任务 ${String(l.number).padStart(2,'0')} / 46</div><h2>从这个情境开始</h2><div class="scenario"><span class="label">你的任务</span>${esc(l.story)}</div><div class="teaching">${l.teach.map(p => `<p>${esc(p)}</p>`).join('')}</div><div class="example"><b>跟着算一遍</b>${esc(l.example)}</div><div class="stamp">本关要留下：${esc(l.takeaway)}</div><p class="note">遇到陌生词，可随时打开方法手册；回来时会保留当前位置。</p>`;
+    if (r.step === 1) body = labView(l,r);
+    if (r.step === 2) body = `<h2>你来审核 Agent</h2><p>先把结论与本关资料逐项对照，再给它一条能执行、能检查的后续任务。</p><div class="agent-report"><div class="agent-label">Agent 教学样本 · 人工编写，未调用模型</div><blockquote>${esc(l.agent.report)}</blockquote></div>${question(l.agent.check,'agent',r)}<hr>${noteField('prompt','写一条你会真正交给 Agent 的任务',r,'请基于【哪些资料与截止时间】，核对【什么问题】；输出【依据、计算、未知和反证】，不要超出【哪些约束】。')}<p class="note">这段文本保存为你的任务草稿，不会发送到外部服务。程序只检查是否填写；质量由你按范围、来源、约束和验收标准自查。</p>${l.practice ? `<a class="small" href="#practice/${l.practice}">查看对应的真实项目补充练习</a>` : ''}`;
+    if (r.step === 3) body = `<h2>换一个情境，还能判断吗？</h2><p>用刚才的方法解决两个新问题。记录首次作答和后续订正，答错后可以回到例题重新检查。</p>${l.transfer.map((q,i) => question(q,'transfer'+i,r)).join('')}<p class="note">选择题验证有限范围的理解；最后还需要留下你自己的依据和边界。</p>`;
+    if (r.step === 4) {
+      const s = L.skills(r), all = Object.values(s).every(Boolean), idx = C.lessons.indexOf(l), upcoming = C.lessons[idx+1];
+      body = `${r.complete ? `<div class="lesson-complete"><div class="eyebrow">已完成本关练习</div><h2>把方法留给下一次判断。</h2><p>${esc(l.takeaway)}</p><div class="actions">${upcoming ? `<a class="btn" href="#lesson/${upcoming.id}">下一任务：${esc(upcoming.title)}</a>` : '<a class="btn" href="#archive">查看毕业学习档案</a>'}<a class="btn secondary" href="#map">返回路线</a></div></div>` : '<h2>留下你的研究记录</h2><p>不按模拟盈利打分。用资料、操作和可推翻的判断，说明你学会了什么。</p>'}<div class="receipt"><div><span>自动核验 · 理解与迁移</span>${s.understand ? '✓ 两项新情境已通过' : '待完成：两项新情境'}</div><div><span>自动核验 · 操作</span>${s.operate ? '✓ 实操与操作检查已通过' : '待完成：运行/核对资料及操作检查'}</div><div><span>混合记录 · Agent 审核</span>${s.agent ? '✓ 审核题已通过，任务草稿已保存' : '待完成：审核题与任务草稿'}</div></div>${noteField('evidence','1. 我的结论，以及支持它的具体证据',r,'写一个数字、资料片段或实验差异，并说明它支持什么。')}${noteField('limit','2. 这个结论依赖什么，什么会推翻它？',r,'写出关键假设、适用范围或一个反例。')}${noteField('next','3. 下次我自己做什么，让 Agent 做什么？',r,'给出下一步动作与核验办法。')}<label class="checkbox"><input type="checkbox" data-reflection ${r.reflection ? 'checked' : ''}>我已检查：引用了具体证据，区分了假设，写明了限制与后续核验。这是自评，不是 AI 对开放答案的评分。</label><button class="btn" data-action="complete">${r.complete ? '保存更新后的复盘' : '完成任务并归档'}</button>${!all ? '<p class="gate-note">可以先写复盘，再回到上方步骤补全待完成项。</p>' : ''}`;
+    }
+    shell('lesson', `<header class="lesson-header"><a class="back" href="#map">← 返回学习路线</a><h1>${esc(l.title)}</h1><p>${esc(l.goal)}</p>${l.prerequisites.some(id => !rFor(C.lessons.find(x => x.id === id)).complete) ? '<p class="note">你正在提前预习；建议先完成前一任务，已有输入会保留。</p>' : ''}</header><div class="workspace"><section><nav class="steps" aria-label="任务步骤">${titles.map((t,i) => `<button class="step ${r.step === i ? 'active' : ''}" data-step="${i}" ${r.step === i ? 'aria-current="step"' : ''}><span class="step-index">${i+1}</span>${t}</button>`).join('')}</nav><div class="work-panel">${body}${r.step < 4 ? `<div class="step-actions"><button class="btn quiet" data-step="${Math.max(0,r.step-1)}" ${r.step === 0 ? 'disabled' : ''}>上一步</button><button class="btn" data-step="${r.step+1}">${['开始动手','去审核 Agent','检查新情境','写下复盘'][r.step]} →</button></div>` : ''}</div></section>${sourcePane(l)}</div>`);
+  }
+  function manualView() {
+    const needle = search.trim().toLowerCase();
+    const lessons = C.lessons.filter(l => [l.title,l.takeaway,...l.teach].join(' ').toLowerCase().includes(needle));
+    const terms = R.glossary.filter(x => x.join(' ').toLowerCase().includes(needle));
+    shell('manual', `${heading('随手翻的方法手册','先记住该怎样问、怎样查，再回到任务里亲手验证。这里也保留整个课程的依据与边界。')}<label class="field search">搜索概念或方法<input id="manual-search" type="search" placeholder="例如：定投、现金、回测、Agent" value="${esc(search)}"></label><details ${needle ? 'open' : ''}><summary>基础概念速查 · ${terms.length} 项</summary><dl class="glossary">${terms.map(([term,def]) => `<dt>${esc(term)}</dt><dd>${esc(def)}</dd>`).join('')}</dl></details><div class="manual-grid">${lessons.map(l => `<article class="manual-item"><h3>${esc(l.title)}</h3><p>${esc(l.takeaway)}</p><p class="muted">${esc(l.teach[0])}</p><a href="#lesson/${l.id}">回到任务 ${String(l.number).padStart(2,'0')} · 动手验证</a></article>`).join('')}</div>${!terms.length && !lessons.length ? '<p class="empty">没有找到这个词，可以换一个概念搜索。</p>' : ''}<hr><h2>内容依据与适用范围</h2><p>以 Aswath Damodaran《Investment Philosophies》第二版与公开课的方法谱系为骨架，结合 SEC、FINRA 的入门材料。覆盖被动投资、价值、成长、信息、技术规则、择时、套利、检验与理念匹配；这是一套入门课程，并非全书的逐章替代。</p><p>每个任务的公司、价格、概率、报表和 Agent 对话均为原创教学情境。涉及真实产品的条款、真实市场数据和运行成本，需要在补充实践中按当前来源核实。案例未模拟的税务、市场冲击等限制会在模型旁说明。</p>${Object.values(C.sources).map(([title,url]) => external(url,title,'source-link')).join('')}`);
+  }
+  function reviewView() {
+    const rows = [];
+    for (const l of C.lessons) { const r = rFor(l); for (const [key,a] of Object.entries(r.answers)) if (!a.firstCorrect || !a.correct) { const q = key === 'lab' ? l.lab.check : key === 'agent' ? l.agent.check : l.transfer[Number(key.slice(-1))]; rows.push({ l,key,a,q }); } }
+    shell('review', `${heading('给错误留一个回来的地方','保留首次作答的痕迹。订正后再解释一次原因，别只记住选项的位置。')}${rows.length ? `<p class="small muted">${rows.length} 项需巩固 · ${rows.filter(x => x.a.correct).length} 项已订正</p>${rows.map(({l,key,a,q}) => `<article class="review-row"><span class="badge">${a.correct ? '已订正，仍可回看' : '待订正'}</span><h3>${esc(q.prompt)}</h3><p class="muted">${esc(l.title)} · ${key === 'agent' ? 'Agent 审核' : key === 'lab' ? '操作检查' : '新情境'}</p><details><summary class="small">回看解释</summary><p>${esc(q.explanation)}</p></details><button class="btn secondary small" data-review="${l.id}" data-review-step="${key === 'lab' ? 1 : key === 'agent' ? 2 : 3}">回到任务重新检查</button></article>`).join('')}` : '<div class="empty"><h2>还没有需要订正的题目</h2><p>开始学习后，首次答错的题目会自动留在这里。</p><a class="btn" href="#map">回到学习路线</a></div>'}`);
+  }
+  function practiceView(id) {
+    const selected = R.projects.find(p => p.id === id), projects = selected ? [selected] : R.projects;
+    shell('practice', `${heading('把学会的方法，带到真实工具里','补充实践不计入主线完成度。先用内置案例学会核查，再自主连接数据与模型。这里提供固定源码入口和可复现的离线练习。')}<div class="stamp">真实项目指引已核对源码，但未在本课程交付中调用付费 API 或实跑第三方 Agent。网页中的计算和教学对话不代表上游运行结果。</div><section class="plain-card" style="margin-top:24px"><h2>先跑一份完全离线的 Python 实验</h2><p>使用标准库、原创价格和本地配置。读取账本、改费用函数、比较参数，把输入与输出写入实验记录。</p><pre>python3 practice/lab.py --config practice/config.json --output experiment.json
+python3 -m unittest discover -s practice -p 'test_*.py'</pre><div class="actions"><button class="btn secondary" data-action="download-practice">下载离线练习包</button></div><p class="note">网页目录版可直接读取 practice 文件夹；独立 HTML 使用下载按钮。下载 ZIP 后解压，即可得到 practice 文件夹，不连接网络。先读其中 README.md：lab.py 运行完整实验，exercise.py 是需要你修改的费用练习；test_exercise.py 初次有意出现失败。</p></section>${selected ? '<a href="#practice" class="small">← 查看全部实践方向</a>' : ''}${projects.map(p => `<section class="practice-project"><div class="eyebrow">${p.tag}</div><h3>${p.name}</h3><p class="small muted">固定版本：<code>${p.commit.slice(0,12)}</code> · 指引核查于 2026-09-23</p><ol>${p.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol><div class="example"><b>要能解释的工具边界</b>${esc(p.boundary)}</div><div class="actions">${external(`https://github.com/${p.repo}/blob/${p.commit}/${p.file}`,'打开固定版本源码','btn secondary')}${external(`https://github.com/${p.repo}/blob/${p.commit}/README.md`,'阅读对应 README','btn quiet')}</div></section>`).join('')}<hr><h2>实际运行后，留下什么</h2><p>在自己的实验目录保留：项目与提交、环境、数据来源和可得时间、模型、配置、预算与实际消耗、代码差异、完整输出、核验结果和失败原因。下载的练习包中附有运行记录模板。只有留有真实执行证据时，才在自己的记录中写“已运行”。</p><p class="note">RD-Agent 的自动因子与模型研究作为进一步延伸；需要更完整的数据、Linux/Docker 环境和实验管理，不作为入门主线。${external('https://github.com/microsoft/RD-Agent/tree/4834df2b6f3e417e5d0512dfe4fd24a8ac338b05','查看固定版本')}</p>`);
+  }
+  function markdown() {
+    let text = `# BullCamp 投资探索营 · 我的学习档案\n\n导出日期：${new Date().toISOString()}\n\n已完成 ${done()}/46。教学案例与 Agent 样本均为原创模拟；开放记录为自评。\n`;
+    C.lessons.forEach(l => { const r = rFor(l); if (!r.complete && !Object.keys(r.notes).length && !Object.keys(r.answers).length) return; text += `\n## ${l.number}. ${l.title}（${r.complete ? '完成' : '进行中'}）\n\n${l.takeaway}\n`; for (const [k,title] of [['prediction','操作前预期'],['prompt','给 Agent 的任务'],['evidence','结论与证据'],['limit','假设与反证'],['next','下一步']]) text += `\n### ${title}\n\n${r.notes[k] || '尚未记录'}\n`; text += '\n### 实验记录\n\n' + (r.runs.join('\n\n') || '无') + '\n\n### 练习检查\n\n' + Object.entries(r.answers).map(([k,a]) => `${k}：${a.firstCorrect ? '首次通过' : a.correct ? '订正通过' : '待订正'}；尝试 ${a.attempts} 次`).join('\n') + '\n'; });
+    return text;
+  }
+  function archiveView() {
+    const count = done(), notes = C.lessons.filter(l => rFor(l).complete || Object.values(rFor(l).notes).some(Boolean));
+    shell('archive', `${heading('你的学习档案','保存自己做过的判断，也保存推翻它的理由。存档只留在当前浏览器；JSON 可以恢复进度，Markdown 便于阅读和整理。')}${count === 46 ? '<div class="lesson-complete"><div class="eyebrow">主线练习全部完成</div><h2>你已经走完 46 个任务。</h2><p>理解、操作、Agent 审核与复盘均已留下记录。接下来可以换一份资料独立研究，或选择补充真实实践。完成课程不是收益或专业资质证明。</p></div>' : ''}<div class="archive-grid"><section class="plain-card"><h2>备份与迁移</h2><p>已完成 <b>${count} / 46</b> 个任务，${notes.length} 份任务记录。</p><div class="actions"><button class="btn" data-action="export-json">导出进度 JSON</button><button class="btn secondary" data-action="export-md">导出研究笔记</button><label class="btn quiet file-button">导入存档<input id="import-file" type="file" accept=".json,application/json"></label></div><p class="note">导入会替换探索营进度；原版 BullCamp 存档不受影响。跨浏览器、换端口或离线文件之间迁移，请先导出。</p><details><summary class="small">也可以粘贴 JSON 导入</summary><label class="field">粘贴存档 JSON<textarea id="import-text" class="code-input" maxlength="3000000"></textarea></label><button class="btn secondary small" data-action="import-text">验证并导入文本</button></details></section><section class="plain-card"><h2>记录怎样理解</h2><p>自动核验：计算、代码、配置与结构化选择。<br>自评：任务草稿、证据质量、反证与行动计划。</p><p>首次答错的项目在复习角保留。修改已完成任务的输入或答案后，需重新核验并归档，记录才会再次计为完成。</p><button class="btn quiet small" data-action="reset">清空探索营存档</button></section></div>${notes.map(l => { const r = rFor(l); return `<details class="chapter"><summary><span class="chapter-num">${l.number}</span><div><h3>${esc(l.title)}</h3><p>${r.complete ? '已归档' : '进行中'}</p></div></summary><div class="receipt">${[['evidence','结论与证据'],['limit','假设与反证'],['next','下一步']].map(([k,t]) => `<div><span>${t}</span>${esc(r.notes[k] || '尚未记录')}</div>`).join('')}</div><a class="btn secondary small" href="#lesson/${l.id}">打开任务</a></details>`; }).join('')}`);
+  }
+  function download(name,text,type) {
+    if (exportUrl) URL.revokeObjectURL(exportUrl);
+    exportUrl = URL.createObjectURL(new Blob([text],{type}));
+    let panel = $('#export-preview');
+    if (!panel) { panel = document.createElement('section'); panel.id = 'export-preview'; panel.className = 'plain-card'; $('.page-heading').after(panel); }
+    panel.innerHTML = `<h2>已生成 ${esc(name)}</h2><a class="btn" href="${exportUrl}" download="${esc(name)}">保存文件</a>${typeof text === 'string' ? '<p class="note">如果内置浏览器没有保存文件，可复制下面的完整文本；JSON 也可以粘贴导入。</p><label class="field">导出内容<textarea readonly id="export-text" class="code-input"></textarea></label>' : '<p class="note">解压后得到 practice 文件夹。内置浏览器未保存时，也可从项目 dist 文件夹取得 bullcamp-practice.zip。</p>'}`;
+    if (typeof text === 'string') $('#export-text').value = text;
+    panel.scrollIntoView({block:'start'});
+  }
+  function confirmInPage(action, message) {
+    $('#confirmation')?.remove(); const panel = document.createElement('section'); panel.id='confirmation'; panel.className='plain-card'; panel.setAttribute('role','alertdialog'); panel.setAttribute('aria-labelledby','confirmation-title');
+    panel.innerHTML=`<h2 id="confirmation-title">${esc(message)}</h2><p>只影响探索营进度与笔记，原版存档不变。建议先导出当前记录，再进行替换或清空。</p><div class="actions"><button class="btn secondary" data-action="cancel-confirm">取消</button><button class="btn" data-action="${action}">确认${action === 'confirm-reset' ? '清空' : '替换存档'}</button></div>`;
+    $('.page-heading').after(panel); panel.scrollIntoView({block:'start'}); panel.querySelector('button').focus();
+  }
+  function navigate() {
+    const [view,arg] = location.hash.slice(1).split('/'); current = null; output = null;
+    if (view === 'lesson') { const l = C.lessons.find(x => x.id === arg); if (l) lessonView(l); else { mapView(); toast('未找到该任务，已返回学习路线。'); } }
+    else if (view === 'manual') manualView(); else if (view === 'review') reviewView(); else if (view === 'archive') archiveView(); else if (view === 'practice') practiceView(arg); else mapView();
+    window.scrollTo(0,0);
+  }
+  function refreshLesson() { const y = scrollY; lessonView(current); window.scrollTo(0,y); }
+  function invalidate(r, lab = false) {
+    const wasComplete = r.complete; r.complete = false;
+    if (lab) { r.labDone = false; delete r.answers.lab; }
+    if (wasComplete) {
+      const indicator = $('.local-indicator'); if (indicator) indicator.textContent = `本地学习 · ${done()} / 46`;
+      const banner = $('.lesson-complete .eyebrow'); if (banner) banner.textContent = '内容已修改，等待重新归档';
+    }
+  }
+  function logRun(r,text) { r.runs.push(new Date().toLocaleString('zh-CN') + ' · ' + text); r.runs = r.runs.slice(-8); }
+  document.addEventListener('click', e => {
+    if (e.target.closest('.skip')) { e.preventDefault(); $('#main').focus(); $('#main').scrollIntoView({block:'start'}); return; }
+    const el = e.target.closest('[data-step],[data-answer],[data-evidence],[data-action],[data-review]'); if (!el) return;
+    if (el.dataset.review) { rFor(C.lessons.find(l => l.id === el.dataset.review)).step = Number(el.dataset.reviewStep); save(); location.hash = 'lesson/' + el.dataset.review; return; }
+    const r = current && rFor(current);
+    if (el.hasAttribute('data-step') && r) { r.step = Number(el.dataset.step); save(); lessonView(current); $('.steps').scrollIntoView({block:'start'}); return; }
+    if (el.hasAttribute('data-answer') && r) {
+      const key = el.dataset.answer, q = key === 'lab' ? current.lab.check : key === 'agent' ? current.agent.check : current.transfer[Number(key.slice(-1))];
+      L.answer(r,key,Number(el.dataset.choice),q); invalidate(r); save(); refreshLesson(); $('#quiz-'+key)?.scrollIntoView({block:'nearest'}); return;
+    }
+    if (el.hasAttribute('data-evidence') && r) { const i = Number(el.dataset.evidence); r.evidence = r.evidence.includes(i) ? r.evidence.filter(x => x !== i) : [...r.evidence,i]; r.labDone = !!r.evidence.length; invalidate(r); save(); refreshLesson(); return; }
+    switch (el.dataset.action) {
+      case 'code': { const results = L.checkCode(r.notes.buy,r.notes.sell); output = {code:results}; r.labDone = results.every(x => x.pass); invalidate(r); logRun(r,`费用表达式核验：${results.filter(x=>x.pass).length}/8；buy=${r.notes.buy}；sell=${r.notes.sell}`); save(); refreshLesson(); break; }
+      case 'config': { const errors = L.checkConfig(r.notes.config); output = {config:errors}; r.labDone = !errors.length; invalidate(r); logRun(r,`配置验证：${errors.length ? errors.join('；') : '通过'}；${r.notes.config}`); save(); refreshLesson(); break; }
+      case 'holdout': if (r.labDone && !r.holdout) { r.holdout = { params:{...r.params},date:new Date().toISOString() }; logRun(r,'锁定条件后揭示教学检验路径：'+JSON.stringify(r.params)); save(); refreshLesson(); } break;
+      case 'complete': {
+        if (['c8-4','c10-4'].includes(current.id) && !r.holdout) { toast('请先在操作步骤锁定条件并揭示检验样本，留下实验记录。'); break; }
+        if (!L.complete(r)) { toast('请补齐操作、审核、新情境与三项复盘，并勾选自查。'); break; }
+        save(); lessonView(current); $('.work-panel').scrollIntoView({block:'start'}); toast('本关学习记录已归档。'); break;
+      }
+      case 'export-json': download('bullcamp-progress.json',JSON.stringify(state,null,2),'application/json'); break;
+      case 'export-md': download('bullcamp-notes.md',markdown(),'text/markdown;charset=utf-8'); break;
+      case 'import-text': {
+        try { pendingImport = L.importState($('#import-text').value,C.lessons); confirmInPage('confirm-import','用粘贴的存档替换当前探索营进度？'); }
+        catch (error) { toast('导入失败：'+error.message); } break;
+      }
+      case 'confirm-import': if (pendingImport) { state=pendingImport; pendingImport=null; save(); archiveView(); toast('存档已导入。'); } break;
+      case 'cancel-confirm': pendingImport=null; $('#confirmation')?.remove(); break;
+      case 'download-practice': if (window.BullPractice) { const bytes = Uint8Array.from(atob(window.BullPractice.zip),c=>c.charCodeAt(0)); download('bullcamp-practice.zip',bytes,'application/zip'); } else toast('练习包未载入，请从项目的 practice 文件夹读取。'); break;
+      case 'reset': confirmInPage('confirm-reset','清空探索营进度与笔记？'); break;
+      case 'confirm-reset': state=L.fresh(); save(); archiveView(); toast('探索营存档已清空。'); break;
+    }
+  });
+  document.addEventListener('input', e => {
+    if (e.target.id === 'manual-search') { search = e.target.value; const pos = e.target.selectionStart; manualView(); const f = $('#manual-search'); f.focus(); if (pos !== null) f.setSelectionRange(pos,pos); return; }
+    if (!current) return;
+    const r = rFor(current), el = e.target;
+    if (el.dataset.note) { r.notes[el.dataset.note] = el.value; const changedLab = ['buy','sell','config'].includes(el.dataset.note); invalidate(r,changedLab); if (changedLab) { output = null; const out = $('#special-output'); if (out) out.innerHTML = '<p class="note">内容已改变，请重新运行验证。</p>'; $('#quiz-lab')?.querySelectorAll('button').forEach(b=>b.disabled=true); } save(); }
+    if (el.dataset.param) { r.params[el.dataset.param] = el.tagName === 'SELECT' ? el.value : el.value === '' ? null : Number(el.value); invalidate(r,true); output = null; save(); const out = $('#model-output'); if(out) out.innerHTML = '<p class="note">条件已改变，请重新运行。</p>'; $('#quiz-lab')?.querySelectorAll('button').forEach(b=>b.disabled=true); }
+  });
+  document.addEventListener('change', async e => {
+    if (e.target.hasAttribute('data-reflection') && current) { const r = rFor(current); r.reflection = e.target.checked; invalidate(r); save(); }
+    if (e.target.id === 'import-file') {
+      const file = e.target.files[0]; if (!file) return;
+      try { if (file.size > 3000000) throw new Error('存档超过 3 MB。'); pendingImport = L.importState(await file.text(),C.lessons); confirmInPage('confirm-import','用所选存档替换当前探索营进度？'); }
+      catch (error) { toast('导入失败：' + error.message); }
+    }
+  });
+  document.addEventListener('submit', e => {
+    if (e.target.id !== 'model-form' || !current) return; e.preventDefault();
+    const r = rFor(current), values = {};
+    for (const c of F.controls[current.lab.type]) values[c.key] = c.options ? e.target.elements[c.key].value : Number(e.target.elements[c.key].value);
+    const errors = F.validate(current.lab.type,values); const result = errors.length ? {error:errors.join(' ')} : M.run(current.lab.type,values);
+    r.params = values; output = {model:result}; r.labDone = !result.error; invalidate(r);
+    if (!result.error) logRun(r,JSON.stringify(values) + ' → ' + result.stats.map(s => s.label + ' ' + s.value).join('；'));
+    save(); refreshLesson(); $('#model-output').scrollIntoView({block:'nearest'});
+  });
+  addEventListener('hashchange',navigate);
+  navigate();
+})();
+
+</script>
+</body>
+</html>
